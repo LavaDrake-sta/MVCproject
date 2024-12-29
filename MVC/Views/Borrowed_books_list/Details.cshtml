@@ -1,0 +1,50 @@
+﻿@model MVC.Models.Borrowed_books_list
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Borrowed_books_list</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.book_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_taken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_taken)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.return_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.return_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.book_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+    var isLoggedIn = Session["UserName"] != null;
+    var isAdmin = Session["UserType"] != null && Session["UserType"].ToString().Trim().ToLower() == "admin";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME PAGE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="~/CSS/Homepage.css">
+</head>
+
+<body>
+    <header>
+        <h1>Books</h1>
+    </header>
+    <nav class="nav-container">
+        <ul>
+            <li><a href="personalArea.html">אזור אישי</a></li>
+            <li>
+                @if (Session["UserName"] != null)
+                {
+                    <!-- כפתור "התנתקות" -->
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();" class="nav-link">התנתקות</a>
+                    <form id="logoutForm" method="post" action="@Url.Action("Logout", "Users")" style="display: none;"></form>
+                }
+                else
+                {
+                    <!-- כפתור "התחברות/הרשמה" -->
+                    <a href="@Url.Action("LoginRegister", "Users")" class="nav-link">התחברות/הרשמה</a>
+                }
+            </li>
+
+            <li><a href="rent.html">השאלת ספרים</a></li>
+            <li><a href="buy.html">קניית ספרים</a></li>
+            <li>
+                <a href="cart.html">
+                    <i class="fa-solid fa-cart-shopping" style="margin-right: 5px;"></i>
+                    CART
+                </a>
+            </li>
+            @if (isAdmin)
+            {
+                <li><a href="@Url.Action("AdminPage", "Admin")" class="nav-link">ניהול מערכת</a></li>
+            }
+        </ul>
+    </nav>
+
+    <div class="welcome-section">
+        <h2>Welcome to the digital library</h2>
+        <p>
+            .On this website, you can explore a variety of digital books, purchase or rent them, and read reviews
+            from other users about their favorite titles
+        </p>
+    </div>
+
+    <footer>
+        <p>Debug UserType: @Session["UserType"]</p>
+        <p>Debug UserName: @Session["UserName"]</p>
+    </footer>
+</body>
+
+</html>

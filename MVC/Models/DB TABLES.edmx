@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="book id" />
+          </Key>
+          <Property Name="book id" Type="real" Nullable="false" />
+          <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nchar" MaxLength="50" />
+          <Property Name="language" Type="nchar" MaxLength="50" />
+          <Property Name="Publication date" Type="date" />
+          <Property Name="publisher" Type="nchar" MaxLength="50" />
+          <Property Name="link" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Borrowed books list">
+          <Key>
+            <PropertyRef Name="book id" />
+          </Key>
+          <Property Name="book id" Type="real" Nullable="false" />
+          <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nchar" MaxLength="50" />
+          <Property Name="Date taken" Type="date" Nullable="false" />
+          <Property Name="return date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Borrowing books">
+          <Key>
+            <PropertyRef Name="book id" />
+          </Key>
+          <Property Name="book id" Type="real" Nullable="false" />
+          <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nchar" MaxLength="50" />
+          <Property Name="language" Type="nchar" MaxLength="50" />
+          <Property Name="publisher" Type="nchar" MaxLength="50" />
+          <Property Name="Publication date" Type="date" />
+          <Property Name="available" Type="bit" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order number" />
+          </Key>
+          <Property Name="order number" Type="real" Nullable="false" />
+          <Property Name="First name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="real" Nullable="false" />
+          <Property Name="card owner name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="card number" Type="real" Nullable="false" />
+          <Property Name="expird date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CVC" Type="real" Nullable="false" />
+          <Property Name="number of payment" Type="real" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="prodact" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Buy\Borrow" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="50" />
+          <Property Name="type" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="waiting list">
+          <Key>
+            <PropertyRef Name="book name" />
+          </Key>
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowed books list" EntityType="Self.Borrowed books list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowing books" EntityType="Self.Borrowing books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="waiting list" EntityType="Self.waiting list" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Single" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Publication_date" Type="DateTime" Precision="0" />
+          <Property Name="publisher" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Borrowing_books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Single" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="publisher" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Publication_date" Type="DateTime" Precision="0" />
+          <Property Name="available" Type="Boolean" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_number" />
+          </Key>
+          <Property Name="order_number" Type="Single" Nullable="false" />
+          <Property Name="First_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Single" Nullable="false" />
+          <Property Name="card_owner_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="card_number" Type="Single" Nullable="false" />
+          <Property Name="expird_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CVC" Type="Single" Nullable="false" />
+          <Property Name="number_of_payment" Type="Single" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="prodact" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Buy_Borrow" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="waiting_list">
+          <Key>
+            <PropertyRef Name="book_name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MVC_PROJECTEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="books" EntityType="Self.books" />
+          <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="waiting_list" EntityType="Self.waiting_list" />
+          <EntitySet Name="Borrowed_books_list" EntityType="Model.Borrowed_books_list" />
+        </EntityContainer>
+        <EntityType Name="Borrowed_books_list">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Single" Nullable="false" />
+          <Property Name="book_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Date_taken" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="return_date" Type="DateTime" Precision="0" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MVC_PROJECTEntities1">
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="Model.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="book_id" ColumnName="book id" />
+                <ScalarProperty Name="book_name" ColumnName="book name" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="Publication_date" ColumnName="Publication date" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowing_books">
+            <EntityTypeMapping TypeName="Model.Borrowing_books">
+              <MappingFragment StoreEntitySet="Borrowing books">
+                <ScalarProperty Name="book_id" ColumnName="book id" />
+                <ScalarProperty Name="book_name" ColumnName="book name" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="Publication_date" ColumnName="Publication date" />
+                <ScalarProperty Name="available" ColumnName="available" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="Model.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_number" ColumnName="order number" />
+                <ScalarProperty Name="First_name" ColumnName="First name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="card_owner_name" ColumnName="card owner name" />
+                <ScalarProperty Name="card_number" ColumnName="card number" />
+                <ScalarProperty Name="expird_date" ColumnName="expird date" />
+                <ScalarProperty Name="CVC" ColumnName="CVC" />
+                <ScalarProperty Name="number_of_payment" ColumnName="number of payment" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="prodact" ColumnName="prodact" />
+                <ScalarProperty Name="Buy_Borrow" ColumnName="Buy\Borrow" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="waiting_list">
+            <EntityTypeMapping TypeName="Model.waiting_list">
+              <MappingFragment StoreEntitySet="waiting list">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="book_name" ColumnName="book name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowed_books_list">
+            <EntityTypeMapping TypeName="Model.Borrowed_books_list">
+              <MappingFragment StoreEntitySet="Borrowed books list">
+                <ScalarProperty Name="return_date" ColumnName="return date" />
+                <ScalarProperty Name="Date_taken" ColumnName="Date taken" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="book_name" ColumnName="book name" />
+                <ScalarProperty Name="book_id" ColumnName="book id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
