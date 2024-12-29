@@ -43,8 +43,10 @@ namespace MyMvcProject.Controllers
             {
                 db.books.Add(book);
                 db.SaveChanges();
+
                 return Json(new { success = true, message = "ספר נוסף בהצלחה." });
             }
+
             return Json(new { success = false, message = "שגיאה בהוספת הספר." });
         }
 
@@ -165,8 +167,10 @@ namespace MyMvcProject.Controllers
             {
                 db.waiting_Lists.Add(waitingEntry);
                 db.SaveChanges();
-                return Json(new { success = true, message = "נוסף לרשימת ההמתנה בהצלחה." });
+
+                return Json(new { success = true, message = "נוסף בהצלחה לרשימת ההמתנה." });
             }
+
             return Json(new { success = false, message = "שגיאה בהוספת לרשימת ההמתנה." });
         }
 

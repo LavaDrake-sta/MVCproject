@@ -289,3 +289,4 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.pdb
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.AddTypeToUsers.resources
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.GenerateResource.cache
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateBorrowingBooksTable.resources
+C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateDatabaseSchema.resources

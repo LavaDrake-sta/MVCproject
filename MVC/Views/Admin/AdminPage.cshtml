@@ -132,22 +132,23 @@
             booksTable.innerHTML = '';
             books.forEach(book => {
                 booksTable.innerHTML += `
-                        <tr>
-                            <td>${book.book_name}</td>
-                            <td>${book.category}</td>
-                            <td>${book.language}</td>
-                            <td>${book.publisher}</td>
-                            <td>${book.Publication_date ? book.Publication_date.split('T')[0] : ''}</td>
-                            <td><a href="${book.link}" target="_blank">צפה</a></td>
-                            <td>${book.price}</td>
-                            <td><img src="${book.ImageUrl}" alt="תמונה" width="50"></td>
-                            <td>
-                                <button onclick="editBook(${book.book_id})">ערוך</button>
-                                <button onclick="deleteBook(${book.book_id})">מחק</button>
-                            </td>
-                        </tr>`;
+            <tr>
+                <td>${book.book_name}</td>
+                <td>${book.category}</td>
+                <td>${book.language}</td>
+                <td>${book.publisher}</td>
+                <td>${book.Publication_date}</td>
+                <td><a href="${book.link}" target="_blank">צפה</a></td>
+                <td>${book.price}</td>
+                <td><img src="${book.ImageUrl}" alt="תמונה" width="50"></td>
+                <td>
+                    <button onclick="editBook(${book.book_id})">ערוך</button>
+                    <button onclick="deleteBook(${book.book_id})">מחק</button>
+                </td>
+            </tr>`;
             });
         }
+
 
         async function loadUsers() {
             const response = await fetch('/Admin/GetUsersList');
@@ -156,16 +157,17 @@
             usersTable.innerHTML = '';
             users.forEach(user => {
                 usersTable.innerHTML += `
-                        <tr>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.type}</td>
-                            <td>
-                                <button onclick="deleteUser('${user.email}')">מחק</button>
-                            </td>
-                        </tr>`;
+            <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.type}</td>
+                <td>
+                    <button onclick="deleteUser('${user.email}')">מחק</button>
+                </td>
+            </tr>`;
             });
         }
+
 
         async function loadWaitingList() {
             const response = await fetch('/Admin/GetWaitingList');
@@ -174,22 +176,44 @@
             waitingListTable.innerHTML = '';
             waitingList.forEach(entry => {
                 waitingListTable.innerHTML += `
-                        <tr>
-                            <td>${entry.name}</td>
-                            <td>${entry.book_name}</td>
-                            <td>${entry.date.split('T')[0]}</td>
-                            <td>${entry.email}</td>
-                            <td>
-                                <button onclick="removeFromWaitingList('${entry.email}')">מחק</button>
-                            </td>
-                        </tr>`;
+            <tr>
+                <td>${entry.name}</td>
+                <td>${entry.book_name}</td>
+                <td>${entry.date.split('T')[0]}</td>
+                <td>${entry.email}</td>
+                <td>
+                    <button onclick="removeFromWaitingList('${entry.email}')">מחק</button>
+                </td>
+            </tr>`;
             });
         }
 
+
         // פונקציות לניהול
         async function addBook() {
-            // הוספת ספר חדש
-            // (פתח חלון קלט / טופס להוספת ספר)
+            const book_name = prompt("הכנס שם ספר:");
+            const category = prompt("הכנס קטגוריה:");
+            const language = prompt("הכנס שפה:");
+            const publisher = prompt("הכנס שם הוצאה:");
+            const Publication_date = prompt("הכנס תאריך פרסום (YYYY-MM-DD):");
+            const link = prompt("הכנס קישור לספר:");
+            const price = parseFloat(prompt("הכנס מחיר:"));
+            const ImageUrl = prompt("הכנס כתובת URL לתמונה:");
+
+            const book = { book_name, category, language, publisher, Publication_date, link, price, ImageUrl };
+
+            const response = await fetch('/Admin/AddBook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(book),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+
+            if (result.success) {
+                loadBooks(); // רענון רשימת הספרים
+            }
         }
 
         async function addUser() {
@@ -197,7 +221,25 @@
         }
 
         async function addToWaitingList() {
-            // הוספת משתמש לרשימת המתנה
+            const name = prompt("הכנס שם:");
+            const book_name = prompt("הכנס שם ספר:");
+            const date = prompt("הכנס תאריך (YYYY-MM-DD):");
+            const email = prompt("הכנס אימייל:");
+
+            const waitingEntry = { name, book_name, date, email };
+
+            const response = await fetch('/Admin/AddToWaitingList', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(waitingEntry),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+
+            if (result.success) {
+                loadWaitingList(); // רענון רשימת ההמתנה
+            }
         }
     </script>
 </body>
