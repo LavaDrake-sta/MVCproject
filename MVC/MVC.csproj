@@ -227,6 +227,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412291421307_AddTypeToUsers.cs" />
+    <Compile Include="Migrations\202412291421307_AddTypeToUsers.Designer.cs">
+      <DependentUpon>202412291421307_AddTypeToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412291452035_UpdateBorrowingBooksTable.cs" />
+    <Compile Include="Migrations\202412291452035_UpdateBorrowingBooksTable.Designer.cs">
+      <DependentUpon>202412291452035_UpdateBorrowingBooksTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -393,6 +401,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202412291421307_AddTypeToUsers.resx">
+      <DependentUpon>202412291421307_AddTypeToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412291452035_UpdateBorrowingBooksTable.resx">
+      <DependentUpon>202412291452035_UpdateBorrowingBooksTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

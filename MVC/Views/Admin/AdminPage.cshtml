@@ -58,6 +58,9 @@
     </style>
 </head>
 <body>
+    <h1 style="text-align: center; color: #49124e;">מערכת ניהול</h1>
+
+    <!-- טבלת ספרים -->
     <div class="table-container">
         <h2>רשימת ספרים</h2>
         <button onclick="addBook()">הוסף ספר חדש</button>
@@ -66,8 +69,12 @@
                 <tr>
                     <th>שם הספר</th>
                     <th>קטגוריה</th>
-                    <th>זמינות</th>
+                    <th>שפה</th>
+                    <th>הוצאה</th>
+                    <th>תאריך פרסום</th>
+                    <th>קישור</th>
                     <th>מחיר</th>
+                    <th>תמונה</th>
                     <th>פעולות</th>
                 </tr>
             </thead>
@@ -75,14 +82,16 @@
         </table>
     </div>
 
+    <!-- טבלת משתמשים -->
     <div class="table-container">
         <h2>רשימת משתמשים</h2>
+        <button onclick="addUser()">הוסף משתמש חדש</button>
         <table>
             <thead>
                 <tr>
                     <th>שם</th>
                     <th>אימייל</th>
-                    <th>סוג משתמש</th>
+                    <th>סוג</th>
                     <th>פעולות</th>
                 </tr>
             </thead>
@@ -90,8 +99,10 @@
         </table>
     </div>
 
+    <!-- טבלת רשימת המתנה -->
     <div class="table-container">
         <h2>רשימת המתנה</h2>
+        <button onclick="addToWaitingList()">הוסף לרשימת המתנה</button>
         <table>
             <thead>
                 <tr>
@@ -102,7 +113,7 @@
                     <th>פעולות</th>
                 </tr>
             </thead>
-            <tbody id="waitingTable"></tbody>
+            <tbody id="waitingListTable"></tbody>
         </table>
     </div>
 
@@ -113,6 +124,7 @@
             loadWaitingList();
         });
 
+        // פונקציות טעינת נתונים
         async function loadBooks() {
             const response = await fetch('/Admin/GetBooksList');
             const books = await response.json();
@@ -120,17 +132,20 @@
             booksTable.innerHTML = '';
             books.forEach(book => {
                 booksTable.innerHTML += `
-                        <tr id="book-${book.book_id}">
+                        <tr>
                             <td>${book.book_name}</td>
                             <td>${book.category}</td>
-                            <td>${book.available ? "זמין" : "לא זמין"}</td>
-                            <td class="price-cell">${book.price}</td>
+                            <td>${book.language}</td>
+                            <td>${book.publisher}</td>
+                            <td>${book.Publication_date ? book.Publication_date.split('T')[0] : ''}</td>
+                            <td><a href="${book.link}" target="_blank">צפה</a></td>
+                            <td>${book.price}</td>
+                            <td><img src="${book.ImageUrl}" alt="תמונה" width="50"></td>
                             <td>
                                 <button onclick="editBook(${book.book_id})">ערוך</button>
                                 <button onclick="deleteBook(${book.book_id})">מחק</button>
                             </td>
-                        </tr>
-                    `;
+                        </tr>`;
             });
         }
 
@@ -148,88 +163,41 @@
                             <td>
                                 <button onclick="deleteUser('${user.email}')">מחק</button>
                             </td>
-                        </tr>
-                    `;
+                        </tr>`;
             });
         }
 
         async function loadWaitingList() {
             const response = await fetch('/Admin/GetWaitingList');
             const waitingList = await response.json();
-            const waitingTable = document.getElementById('waitingTable');
-            waitingTable.innerHTML = '';
-            waitingList.forEach(waiting => {
-                waitingTable.innerHTML += `
+            const waitingListTable = document.getElementById('waitingListTable');
+            waitingListTable.innerHTML = '';
+            waitingList.forEach(entry => {
+                waitingListTable.innerHTML += `
                         <tr>
-                            <td>${waiting.name}</td>
-                            <td>${waiting.book_name}</td>
-                            <td>${waiting.date}</td>
-                            <td>${waiting.email}</td>
+                            <td>${entry.name}</td>
+                            <td>${entry.book_name}</td>
+                            <td>${entry.date.split('T')[0]}</td>
+                            <td>${entry.email}</td>
                             <td>
-                                <button onclick="deleteFromWaitingList('${waiting.email}')">הסר</button>
-                                <button onclick="sendEmail('${waiting.email}', 'מייל המתנה', 'שלום, הספר שלך זמין.')">שלח מייל</button>
+                                <button onclick="removeFromWaitingList('${entry.email}')">מחק</button>
                             </td>
-                        </tr>
-                    `;
+                        </tr>`;
             });
         }
 
+        // פונקציות לניהול
         async function addBook() {
-            const book = { book_name: "ספר חדש", category: "קטגוריה", available: true, price: 100 };
-            const response = await fetch('/Admin/AddBook', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(book),
-            });
-            const result = await response.json();
-            alert(result.message);
-            loadBooks();
+            // הוספת ספר חדש
+            // (פתח חלון קלט / טופס להוספת ספר)
         }
 
-        async function editBook(bookId) {
-            const newPrice = prompt("הכנס מחיר חדש:");
-            if (newPrice) {
-                const response = await fetch('/Admin/EditBook', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ book_id: bookId, price: newPrice }),
-                });
-                const result = await response.json();
-                alert(result.message);
-                loadBooks();
-            }
+        async function addUser() {
+            // הוספת משתמש חדש
         }
 
-        async function deleteBook(bookId) {
-            const response = await fetch('/Admin/DeleteBook', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: bookId }),
-            });
-            const result = await response.json();
-            alert(result.message);
-            loadBooks();
-        }
-
-        async function deleteFromWaitingList(email) {
-            const response = await fetch('/Admin/DeleteFromWaitingList', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
-            });
-            const result = await response.json();
-            alert(result.message);
-            loadWaitingList();
-        }
-
-        async function sendEmail(email, subject, body) {
-            const response = await fetch('/Admin/SendEmailToUser', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, subject, body }),
-            });
-            const result = await response.json();
-            alert(result.message);
+        async function addToWaitingList() {
+            // הוספת משתמש לרשימת המתנה
         }
     </script>
 </body>
