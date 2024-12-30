@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC.Models;
+using MyMvcProject.Data;
 
 namespace MVC.Controllers
 {
     public class booksController : Controller
     {
-        private MVC_PROJECTEntities1 db = new MVC_PROJECTEntities1();
+        private MvcProjectContext db = new MvcProjectContext();
 
         // GET: books
         public ActionResult Index()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity; // EF6 Namespace
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using MVC.Models;
 
@@ -57,6 +58,8 @@ namespace MyMvcProject.Data
             modelBuilder.Entity<Borrowing_books>().HasKey(b => b.book_id);
             modelBuilder.Entity<waiting_list>().HasKey(w => w.name); // שים לב למפתח זה
             modelBuilder.Entity<orders>().HasKey(o => o.order_number);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
 
             base.OnModelCreating(modelBuilder);
         }

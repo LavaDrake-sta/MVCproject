@@ -11,12 +11,10 @@ namespace MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Borrowed_books_list
     {
-        [Key]
-        public float book_id { get; set; }
+        public int book_id { get; set; }
         public string book_name { get; set; }
         public string category { get; set; }
         public System.DateTime Date_taken { get; set; }

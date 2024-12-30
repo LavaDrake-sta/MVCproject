@@ -11,11 +11,9 @@ namespace MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class waiting_list
     {
-        [Key] 
         public string name { get; set; }
         public string book_name { get; set; }
         public System.DateTime date { get; set; }

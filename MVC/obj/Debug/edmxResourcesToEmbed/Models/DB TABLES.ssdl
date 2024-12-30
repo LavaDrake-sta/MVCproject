@@ -1,83 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
   <EntityType Name="books">
     <Key>
-      <PropertyRef Name="book id" />
+      <PropertyRef Name="book_id" />
     </Key>
-    <Property Name="book id" Type="real" Nullable="false" />
-    <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="category" Type="nchar" MaxLength="50" />
-    <Property Name="language" Type="nchar" MaxLength="50" />
-    <Property Name="Publication date" Type="date" />
-    <Property Name="publisher" Type="nchar" MaxLength="50" />
+    <Property Name="book_id" Type="int" Nullable="false" />
+    <Property Name="book_name" Type="nvarchar(max)" />
+    <Property Name="category" Type="nvarchar(max)" />
+    <Property Name="language" Type="nvarchar(max)" />
+    <Property Name="publication_date" Type="date" />
+    <Property Name="publisher" Type="nvarchar(max)" />
     <Property Name="link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="Borrowed books list">
+  <EntityType Name="Borrowed_books_list">
     <Key>
-      <PropertyRef Name="book id" />
+      <PropertyRef Name="book_id" />
     </Key>
-    <Property Name="book id" Type="real" Nullable="false" />
-    <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="category" Type="nchar" MaxLength="50" />
-    <Property Name="Date taken" Type="date" Nullable="false" />
-    <Property Name="return date" Type="date" Nullable="false" />
+    <Property Name="book_id" Type="int" Nullable="false" />
+    <Property Name="book_name" Type="nvarchar(max)" />
+    <Property Name="category" Type="nvarchar(max)" />
+    <Property Name="Date_taken" Type="datetime" Nullable="false" />
+    <Property Name="return_date" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="Borrowing books">
+  <EntityType Name="Borrowing_books">
     <Key>
-      <PropertyRef Name="book id" />
+      <PropertyRef Name="book_id" />
     </Key>
-    <Property Name="book id" Type="real" Nullable="false" />
-    <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="book_id" Type="int" Nullable="false" />
+    <Property Name="book_name" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="category" Type="nchar" MaxLength="50" />
-    <Property Name="language" Type="nchar" MaxLength="50" />
-    <Property Name="publisher" Type="nchar" MaxLength="50" />
-    <Property Name="Publication date" Type="date" />
-    <Property Name="available" Type="bit" Nullable="false" />
-    <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="date_taken" Type="date" Nullable="false" />
+    <Property Name="return_date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="orders">
     <Key>
-      <PropertyRef Name="order number" />
+      <PropertyRef Name="order_number" />
     </Key>
-    <Property Name="order number" Type="real" Nullable="false" />
-    <Property Name="First name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="Last name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="ID" Type="real" Nullable="false" />
-    <Property Name="card owner name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="card number" Type="real" Nullable="false" />
-    <Property Name="expird date" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CVC" Type="real" Nullable="false" />
-    <Property Name="number of payment" Type="real" Nullable="false" />
+    <Property Name="order_number" Type="float" Nullable="false" />
+    <Property Name="first_name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="id" Type="float" Nullable="false" />
+    <Property Name="card_owner_name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="card_number" Type="float" Nullable="false" />
+    <Property Name="expiry_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CVC" Type="float" Nullable="false" />
+    <Property Name="number_of_payments" Type="float" Nullable="false" />
     <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="prodact" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="Buy\Borrow" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="product" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="buy_borrow" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="users">
     <Key>
       <PropertyRef Name="email" />
     </Key>
-    <Property Name="name" Type="nchar" MaxLength="50" />
-    <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nchar" MaxLength="50" />
-    <Property Name="type" Type="nchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="waiting list">
-    <Key>
-      <PropertyRef Name="book name" />
-    </Key>
     <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="book name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="date" Type="date" Nullable="false" />
     <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="waiting_list">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="book_name" Type="nvarchar(max)" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" />
   </EntityType>
   <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Borrowed books list" EntityType="Self.Borrowed books list" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Borrowing books" EntityType="Self.Borrowing books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="waiting list" EntityType="Self.waiting list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="waiting_list" EntityType="Self.waiting_list" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

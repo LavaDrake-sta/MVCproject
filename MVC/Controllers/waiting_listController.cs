@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC.Models;
+using MyMvcProject.Data;
 
 namespace MVC.Controllers
 {
     public class waiting_listController : Controller
     {
-        private MVC_PROJECTEntities1 db = new MVC_PROJECTEntities1();
+        private MvcProjectContext db = new MvcProjectContext();
 
         // GET: waiting_list
         public ActionResult Index()
         {
-            return View(db.waiting_list.ToList());
+            return View(db.waiting_Lists.ToList());
         }
 
         // GET: waiting_list/Details/5
@@ -27,7 +28,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            waiting_list waiting_list = db.waiting_list.Find(id);
+            waiting_list waiting_list = db.waiting_Lists.Find(id);
             if (waiting_list == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.waiting_list.Add(waiting_list);
+                db.waiting_Lists.Add(waiting_list);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            waiting_list waiting_list = db.waiting_list.Find(id);
+            waiting_list waiting_list = db.waiting_Lists.Find(id);
             if (waiting_list == null)
             {
                 return HttpNotFound();
@@ -96,7 +97,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            waiting_list waiting_list = db.waiting_list.Find(id);
+            waiting_list waiting_list = db.waiting_Lists.Find(id);
             if (waiting_list == null)
             {
                 return HttpNotFound();
@@ -109,8 +110,8 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            waiting_list waiting_list = db.waiting_list.Find(id);
-            db.waiting_list.Remove(waiting_list);
+            waiting_list waiting_list = db.waiting_Lists.Find(id);
+            db.waiting_Lists.Remove(waiting_list);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

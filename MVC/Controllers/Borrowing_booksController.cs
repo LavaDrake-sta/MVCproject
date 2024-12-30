@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC.Models;
+using MyMvcProject.Data;
 
 namespace MVC.Controllers
 {
     public class Borrowing_booksController : Controller
     {
-        private MVC_PROJECTEntities1 db = new MVC_PROJECTEntities1();
+        private MvcProjectContext db = new MvcProjectContext();
 
         // GET: Borrowing_books
         public ActionResult Index()
         {
-            return View(db.Borrowing_books.ToList());
+            return View(db.borrowing_Books.ToList());
         }
 
         // GET: Borrowing_books/Details/5
@@ -27,7 +28,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrowing_books borrowing_books = db.Borrowing_books.Find(id);
+            Borrowing_books borrowing_books = db.borrowing_Books.Find(id);
             if (borrowing_books == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Borrowing_books.Add(borrowing_books);
+                db.borrowing_Books.Add(borrowing_books);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrowing_books borrowing_books = db.Borrowing_books.Find(id);
+            Borrowing_books borrowing_books = db.borrowing_Books.Find(id);
             if (borrowing_books == null)
             {
                 return HttpNotFound();
@@ -96,7 +97,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrowing_books borrowing_books = db.Borrowing_books.Find(id);
+            Borrowing_books borrowing_books = db.borrowing_Books.Find(id);
             if (borrowing_books == null)
             {
                 return HttpNotFound();
@@ -109,8 +110,8 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(float id)
         {
-            Borrowing_books borrowing_books = db.Borrowing_books.Find(id);
-            db.Borrowing_books.Remove(borrowing_books);
+            Borrowing_books borrowing_books = db.borrowing_Books.Find(id);
+            db.borrowing_Books.Remove(borrowing_books);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

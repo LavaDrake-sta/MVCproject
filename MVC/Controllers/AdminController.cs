@@ -27,7 +27,7 @@ namespace MyMvcProject.Controllers
                 b.book_name,
                 b.category,
                 b.language,
-                b.Publication_date,
+                b.publication_date,
                 b.publisher,
                 b.link,
                 b.price,
@@ -59,7 +59,7 @@ namespace MyMvcProject.Controllers
                 existingBook.book_name = book.book_name;
                 existingBook.category = book.category;
                 existingBook.language = book.language;
-                existingBook.Publication_date = book.Publication_date;
+                existingBook.publication_date = book.publication_date;
                 existingBook.publisher = book.publisher;
                 existingBook.link = book.link;
                 existingBook.price = book.price;
@@ -91,8 +91,9 @@ namespace MyMvcProject.Controllers
             {
                 u.name,
                 u.email,
-                u.type
+                u.type // ודא ששדה זה קיים בטבלה
             }).ToList();
+
             return Json(users, JsonRequestBehavior.AllowGet);
         }
 

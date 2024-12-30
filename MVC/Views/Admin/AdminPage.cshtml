@@ -151,21 +151,26 @@
 
 
         async function loadUsers() {
-            const response = await fetch('/Admin/GetUsersList');
-            const users = await response.json();
-            const usersTable = document.getElementById('usersTable');
-            usersTable.innerHTML = '';
-            users.forEach(user => {
-                usersTable.innerHTML += `
-            <tr>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.type}</td>
-                <td>
-                    <button onclick="deleteUser('${user.email}')">מחק</button>
-                </td>
-            </tr>`;
-            });
+            try {
+                const response = await fetch('/Admin/GetUsersList');
+                const users = await response.json();
+                const usersTable = document.getElementById('usersTable');
+
+                usersTable.innerHTML = ''; // ריקון הטבלה לפני הטעינה
+                users.forEach(user => {
+                    usersTable.innerHTML += `
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.type}</td>
+                    <td>
+                        <button onclick="deleteUser('${user.email}')">מחק</button>
+                    </td>
+                </tr>`;
+                });
+            } catch (error) {
+                console.error("Error loading users:", error);
+            }
         }
 
 

@@ -11,18 +11,13 @@ namespace MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Borrowing_books
     {
-        [Key]
-        public float book_id { get; set; }
+        public int book_id { get; set; }
         public string book_name { get; set; }
         public string category { get; set; }
-        public string language { get; set; }
-        public string publisher { get; set; }
-        public Nullable<System.DateTime> Publication_date { get; set; }
-        public bool available { get; set; }
-        public decimal price { get; set; }
+        public System.DateTime date_taken { get; set; }
+        public System.DateTime return_date { get; set; }
     }
 }

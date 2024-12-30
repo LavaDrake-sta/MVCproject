@@ -12,16 +12,11 @@ namespace MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class books
+    public partial class C__MigrationHistory
     {
-        public int book_id { get; set; }
-        public string book_name { get; set; }
-        public string category { get; set; }
-        public string language { get; set; }
-        public Nullable<System.DateTime> publication_date { get; set; }
-        public string publisher { get; set; }
-        public string link { get; set; }
-        public decimal price { get; set; }
-        public string ImageUrl { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

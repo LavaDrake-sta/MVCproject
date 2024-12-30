@@ -11,23 +11,21 @@ namespace MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class orders
     {
-        [Key]
-        public float order_number { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
-        public float ID { get; set; }
+        public double order_number { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public double id { get; set; }
         public string card_owner_name { get; set; }
-        public float card_number { get; set; }
-        public string expird_date { get; set; }
-        public float CVC { get; set; }
-        public float number_of_payment { get; set; }
+        public double card_number { get; set; }
+        public string expiry_date { get; set; }
+        public double CVC { get; set; }
+        public double number_of_payments { get; set; }
         public decimal price { get; set; }
-        public string prodact { get; set; }
-        public string Buy_Borrow { get; set; }
+        public string product { get; set; }
+        public string buy_borrow { get; set; }
         public System.DateTime date { get; set; }
     }
 }
