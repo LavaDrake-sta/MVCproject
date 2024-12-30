@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mvcprojectModelStoreContainer" CdmEntityContainer="mvcproject">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="mvcprojectModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="mvcprojectModel.books">
+        <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Borrowed_books_list">
+      <EntityTypeMapping TypeName="mvcprojectModel.Borrowed_books_list">
+        <MappingFragment StoreEntitySet="Borrowed_books_list">
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="Date_taken" ColumnName="Date_taken" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Borrowing_books">
+      <EntityTypeMapping TypeName="mvcprojectModel.Borrowing_books">
+        <MappingFragment StoreEntitySet="Borrowing_books">
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="date_taken" ColumnName="date_taken" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="mvcprojectModel.orders">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="order_number" ColumnName="order_number" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="card_owner_name" ColumnName="card_owner_name" />
+          <ScalarProperty Name="card_number" ColumnName="card_number" />
+          <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+          <ScalarProperty Name="CVC" ColumnName="CVC" />
+          <ScalarProperty Name="number_of_payments" ColumnName="number_of_payments" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="product" ColumnName="product" />
+          <ScalarProperty Name="buy_borrow" ColumnName="buy_borrow" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="mvcprojectModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="waiting_list">
+      <EntityTypeMapping TypeName="mvcprojectModel.waiting_list">
+        <MappingFragment StoreEntitySet="waiting_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
