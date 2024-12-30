@@ -51,15 +51,13 @@ namespace MyMvcProject.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // הגדרת מפתחות ראשיים
             modelBuilder.Entity<users>().HasKey(u => u.email);
             modelBuilder.Entity<books>().HasKey(b => b.book_id);
             modelBuilder.Entity<Borrowed_books_list>().HasKey(b => b.book_id);
             modelBuilder.Entity<Borrowing_books>().HasKey(b => b.book_id);
-            modelBuilder.Entity<waiting_list>().HasKey(w => w.name); // שים לב למפתח זה
+            modelBuilder.Entity<waiting_list>().HasKey(w => w.name);
             modelBuilder.Entity<orders>().HasKey(o => o.order_number);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
 
             base.OnModelCreating(modelBuilder);
         }
