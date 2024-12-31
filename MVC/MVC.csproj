@@ -221,6 +221,7 @@
     <Compile Include="Controllers\Borrowing_booksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ordersController.cs" />
+    <Compile Include="Controllers\PersonalAreaController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Controllers\waiting_listController.cs" />
     <Compile Include="Data\MvcProjectContext.cs" />
@@ -370,6 +371,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Personal_Area\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
