@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 @{
     Layout = null;
@@ -15,3 +16,58 @@
     </div>
 </body>
 </html>
+=======
+﻿@{
+    ViewBag.Title = "אזור אישי";
+}
+
+<h2>אזור אישי</h2>
+
+<!-- פרטים אישיים -->
+<h3>פרטים אישיים</h3>
+<form asp-action="UpdateDetails" method="post">
+    <div>
+        <label>שם משתמש:</label>
+        <input name="name" value="@Model.UserDetails.name" class="form-control" />
+    </div>
+    <div>
+        <label>סיסמה חדשה:</label>
+        <input type="password" name="newPassword" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">עדכן פרטים</button>
+</form>
+
+<!-- ספרים מושאלים -->
+<h3>ספרים מושאלים כרגע</h3>
+@if (Model.BorrowedBooks.Any())
+{
+    <ul>
+        @foreach (var book in Model.BorrowedBooks)
+        {
+            <li style="color: @(book.Highlight ? "red" : "black")">
+                @book.book_name - תאריך השאלה: @book.borrow_date.ToShortDateString(), תאריך החזרה: @book.return_date?.ToShortDateString()
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>אין ספרים מושאלים כרגע.</p>
+}
+
+<!-- היסטוריית הזמנות -->
+<h3>היסטוריית הזמנות</h3>
+@if (Model.Orders.Any())
+{
+    <ul>
+        @foreach (var order in Model.Orders)
+        {
+            <li>מוצר: @order.product - תאריך: @order.date.ToShortDateString() - סכום: @order.price.ToString("C")</li>
+        }
+    </ul>
+}
+else
+{
+    <p>אין היסטוריית הזמנות.</p>
+}
+>>>>>>> e537df7991bc6d0604a55e68dc752529175be9e5
