@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mvcprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mvcprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -28,6 +28,8 @@
           <Property Name="link" Type="nvarchar(max)" Nullable="false" />
           <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="CurrentRentCount" Type="int" />
+          <Property Name="MaxRentCount" Type="int" />
         </EntityType>
         <EntityType Name="Borrowed_books_list">
           <Key>
@@ -94,8 +96,7 @@
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="waiting_list" EntityType="Self.waiting_list" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mvcprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -122,6 +123,8 @@
           <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentRentCount" Type="Int32" />
+          <Property Name="MaxRentCount" Type="Int32" />
         </EntityType>
         <EntityType Name="Borrowed_books_list">
           <Key>
@@ -207,6 +210,8 @@
           <EntitySetMapping Name="books">
             <EntityTypeMapping TypeName="mvcprojectModel.books">
               <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
+                <ScalarProperty Name="CurrentRentCount" ColumnName="CurrentRentCount" />
                 <ScalarProperty Name="book_id" ColumnName="book_id" />
                 <ScalarProperty Name="book_name" ColumnName="book_name" />
                 <ScalarProperty Name="category" ColumnName="category" />

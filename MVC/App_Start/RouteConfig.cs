@@ -27,6 +27,13 @@ namespace MVC
                 defaults: new { controller = "Users", action = "LoginRegister" }
             );
 
+            // נתיב לדף BuyBorrowBook
+            routes.MapRoute(
+                name: "BuyBorrowBook",
+                url: "books/BuyBorrowBook",
+                defaults: new { controller = "books", action = "BuyBorrowBook" }
+            );
+
             // נתיב ברירת מחדל
             routes.MapRoute(
                 name: "Default",

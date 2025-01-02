@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC.Models.books>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books List</title>
+    <link rel="stylesheet" href="BuyBorrowBooks.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Books List</h1>
+        <div class="books-list">
+            @foreach (var book in Model)
+            {
+                <div class="book-item">
+                    <h2>@book.book_name</h2>
+                    <p><strong>Category:</strong> @book.category</p>
+                    <p><strong>Language:</strong> @book.language</p>
+                    <p><strong>Price:</strong> $@book.price</p>
+                    <div class="actions">
+                        <button class="rent-button" onclick="rentBook(@book.book_id)">Rent</button>
+                        <button class="buy-button" onclick="buyBook(@book.book_id)">Buy</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        function rentBook(bookId) {
+            $.post('/books/RentBook', { book_id: bookId }, function (response) {
+                alert(response.message);
+            });
+        }
+
+        function buyBook(bookId) {
+            $.post('/books/BuyBook', { book_id: bookId }, function (response) {
+                alert(response.message);
+            });
+        }
+    </script>
+</body>
+</html>

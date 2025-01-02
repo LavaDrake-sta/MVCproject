@@ -290,6 +290,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\AdminPage.css" />
+    <Content Include="CSS\BuyBorrowBooks.css" />
     <Content Include="CSS\Homepage.css" />
     <Content Include="CSS\LoginRegister.css" />
     <Content Include="favicon.ico" />
@@ -340,11 +341,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\books\Create.cshtml" />
-    <Content Include="Views\books\Delete.cshtml" />
-    <Content Include="Views\books\Details.cshtml" />
-    <Content Include="Views\books\Edit.cshtml" />
-    <Content Include="Views\books\Index.cshtml" />
     <Content Include="Views\Borrowed_books_list\Create.cshtml" />
     <Content Include="Views\Borrowed_books_list\Delete.cshtml" />
     <Content Include="Views\Borrowed_books_list\Details.cshtml" />
@@ -369,6 +365,7 @@
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\Personal_Area\PersonalArea.cshtml" />
+    <Content Include="Views\books\buy_borrow_book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
