@@ -74,7 +74,5 @@ namespace MVC.Controllers
                 return Json(new { success = false, message = "No active rentals to return for this book." });
             }
         }
-
-        // שאר הפונקציות נשארות כפי שהן...
     }
 }

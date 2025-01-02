@@ -31,7 +31,7 @@ namespace MVC
         {
             using(var context =new MyMvcProject.Data.MvcProjectContext())
             {
-                if (!context.users.Any(u => u.email == "admin@admin.com"))
+                    if (!context.users.Any(u => u.email == "admin@admin.com"))
                 {
                     string hashedPassword = HashPassword("admin123");
                     // הוסף משתמש מסוג אדמין

@@ -14,6 +14,9 @@
     <EntitySetMapping Name="books">
       <EntityTypeMapping TypeName="mvcprojectModel.books">
         <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+          <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
+          <ScalarProperty Name="CurrentRentCount" ColumnName="CurrentRentCount" />
           <ScalarProperty Name="book_id" ColumnName="book_id" />
           <ScalarProperty Name="book_name" ColumnName="book_name" />
           <ScalarProperty Name="category" ColumnName="category" />

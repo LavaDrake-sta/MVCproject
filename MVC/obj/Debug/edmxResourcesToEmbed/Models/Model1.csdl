@@ -23,6 +23,9 @@
     <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentRentCount" Type="Int32" />
+    <Property Name="MaxRentCount" Type="Int32" />
+    <Property Name="IsSold" Type="Boolean" />
   </EntityType>
   <EntityType Name="Borrowed_books_list">
     <Key>
