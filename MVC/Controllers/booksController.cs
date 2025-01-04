@@ -1,4 +1,5 @@
 ﻿using MyMvcProject.Data;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -18,23 +19,30 @@ namespace MVC.Controllers
         [HttpPost]
         public JsonResult RentBook(float book_id)
         {
-            var book = db.books.Find(book_id);
-            if (book == null)
+            try
             {
-                return Json(new { success = false, message = "Book not found" });
-            }
+                var book = db.books.Find(book_id);
+                if (book == null)
+                {
+                    return Json(new { success = false, message = "Book not found" });
+                }
 
-            // בדיקה אם ניתן להשאיל את הספר (עד 3 פעמים)
-            if (book.CurrentRentCount >= book.MaxRentCount)
+                // בדיקה אם ניתן להשאיל את הספר (עד 3 פעמים)
+                if (book.CurrentRentCount >= book.MaxRentCount)
+                {
+                    return Json(new { success = false, message = "Cannot rent this book. Maximum limit of 3 rentals reached." });
+                }
+
+                // עדכון מונה ההשאלות
+                book.CurrentRentCount++;
+                db.SaveChanges();
+
+                return Json(new { success = true, message = $"You have rented the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
+            }
+            catch (Exception ex)
             {
-                return Json(new { success = false, message = "Cannot rent this book. Maximum limit of 3 rentals reached." });
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
-
-            // עדכון מונה ההשאלות
-            book.CurrentRentCount++;
-            db.SaveChanges();
-
-            return Json(new { success = true, message = $"You have rented the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
         }
 
         [HttpPost]
@@ -51,28 +59,6 @@ namespace MVC.Controllers
             db.SaveChanges();
 
             return Json(new { success = true, message = $"You have purchased the book: {book.book_name}" });
-        }
-
-        [HttpPost]
-        public JsonResult ReturnBook(float book_id)
-        {
-            var book = db.books.Find(book_id);
-            if (book == null)
-            {
-                return Json(new { success = false, message = "Book not found" });
-            }
-
-            // בדיקה אם ניתן להחזיר את הספר
-            if (book.CurrentRentCount > 0)
-            {
-                book.CurrentRentCount--;
-                db.SaveChanges();
-                return Json(new { success = true, message = $"You have returned the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
-            }
-            else
-            {
-                return Json(new { success = false, message = "No active rentals to return for this book." });
-            }
         }
     }
 }
