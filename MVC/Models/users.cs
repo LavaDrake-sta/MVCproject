@@ -14,9 +14,21 @@ namespace MVC.Models
     
     public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.orders = new HashSet<orders>();
+            this.waiting_list = new HashSet<waiting_list>();
+        }
+    
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<orders> orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<waiting_list> waiting_list { get; set; }
     }
 }

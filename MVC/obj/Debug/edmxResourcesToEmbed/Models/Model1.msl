@@ -17,6 +17,17 @@
           <ScalarProperty Name="IsSold" ColumnName="IsSold" />
           <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
           <ScalarProperty Name="CurrentRentCount" ColumnName="CurrentRentCount" />
+<<<<<<< HEAD
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="price" ColumnName="price" />
+=======
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="link" ColumnName="link" />

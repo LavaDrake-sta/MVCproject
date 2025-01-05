@@ -24,6 +24,12 @@ namespace MVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMvcProject.Data.MvcProjectContext, MVC.Migrations.Configuration>());
 
+<<<<<<< HEAD
+          
+
+        }
+       
+=======
             //addadmin();
 
         }
@@ -58,6 +64,7 @@ namespace MVC
         //        return Convert.ToBase64String(hash);
         //    }
         //}
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4
 
     }
 }

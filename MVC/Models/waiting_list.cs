@@ -18,5 +18,7 @@ namespace MVC.Models
         public string book_name { get; set; }
         public System.DateTime date { get; set; }
         public string email { get; set; }
+    
+        public virtual users users { get; set; }
     }
 }

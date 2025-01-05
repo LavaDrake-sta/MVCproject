@@ -7,13 +7,13 @@ namespace MVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class SyncWithDatabase : IMigrationMetadata
+    public sealed partial class SyncDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SyncWithDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SyncDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412302342316_SyncWithDatabase"; }
+            get { return "202501051143209_SyncDatabase"; }
         }
         
         string IMigrationMetadata.Source
