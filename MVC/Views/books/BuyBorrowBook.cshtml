@@ -11,9 +11,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    <!-- שדה חיפוש -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for a book..." />
+        <button onclick="searchBooks()">Search</button>
+    </div>
+
     <div class="container">
         <h1>Books List</h1>
-        <div class="books-list">
+        <div id="booksContainer" class="books-list">
             @foreach (var book in Model)
             {
                 <div class="book-item">
@@ -31,6 +37,9 @@
                         @if (book.IsRent == null || book.IsRent)
                         {
                             <button class="rent-button" onclick="rentBook(@book.book_id)">Rent</button>
+                            <span id="rentCount_@book.book_id">
+                                @book.CurrentRentCount out of @book.MaxRentCount people have rented this book
+                            </span>
                         }
                         <button class="buy-button" onclick="buyBook(@book.book_id)">Buy</button>
                     </div>
@@ -39,10 +48,92 @@
         </div>
     </div>
 
+    <!-- אזור ה-JavaScript -->
     <script>
+        // הוספת מאזין לאירוע input בשדה החיפוש
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const query = this.value.trim();
+
+            if (!query) {
+                // אם השדה ריק, טוענים את כל הספרים מחדש
+                $.get('/books/GetAllBooks', function (response) {
+                    const booksContainer = document.getElementById("booksContainer");
+
+                    // ניקוי התצוגה הקיימת
+                    booksContainer.innerHTML = "";
+
+                    // הצגת כל הספרים
+                    response.forEach(book => {
+                        booksContainer.innerHTML += `
+                                <div class="book-item">
+                                    <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                                    <h2>${book.book_name}</h2>
+                                    <p><strong>Category:</strong> ${book.category}</p>
+                                    <p><strong>Language:</strong> ${book.language}</p>
+                                    <p><strong>Price:</strong> $${book.price}</p>
+                                    <div class="actions">
+                                        ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
+                                        <span id="rentCount_${book.book_id}">
+                                            ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
+                                        </span>
+                                        <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
+                                    </div>
+                                </div>`;
+                    });
+                });
+            }
+        });
+
+        function searchBooks() {
+            const query = document.getElementById("searchInput").value.trim();
+            if (!query) {
+                alert("Please enter a book name to search.");
+                return;
+            }
+
+            // בקשה לשרת לחיפוש ספרים
+            $.get('/books/SearchBooks', { query }, function (response) {
+                const booksContainer = document.getElementById("booksContainer");
+
+                // אם לא נמצאו ספרים
+                if (!response.success) {
+                    booksContainer.innerHTML = `<p>Unfortunately, the book does not exist in the system, but we will add it soon.</p>`;
+                    return;
+                }
+
+                // הצגת הספרים שנמצאו
+                booksContainer.innerHTML = ""; // ניקוי התוכן הקיים
+                response.books.forEach(book => {
+                    booksContainer.innerHTML += `
+                            <div class="book-item">
+                                <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                                <h2>${book.book_name}</h2>
+                                <p><strong>Category:</strong> ${book.category}</p>
+                                <p><strong>Language:</strong> ${book.language}</p>
+                                <p><strong>Price:</strong> $${book.price}</p>
+                                <div class="actions">
+                                    ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
+                                    <span id="rentCount_${book.book_id}">
+                                        ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
+                                    </span>
+                                    <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
+                                </div>
+                            </div>`;
+                });
+            });
+        }
+
         function rentBook(bookId) {
             $.post('/books/RentBook', { book_id: bookId }, function (response) {
-                alert(response.message);
+                if (response.success) {
+                    const rentCountSpan = $(`#rentCount_${bookId}`);
+                    const textParts = rentCountSpan.text().split(' ');
+                    const currentCount = parseInt(textParts[0]) || 0;
+                    rentCountSpan.text(`${currentCount + 1} out of ${textParts[2]} people have rented this book`);
+                    alert(response.message);
+                } else {
+                    alert('Failed to rent the book: ' + response.message);
+                }
             });
         }
 

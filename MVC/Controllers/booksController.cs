@@ -17,7 +17,71 @@ namespace MVC.Controllers
             return View(books); // החזרת הנתונים ל-View
         }
 
-        // שאר הפונקציות שלך נשארות ללא שינוי
+        // פונקציה להחזרת כל הספרים
+        [HttpGet]
+        public JsonResult GetAllBooks()
+        {
+            try
+            {
+                var books = db.books.Select(b => new
+                {
+                    b.book_id,
+                    b.book_name,
+                    b.category,
+                    b.language,
+                    b.price,
+                    b.ImageUrl,
+                    b.CurrentRentCount,
+                    b.MaxRentCount,
+                    b.IsRent
+                }).ToList();
+
+                return Json(books, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in GetAllBooks: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while retrieving the books." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        // פונקציית חיפוש ספרים
+        [HttpGet]
+        public JsonResult SearchBooks(string query)
+        {
+            try
+            {
+                var books = db.books
+                              .Where(b => b.book_name.Contains(query))
+                              .Select(b => new
+                              {
+                                  b.book_id,
+                                  b.book_name,
+                                  b.category,
+                                  b.language,
+                                  b.price,
+                                  b.ImageUrl,
+                                  b.CurrentRentCount,
+                                  b.MaxRentCount,
+                                  b.IsRent
+                              })
+                              .ToList();
+
+                if (books.Count == 0)
+                {
+                    return Json(new { success = false, message = "Book not found. Please make sure the book exists in the system." }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { success = true, books }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in SearchBooks: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while searching for books." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        // פונקציות השכרה, קנייה והחזרה
         [HttpPost]
         public JsonResult RentBook(int book_id)
         {

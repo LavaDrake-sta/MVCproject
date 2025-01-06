@@ -1,4 +1,5 @@
 ﻿body {
+    background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -20,6 +21,41 @@ h1 {
     color: #49124e;
 }
 
+.search-container {
+    position: absolute;
+    top: 20px; /* מיקום מהחלק העליון */
+    right: 20px; /* מיקום מהחלק הימני */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.8); /* רקע בהיר עם שקיפות */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#searchInput {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .search-container button:hover {
+        background-color: #0056b3;
+    }
+
 .books-list {
     display: flex;
     flex-direction: column;
@@ -28,12 +64,14 @@ h1 {
 
 .book-item {
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    background: #fafafa;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start;
     gap: 15px;
+    position: relative; /* מאפשר מיקום הכפתור View */
 }
 
     .book-item h2 {
@@ -55,12 +93,22 @@ h1 {
 .actions {
     margin-top: 15px;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+span {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    display: block;
 }
 
 .rent-button,
-.buy-button {
-    padding: 10px 20px;
+.buy-button,
+.view-button {
+    padding: 12px 25px; /* הגדלה של הכפתורים */
     font-size: 14px;
     border: none;
     border-radius: 5px;
@@ -77,10 +125,72 @@ h1 {
     color: #fff;
 }
 
+.view-button {
+    background-color: #6c757d; /* צבע אפור כהה */
+    color: #fff;
+    position: absolute;
+    top: 10px; /* מיקום הכפתור בתוך הקופסה */
+    right: 10px; /* בצד ימין */
+    font-size: 16px; /* גודל טקסט גדול יותר */
+    padding: 12px 20px; /* ריווח פנימי גדול יותר */
+    z-index: 100; /* מבטיח שהכפתור יהיה מעל */
+}
+
 .rent-button:hover {
     background-color: #0056b3;
 }
 
 .buy-button:hover {
     background-color: #218838;
+}
+
+.view-button:hover {
+    background-color: #5a6268;
+}
+
+.return-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc107;
+    color: #333;
+    cursor: pointer;
+}
+
+    .return-button:hover {
+        background-color: #e0a800;
+    }
+
+@media (max-width: 600px) {
+    .book-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .book-image {
+        width: 100%;
+        max-width: 150px;
+    }
+
+    .actions {
+        align-items: center;
+    }
+
+    .search-container {
+        position: static; /* שדה החיפוש יעבור למיקום סטטי במובייל */
+        margin-bottom: 20px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    #searchInput {
+        width: 100%; /* השדה יתפוס את כל הרוחב במובייל */
+    }
+
+    .view-button {
+        position: static; /* הכפתור יישאר בתוך הקופסה במובייל */
+        margin: 10px auto; /* מרכז את הכפתור */
+    }
 }

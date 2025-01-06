@@ -2,19 +2,28 @@
     box-sizing: border-box;
 }
 
-body {
+/*body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
-    background-size: cover; /* מתאים את התמונה לגודל המסך */
-    background-position: center; /* ממקם את התמונה במרכז */
-    background-repeat: no-repeat; /* מונע חזרה של התמונה */
+    background-size: cover;  מתאים את התמונה לגודל המסך 
+    background-position: center;  ממקם את התמונה במרכז 
+    background-repeat: no-repeat;  מונע חזרה של התמונה 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: זcenter;
     min-height: 100vh;
     overflow: hidden;
+}*/
+
+body {
+    background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
 
