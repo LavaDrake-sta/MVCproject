@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using MVC.Models;
 using MyMvcProject.Data;
 
 namespace MyMvcProject.Controllers
@@ -18,7 +21,7 @@ namespace MyMvcProject.Controllers
             return Session["UserName"] != null;
         }
 
-        public ActionResult Index()
+        public ActionResult PersonalArea()
         {
             if (!IsUserLoggedIn())
             {
@@ -32,15 +35,15 @@ namespace MyMvcProject.Controllers
                 .Select(u => u.email)
                 .FirstOrDefault();
 
-            if (userEmail == null)
+            if (string.IsNullOrEmpty(userEmail))
             {
                 TempData["ErrorMessage"] = "משתמש לא נמצא במסד הנתונים.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // שליפת הזמנות הקשורות למשתמש
+            // שליפת הזמנות הקשורות למשתמש לפי email
             var orders = db.orders
-                .Where(o => o.first_name + " " + o.last_name == userName || o.card_owner_name == userName)
+                .Where(o => o.email == userEmail)
                 .ToList();
 
             // שליפת ספרים מושכרים
@@ -48,18 +51,27 @@ namespace MyMvcProject.Controllers
                 .Where(b => b.category == userEmail)
                 .ToList();
 
-            // שליפת ספרים ברשימת המתנה
-            var waitingBooks = db.waiting_Lists
-                .Where(w => w.email == userEmail)
-                .ToList();
+            List<waiting_list> waitingBooks;
+            try
+            {
+                waitingBooks = db.waiting_Lists
+                    .Where(w => w.email == userEmail)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "אירעה שגיאה בשליפת ספרים מרשימת המתנה: " + ex.Message;
+                waitingBooks = new List<waiting_list>();
+            }
 
+            // העברת הנתונים ל-View
             ViewBag.UserName = userName;
             ViewBag.UserEmail = userEmail;
             ViewBag.Orders = orders;
             ViewBag.BorrowedBooks = borrowedBooks;
             ViewBag.WaitingBooks = waitingBooks;
 
-            return View();
+            return View("PersonalArea");
         }
 
         [HttpPost]
@@ -77,9 +89,10 @@ namespace MyMvcProject.Controllers
             if (user == null)
             {
                 TempData["ErrorMessage"] = "משתמש לא נמצא.";
-                return RedirectToAction("Index");
+                return RedirectToAction("PersonalArea");
             }
 
+            // עדכון פרטי המשתמש
             if (!string.IsNullOrEmpty(name))
                 user.name = name;
 
@@ -92,7 +105,7 @@ namespace MyMvcProject.Controllers
             db.SaveChanges();
             Session["UserName"] = user.name;
             TempData["SuccessMessage"] = "הפרטים האישיים עודכנו בהצלחה.";
-            return RedirectToAction("Index");
+            return RedirectToAction("PersonalArea");
         }
 
         private string HashPassword(string password)

@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\MVC",
-    "\\MVC\\App_Start",
-    "\\MVC\\Controllers"
+    "\\MVC\\Migrations",
+    "\\MVC\\Views",
+    "\\MVC\\Views\\users"
   ],
-  "SelectedNode": "\\MVC\\App_Start\\RouteConfig.cs",
+  "SelectedNode": "\\MVC\\Migrations\\202501051143209_SyncDatabase.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,128 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using MVC.Models;
 using MyMvcProject.Data;
 
-namespace MVC.Controllers
+namespace MyMvcProject.Controllers
 {
-    public class ordersController : Controller
+    public class OrderController : Controller
     {
-        private MvcProjectContext db = new MvcProjectContext();
+        private readonly MvcProjectContext db;
 
-        // GET: orders
-        public ActionResult Index()
+        public OrderController()
         {
-            return View(db.orders.ToList());
+            db = new MvcProjectContext();
         }
 
-        // GET: orders/Details/5
-        public ActionResult Details(float? id)
+        public ActionResult Checkout()
         {
-            if (id == null)
+            if (Session["UserName"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["ErrorMessage"] = "עליך להתחבר כדי לבצע הזמנה.";
+                return RedirectToAction("Login", "Users");
             }
-            orders orders = db.orders.Find(id);
-            if (orders == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orders);
-        }
 
-        // GET: orders/Create
-        public ActionResult Create()
-        {
+            string userName = Session["UserName"].ToString();
+            string userEmail = db.users
+                .Where(u => u.name == userName)
+                .Select(u => u.email)
+                .FirstOrDefault();
+
+            var cartItems = db.orders
+                .Where(o => o.first_name + " " + o.last_name == userName || o.card_owner_name == userName)
+                .Select(o => new
+                {
+                    o.product,
+                    o.price,
+                    o.buy_borrow // סוג המוצר: קנייה או השכרה
+                })
+                .ToList();
+
+            ViewBag.UserName = userName;
+            ViewBag.UserEmail = userEmail;
+            ViewBag.CartItems = cartItems;
+
             return View();
         }
 
-        // POST: orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "order_number,First_name,Last_name,ID,card_owner_name,card_number,expird_date,CVC,number_of_payment,price,prodact,Buy_Borrow,date")] orders orders)
+        public ActionResult SubmitOrder(string cardOwner, string cardNumber, string expiryDate, string cvc)
         {
-            if (ModelState.IsValid)
+            if (Session["UserName"] == null)
             {
-                db.orders.Add(orders);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["ErrorMessage"] = "עליך להתחבר כדי לבצע הזמנה.";
+                return RedirectToAction("Login", "Users");
             }
 
-            return View(orders);
-        }
+            // בדיקת תקינות פרטי האשראי
+            if (string.IsNullOrEmpty(cardOwner) || cardNumber.Length != 16 || !expiryDate.Contains("/") || cvc.Length != 3)
+            {
+                TempData["ErrorMessage"] = "פרטי האשראי שהוזנו אינם תקינים.";
+                return RedirectToAction("Checkout");
+            }
 
-        // GET: orders/Edit/5
-        public ActionResult Edit(float? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            orders orders = db.orders.Find(id);
-            if (orders == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orders);
-        }
-
-        // POST: orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "order_number,First_name,Last_name,ID,card_owner_name,card_number,expird_date,CVC,number_of_payment,price,prodact,Buy_Borrow,date")] orders orders)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(orders).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(orders);
-        }
-
-        // GET: orders/Delete/5
-        public ActionResult Delete(float? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            orders orders = db.orders.Find(id);
-            if (orders == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orders);
-        }
-
-        // POST: orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(float id)
-        {
-            orders orders = db.orders.Find(id);
-            db.orders.Remove(orders);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            TempData["SuccessMessage"] = "ההזמנה בוצעה בהצלחה!";
+            return RedirectToAction("Checkout");
         }
     }
 }

@@ -30,24 +30,15 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T15:56:28.028Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -57,7 +48,7 @@
               "RelativeDocumentMoniker": "MVC\\MVC.csproj",
               "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\MVC.csproj",
               "RelativeToolTip": "MVC\\MVC.csproj",
-              "ViewState": "AgIAAEIBAAAAAAAAAAAawGUBAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAEIBAAAAAAAAAAAawFYBAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-01-06T00:33:31.107Z",
               "EditorCaption": ""
@@ -72,7 +63,8 @@
               "RelativeToolTip": "MVC\\Views\\users\\LoginRegister.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-29T13:18:33.189Z"
+              "WhenOpened": "2024-12-29T13:18:33.189Z",
+              "EditorCaption": ""
             }
           ]
         }
