@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mvcprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="int" Nullable="false" />
+          <Property Name="book_name" Type="nvarchar(max)" />
+          <Property Name="category" Type="nvarchar(max)" />
+          <Property Name="language" Type="nvarchar(max)" />
+          <Property Name="publication_date" Type="date" />
+          <Property Name="publisher" Type="nvarchar(max)" />
+          <Property Name="link" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CurrentRentCount" Type="int" />
+          <Property Name="MaxRentCount" Type="int" />
+          <Property Name="IsSold" Type="bit" />
+          <Property Name="IsRent" Type="bit" />
+=======
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="CurrentRentCount" Type="int" />
+          <Property Name="MaxRentCount" Type="int" />
+          <Property Name="IsSold" Type="bit" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+        </EntityType>
+        <EntityType Name="Borrowed_books_list">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="int" Nullable="false" />
+          <Property Name="book_name" Type="nvarchar(max)" />
+          <Property Name="category" Type="nvarchar(max)" />
+          <Property Name="Date_taken" Type="datetime" Nullable="false" />
+          <Property Name="return_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Borrowing_books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="int" Nullable="false" />
+          <Property Name="book_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nchar" MaxLength="50" />
+          <Property Name="date_taken" Type="date" Nullable="false" />
+          <Property Name="return_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_number" />
+          </Key>
+          <Property Name="order_number" Type="float" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="float" Nullable="false" />
+          <Property Name="card_owner_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="card_number" Type="float" Nullable="false" />
+          <Property Name="expiry_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CVC" Type="float" Nullable="false" />
+          <Property Name="number_of_payments" Type="float" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="product" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="buy_borrow" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="waiting_list">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="book_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Borrowed_books_list_books">
+          <End Role="books" Type="Self.books" Multiplicity="1" />
+          <End Role="Borrowed_books_list" Type="Self.Borrowed_books_list" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="Borrowed_books_list">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Borrowing_books_books">
+          <End Role="books" Type="Self.books" Multiplicity="1" />
+          <End Role="Borrowing_books" Type="Self.Borrowing_books" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="Borrowing_books">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orders">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_waiting_list_waiting_list">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="waiting_list" Type="Self.waiting_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="waiting_list">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mvcprojectModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="waiting_list" EntityType="Self.waiting_list" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Borrowed_books_list_books" Association="Self.FK_Borrowed_books_list_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="Borrowed_books_list" EntitySet="Borrowed_books_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Borrowing_books_books" Association="Self.FK_Borrowing_books_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="Borrowing_books" EntitySet="Borrowing_books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_waiting_list_waiting_list" Association="Self.FK_waiting_list_waiting_list">
+            <End Role="users" EntitySet="users" />
+            <End Role="waiting_list" EntitySet="waiting_list" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mvcprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="mvcproject" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="mvcprojectModel.C__MigrationHistory" />
+          <EntitySet Name="books" EntityType="mvcprojectModel.books" />
+          <EntitySet Name="Borrowed_books_list" EntityType="mvcprojectModel.Borrowed_books_list" />
+          <EntitySet Name="Borrowing_books" EntityType="mvcprojectModel.Borrowing_books" />
+          <EntitySet Name="orders" EntityType="mvcprojectModel.orders" />
+          <EntitySet Name="users" EntityType="mvcprojectModel.users" />
+          <EntitySet Name="waiting_list" EntityType="mvcprojectModel.waiting_list" />
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Int32" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="publication_date" Type="DateTime" Precision="0" />
+          <Property Name="publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrentRentCount" Type="Int32" />
+          <Property Name="MaxRentCount" Type="Int32" />
+          <Property Name="IsSold" Type="Boolean" />
+          <Property Name="IsRent" Type="Boolean" />
+          <NavigationProperty Name="Borrowed_books_list" Relationship="Self.FK_Borrowed_books_list_books" FromRole="books" ToRole="Borrowed_books_list" />
+          <NavigationProperty Name="Borrowing_books" Relationship="Self.FK_Borrowing_books_books" FromRole="books" ToRole="Borrowing_books" />
+=======
+          <Property Name="link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentRentCount" Type="Int32" />
+          <Property Name="MaxRentCount" Type="Int32" />
+          <Property Name="IsSold" Type="Boolean" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+        </EntityType>
+        <EntityType Name="Borrowed_books_list">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Int32" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date_taken" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="return_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="books" Relationship="Self.FK_Borrowed_books_list_books" FromRole="Borrowed_books_list" ToRole="books" />
+        </EntityType>
+        <EntityType Name="Borrowing_books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Int32" Nullable="false" />
+          <Property Name="book_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="books" Relationship="Self.FK_Borrowing_books_books" FromRole="Borrowing_books" ToRole="books" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_number" />
+          </Key>
+          <Property Name="order_number" Type="Double" Nullable="false" />
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+=======
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+          <Property Name="id" Type="Double" Nullable="false" />
+          <Property Name="card_owner_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="card_number" Type="Double" Nullable="false" />
+          <Property Name="expiry_date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVC" Type="Double" Nullable="false" />
+          <Property Name="number_of_payments" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="product" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="buy_borrow" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="users" Relationship="Self.FK_orders_orders" FromRole="orders" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_orders" FromRole="users" ToRole="orders" />
+          <NavigationProperty Name="waiting_list" Relationship="Self.FK_waiting_list_waiting_list" FromRole="users" ToRole="waiting_list" />
+=======
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+        </EntityType>
+        <EntityType Name="waiting_list">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+=======
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_waiting_list_waiting_list" FromRole="waiting_list" ToRole="users" />
+        </EntityType>
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+        <Association Name="FK_Borrowed_books_list_books">
+          <End Role="books" Type="Self.books" Multiplicity="1" />
+          <End Role="Borrowed_books_list" Type="Self.Borrowed_books_list" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="Borrowed_books_list">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Borrowing_books_books">
+          <End Role="books" Type="Self.books" Multiplicity="1" />
+          <End Role="Borrowing_books" Type="Self.Borrowing_books" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="Borrowing_books">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orders">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_waiting_list_waiting_list">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="waiting_list" Type="Self.waiting_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="waiting_list">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="books" EntityType="Self.books" />
+          <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" />
+          <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="waiting_list" EntityType="Self.waiting_list" />
+          <AssociationSet Name="FK_Borrowed_books_list_books" Association="Self.FK_Borrowed_books_list_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="Borrowed_books_list" EntitySet="Borrowed_books_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Borrowing_books_books" Association="Self.FK_Borrowing_books_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="Borrowing_books" EntitySet="Borrowing_books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_waiting_list_waiting_list" Association="Self.FK_waiting_list_waiting_list">
+            <End Role="users" EntitySet="users" />
+            <End Role="waiting_list" EntitySet="waiting_list" />
+          </AssociationSet>
+        </EntityContainer>
+=======
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mvcprojectModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="mvcprojectModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="mvcprojectModel.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+                <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
+                <ScalarProperty Name="CurrentRentCount" ColumnName="CurrentRentCount" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+                <ScalarProperty Name="CurrentRentCount" ColumnName="CurrentRentCount" />
+                <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+                <ScalarProperty Name="IsRent" ColumnName="IsRent" />
+=======
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowed_books_list">
+            <EntityTypeMapping TypeName="mvcprojectModel.Borrowed_books_list">
+              <MappingFragment StoreEntitySet="Borrowed_books_list">
+                <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="Date_taken" ColumnName="Date_taken" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowing_books">
+            <EntityTypeMapping TypeName="mvcprojectModel.Borrowing_books">
+              <MappingFragment StoreEntitySet="Borrowing_books">
+                <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="date_taken" ColumnName="date_taken" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="mvcprojectModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+<<<<<<< HEAD:MVC/Models/ModelfromDB.edmx
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="card_owner_name" ColumnName="card_owner_name" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+                <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+                <ScalarProperty Name="CVC" ColumnName="CVC" />
+                <ScalarProperty Name="number_of_payments" ColumnName="number_of_payments" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="buy_borrow" ColumnName="buy_borrow" />
+=======
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4:MVC/Models/Model1.edmx
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="buy_borrow" ColumnName="buy_borrow" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="number_of_payments" ColumnName="number_of_payments" />
+                <ScalarProperty Name="CVC" ColumnName="CVC" />
+                <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+                <ScalarProperty Name="card_owner_name" ColumnName="card_owner_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="mvcprojectModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="waiting_list">
+            <EntityTypeMapping TypeName="mvcprojectModel.waiting_list">
+              <MappingFragment StoreEntitySet="waiting_list">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

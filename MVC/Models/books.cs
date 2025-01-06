@@ -23,5 +23,15 @@ namespace MVC.Models
         public string link { get; set; }
         public decimal price { get; set; }
         public string ImageUrl { get; set; }
+        public Nullable<int> CurrentRentCount { get; set; }
+        public Nullable<int> MaxRentCount { get; set; }
+        public Nullable<bool> IsSold { get; set; }
+<<<<<<< HEAD
+        public Nullable<bool> IsRent { get; set; }
+    
+        public virtual Borrowed_books_list Borrowed_books_list { get; set; }
+        public virtual Borrowing_books Borrowing_books { get; set; }
+=======
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4
     }
 }

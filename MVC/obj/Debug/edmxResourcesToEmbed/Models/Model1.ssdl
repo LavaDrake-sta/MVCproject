@@ -23,6 +23,9 @@
     <Property Name="link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="CurrentRentCount" Type="int" />
+    <Property Name="MaxRentCount" Type="int" />
+    <Property Name="IsSold" Type="bit" />
   </EntityType>
   <EntityType Name="Borrowed_books_list">
     <Key>

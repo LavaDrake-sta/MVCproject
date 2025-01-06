@@ -1,14 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="mvcprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="mvcproject" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="mvcprojectModel.C__MigrationHistory" />
+    <EntitySet Name="books" EntityType="mvcprojectModel.books" />
+    <EntitySet Name="Borrowed_books_list" EntityType="mvcprojectModel.Borrowed_books_list" />
+    <EntitySet Name="Borrowing_books" EntityType="mvcprojectModel.Borrowing_books" />
+    <EntitySet Name="orders" EntityType="mvcprojectModel.orders" />
+    <EntitySet Name="users" EntityType="mvcprojectModel.users" />
+    <EntitySet Name="waiting_list" EntityType="mvcprojectModel.waiting_list" />
+  </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
       <PropertyRef Name="ContextKey" />
     </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="books">
     <Key>
@@ -20,9 +29,12 @@
     <Property Name="language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="publication_date" Type="DateTime" Precision="0" />
     <Property Name="publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentRentCount" Type="Int32" />
+    <Property Name="MaxRentCount" Type="Int32" />
+    <Property Name="IsSold" Type="Boolean" />
   </EntityType>
   <EntityType Name="Borrowed_books_list">
     <Key>
@@ -39,7 +51,7 @@
       <PropertyRef Name="book_id" />
     </Key>
     <Property Name="book_id" Type="Int32" Nullable="false" />
-    <Property Name="book_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="book_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
@@ -49,44 +61,35 @@
       <PropertyRef Name="order_number" />
     </Key>
     <Property Name="order_number" Type="Double" Nullable="false" />
-    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="id" Type="Double" Nullable="false" />
-    <Property Name="card_owner_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="card_owner_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="card_number" Type="Double" Nullable="false" />
-    <Property Name="expiry_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="expiry_date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CVC" Type="Double" Nullable="false" />
     <Property Name="number_of_payments" Type="Double" Nullable="false" />
-    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="product" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="buy_borrow" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="product" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="buy_borrow" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="users">
     <Key>
       <PropertyRef Name="email" />
     </Key>
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="waiting_list">
     <Key>
       <PropertyRef Name="name" />
     </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="mvcproject" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="books" EntityType="Self.books" />
-    <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" />
-    <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" />
-    <EntitySet Name="orders" EntityType="Self.orders" />
-    <EntitySet Name="users" EntityType="Self.users" />
-    <EntitySet Name="waiting_list" EntityType="Self.waiting_list" />
-  </EntityContainer>
 </Schema>

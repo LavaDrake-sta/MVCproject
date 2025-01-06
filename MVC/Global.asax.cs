@@ -22,42 +22,49 @@ namespace MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMvcProject.Data.MvcProjectContext, MVC.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMvcProject.Data.MvcProjectContext, MVC.Migrations.Configuration>());
 
-            addadmin();
+<<<<<<< HEAD
+          
 
         }
-        private void addadmin()
-        {
-            using(var context =new MyMvcProject.Data.MvcProjectContext())
-            {
-                if (!context.users.Any(u => u.email == "admin@admin.com"))
-                {
-                    string hashedPassword = HashPassword("admin123");
-                    // הוסף משתמש מסוג אדמין
-                    var adminUser = new users
-                    {
-                        name = "Admin",
-                        email = "admin@admin.com",
-                        password = hashedPassword,
-                        type = "Admin" // הנחתי שיש לך שדה type לזיהוי משתמשים
-                    };
+       
+=======
+            //addadmin();
 
-                    context.users.Add(adminUser);
-                    context.SaveChanges();
-                }
-            }
         }
-        // פונקציה להצפנת סיסמאות
-        private string HashPassword(string password)
-        {
-            using (var sha256 = System.Security.Cryptography.SHA256.Create())
-            {
-                var bytes = System.Text.Encoding.UTF8.GetBytes(password);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
-            }
-        }
+        //private void addadmin()
+        //{
+        //    using(var context =new MyMvcProject.Data.MvcProjectContext())
+        //    {
+        //            if (!context.users.Any(u => u.email == "admin@admin.com"))
+        //        {
+        //            string hashedPassword = HashPassword("admin123");
+        //            // הוסף משתמש מסוג אדמין
+        //            var adminUser = new users
+        //            {
+        //                name = "Admin",
+        //                email = "admin@admin.com",
+        //                password = hashedPassword,
+        //                type = "Admin" // הנחתי שיש לך שדה type לזיהוי משתמשים
+        //            };
+
+        //            context.users.Add(adminUser);
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //}
+        //// פונקציה להצפנת סיסמאות
+        //private string HashPassword(string password)
+        //{
+        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        //    {
+        //        var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+        //        var hash = sha256.ComputeHash(bytes);
+        //        return Convert.ToBase64String(hash);
+        //    }
+        //}
+>>>>>>> d36e936cd72618132e26bdf07ef8b74ac5ef0ff4
 
     }
 }
