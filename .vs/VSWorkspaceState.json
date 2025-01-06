@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MVC",
+    "\\MVC\\App_Start",
+    "\\MVC\\Controllers"
   ],
+  "SelectedNode": "\\MVC\\App_Start\\RouteConfig.cs",
   "PreviewInSolutionExplorer": false
 }
