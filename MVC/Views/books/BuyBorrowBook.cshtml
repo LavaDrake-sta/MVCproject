@@ -17,12 +17,21 @@
             @foreach (var book in Model)
             {
                 <div class="book-item">
+                    <!-- הצגת תמונת הספר -->
+                    <img src="@book.ImageUrl" alt="@book.book_name" class="book-image">
+
+                    <!-- פרטי הספר -->
                     <h2>@book.book_name</h2>
                     <p><strong>Category:</strong> @book.category</p>
                     <p><strong>Language:</strong> @book.language</p>
                     <p><strong>Price:</strong> $@book.price</p>
+
+                    <!-- כפתורי פעולה -->
                     <div class="actions">
-                        <button class="rent-button" onclick="rentBook(@book.book_id)">Rent</button>
+                        @if (book.IsRent == null || book.IsRent)
+                        {
+                            <button class="rent-button" onclick="rentBook(@book.book_id)">Rent</button>
+                        }
                         <button class="buy-button" onclick="buyBook(@book.book_id)">Buy</button>
                     </div>
                 </div>

@@ -10,7 +10,6 @@ namespace MVC.Controllers
         private MvcProjectContext db = new MvcProjectContext();
 
         // פעולה להצגת רשימת ספרים עם אפשרויות קנייה והשאלה
-
         [HttpGet]
         public ActionResult BuyBorrowBook()
         {
@@ -18,9 +17,9 @@ namespace MVC.Controllers
             return View(books); // החזרת הנתונים ל-View
         }
 
+        // שאר הפונקציות שלך נשארות ללא שינוי
         [HttpPost]
         public JsonResult RentBook(int book_id)
-
         {
             try
             {
@@ -29,7 +28,6 @@ namespace MVC.Controllers
                 {
                     return Json(new { success = false, message = "Book not found" });
                 }
-
 
                 if (book.CurrentRentCount >= book.MaxRentCount)
                 {
@@ -42,10 +40,8 @@ namespace MVC.Controllers
             }
             catch (Exception ex)
             {
-
                 System.Diagnostics.Debug.WriteLine($"Error in RentBook: {ex.Message}");
                 return Json(new { success = false, message = "An error occurred while renting the book." });
-
             }
         }
 

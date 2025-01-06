@@ -31,6 +31,9 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fafafa;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
 }
 
     .book-item h2 {
@@ -41,6 +44,13 @@ h1 {
     .book-item p {
         margin: 5px 0;
     }
+
+.book-image {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .actions {
     margin-top: 15px;
