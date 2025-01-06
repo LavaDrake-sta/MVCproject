@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MyMvcProject.Data;
-using MVC.Models;
 
 namespace MyMvcProject.Controllers
 {
@@ -15,63 +13,67 @@ namespace MyMvcProject.Controllers
             db = new MvcProjectContext();
         }
 
-        //public ActionResult Index()
-        //{
-        //    if (Session["UserName"] == null)
-        //    {
-        //        TempData["ErrorMessage"] = "עליך להתחבר כדי לצפות באזור האישי.";
-        //        return RedirectToAction("Login", "users");
-        //    }
+        private bool IsUserLoggedIn()
+        {
+            return Session["UserName"] != null;
+        }
 
-        //    string userName = Session["UserName"].ToString();
+        public ActionResult Index()
+        {
+            if (!IsUserLoggedIn())
+            {
+                TempData["ErrorMessage"] = "עליך להתחבר כדי לצפות באזור האישי.";
+                return RedirectToAction("Login", "Users");
+            }
 
-        //    var user = db.users.FirstOrDefault(u => u.name == userName);
-        //    if (user == null)
-        //    {
-        //        TempData["ErrorMessage"] = "משתמש לא נמצא.";
-        //        return RedirectToAction("Login", "users");
-        //    }
+            string userName = Session["UserName"].ToString();
+            string userEmail = db.users
+                .Where(u => u.name == userName)
+                .Select(u => u.email)
+                .FirstOrDefault();
 
-        //    var orders = db.orders
-        //        .Where(o => o.first_name + " " + o.last_name == user.name)
-        //        .Select(o => new
-        //        {
-        //            o.product,
-        //            o.date,
-        //            o.price
-        //        }).ToList();
+            if (userEmail == null)
+            {
+                TempData["ErrorMessage"] = "משתמש לא נמצא במסד הנתונים.";
+                return RedirectToAction("Login", "Users");
+            }
 
-        //    //var borrowedBooks = db.borrowing_Books
-        //    //    .Where(b => b.user_name == user.name)
-        //    //    .Select(b => new
-        //    //    {
-        //    //        b.book_name,
-        //    //        b.borrow_date,
-        //    //        b.return_date,
-        //    //        Highlight = b.return_date.HasValue && b.return_date.Value <= DateTime.Now.AddDays(2)
-        //    //    }).ToList();
+            // שליפת הזמנות הקשורות למשתמש
+            var orders = db.orders
+                .Where(o => o.first_name + " " + o.last_name == userName || o.card_owner_name == userName)
+                .ToList();
 
-        //    //var model = new PersonalAreaViewModel
-        //    //{
-        //    //    UserDetails = user,
-        //    //    Orders = orders,
-        //    //    BorrowedBooks = borrowedBooks
-        //    //};
+            // שליפת ספרים מושכרים
+            var borrowedBooks = db.borrowing_Books
+                .Where(b => b.category == userEmail)
+                .ToList();
 
-        //    return View(model);
-        //}
+            // שליפת ספרים ברשימת המתנה
+            var waitingBooks = db.waiting_Lists
+                .Where(w => w.email == userEmail)
+                .ToList();
+
+            ViewBag.UserName = userName;
+            ViewBag.UserEmail = userEmail;
+            ViewBag.Orders = orders;
+            ViewBag.BorrowedBooks = borrowedBooks;
+            ViewBag.WaitingBooks = waitingBooks;
+
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult UpdateDetails(string name, string newPassword)
+        public ActionResult UpdateDetails(string name, string email, string password)
         {
-            if (Session["UserName"] == null)
+            if (!IsUserLoggedIn())
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לעדכן פרטים.";
-                return RedirectToAction("Login", "users");
+                return RedirectToAction("Login", "Users");
             }
 
             string userName = Session["UserName"].ToString();
             var user = db.users.FirstOrDefault(u => u.name == userName);
+
             if (user == null)
             {
                 TempData["ErrorMessage"] = "משתמש לא נמצא.";
@@ -81,10 +83,14 @@ namespace MyMvcProject.Controllers
             if (!string.IsNullOrEmpty(name))
                 user.name = name;
 
-            if (!string.IsNullOrEmpty(newPassword))
-                user.password = HashPassword(newPassword);
+            if (!string.IsNullOrEmpty(email))
+                user.email = email;
+
+            if (!string.IsNullOrEmpty(password))
+                user.password = HashPassword(password);
 
             db.SaveChanges();
+            Session["UserName"] = user.name;
             TempData["SuccessMessage"] = "הפרטים האישיים עודכנו בהצלחה.";
             return RedirectToAction("Index");
         }
@@ -95,7 +101,7 @@ namespace MyMvcProject.Controllers
             {
                 var bytes = System.Text.Encoding.UTF8.GetBytes(password);
                 var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
+                return System.Convert.ToBase64String(hash);
             }
         }
     }

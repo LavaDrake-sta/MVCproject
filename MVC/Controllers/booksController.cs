@@ -12,7 +12,6 @@ namespace MVC.Controllers
         // פעולה להצגת רשימת ספרים עם אפשרויות קנייה והשאלה
 
         [HttpGet]
-        [ActionName("buy_borrow_book")]
         public ActionResult BuyBorrowBook()
         {
             var books = db.books.ToList(); // שליפת כל הספרים מהמסד נתונים

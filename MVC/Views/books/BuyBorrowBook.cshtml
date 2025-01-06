@@ -1,12 +1,13 @@
-﻿@model IEnumerable<MVC.Models.books>
-
+﻿@{
+    Layout = null; <!-- ביטול Layout כדי למנוע קונפליקטים -->
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books List</title>
-    <link rel="stylesheet" href="BuyBorrowBooks.css">
+    <link rel="stylesheet" href="~/CSS/BuyBorrowBooks.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>

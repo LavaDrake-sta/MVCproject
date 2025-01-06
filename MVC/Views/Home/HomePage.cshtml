@@ -21,7 +21,9 @@
     </header>
     <nav class="nav-container">
         <ul>
-            <li><a href="personalArea.html">אזור אישי</a></li>
+            <li>
+                <a href="@Url.Action("PersonalArea", "PersonalArea")">Personal Area</a>
+            </li>
             <li>
                 @if (Session["UserName"] != null)
                 {
@@ -36,7 +38,8 @@
                 }
             </li>
 
-            <li><a href="rent.html">קנית/השאלת ספר</a></li>
+            <li><a href="@Url.Action("BuyBorrowBook", "books")">Buy/Rent Books</a></li>
+
             @*<li><a href="buy.html">קניית ספרים</a></li>*@
             <li>
                 <a href="cart.html">

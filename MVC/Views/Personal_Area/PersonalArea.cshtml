@@ -1,73 +1,103 @@
-<<<<<<< HEAD
-﻿
 @{
     Layout = null;
+    var userName = ViewBag.UserName;
+    var userEmail = ViewBag.UserEmail;
+    var orders = ViewBag.Orders;
+    var borrowedBooks = ViewBag.BorrowedBooks;
+    var waitingBooks = ViewBag.WaitingBooks;
 }
 
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>PersonalArea</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Area</title>
+    <link rel="stylesheet" href="~/CSS/Homepage.css">
+    <link rel="stylesheet" href="~/CSS/PersonalArea.css"> <!-- סטייל מותאם אישית -->
 </head>
+
 <body>
-    <div> 
-    </div>
+    <header>
+        <h1>Personal Area</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+            <li><a href="@Url.Action("Index", "PersonalArea")">Personal Area</a></li>
+            @if (Session["UserName"] != null)
+            {
+                <li>
+                    <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("Login", "Users")">Login</a></li>
+            }
+        </ul>
+    </nav>
+
+    <main>
+        @if (Session["UserName"] == null)
+        {
+            <section class="error-message">
+                <h2>You need to log in to view this page.</h2>
+                <a href="@Url.Action("Login", "Users")" class="login-link">Go to Login</a>
+            </section>
+        }
+        else
+        {
+            <section class="user-details">
+                <h2>Welcome, @userName</h2>
+                <p><strong>Email:</strong> @userEmail</p>
+                <form action="@Url.Action("UpdateDetails", "PersonalArea")" method="post" class="update-form">
+                    <input type="text" name="name" placeholder="New Name" />
+                    <input type="email" name="email" placeholder="New Email" />
+                    <input type="password" name="password" placeholder="New Password" />
+                    <button type="submit" class="update-button">Update Details</button>
+                </form>
+            </section>
+
+            <section class="orders">
+                <h2>Your Orders</h2>
+                <ul>
+                    @foreach (var order in orders)
+                    {
+                        <li>@order.product - @order.date - @order.price$</li>
+                    }
+                </ul>
+            </section>
+
+            <section class="borrowed-books">
+                <h2>Your Borrowed Books</h2>
+                <ul>
+                    @foreach (var book in borrowedBooks)
+                    {
+                        <li>@book.book_name - Borrowed on: @book.date_taken, Return by: @book.return_date</li>
+                    }
+                </ul>
+            </section>
+
+            <section class="waiting-list">
+                <h2>Your Waiting List</h2>
+                <ul>
+                    @foreach (var book in waitingBooks)
+                    {
+                        <li>@book.book_name - Added on: @book.date</li>
+                    }
+                </ul>
+            </section>
+        }
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Digital Library</p>
+    </footer>
 </body>
+
 </html>
-=======
-﻿@{
-    ViewBag.Title = "אזור אישי";
-}
-
-<h2>אזור אישי</h2>
-
-<!-- פרטים אישיים -->
-<h3>פרטים אישיים</h3>
-<form asp-action="UpdateDetails" method="post">
-    <div>
-        <label>שם משתמש:</label>
-        <input name="name" value="@Model.UserDetails.name" class="form-control" />
-    </div>
-    <div>
-        <label>סיסמה חדשה:</label>
-        <input type="password" name="newPassword" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">עדכן פרטים</button>
-</form>
-
-<!-- ספרים מושאלים -->
-<h3>ספרים מושאלים כרגע</h3>
-@if (Model.BorrowedBooks.Any())
-{
-    <ul>
-        @foreach (var book in Model.BorrowedBooks)
-        {
-            <li style="color: @(book.Highlight ? "red" : "black")">
-                @book.book_name - תאריך השאלה: @book.borrow_date.ToShortDateString(), תאריך החזרה: @book.return_date?.ToShortDateString()
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>אין ספרים מושאלים כרגע.</p>
-}
-
-<!-- היסטוריית הזמנות -->
-<h3>היסטוריית הזמנות</h3>
-@if (Model.Orders.Any())
-{
-    <ul>
-        @foreach (var order in Model.Orders)
-        {
-            <li>מוצר: @order.product - תאריך: @order.date.ToShortDateString() - סכום: @order.price.ToString("C")</li>
-        }
-    </ul>
-}
-else
-{
-    <p>אין היסטוריית הזמנות.</p>
-}
->>>>>>> e537df7991bc6d0604a55e68dc752529175be9e5

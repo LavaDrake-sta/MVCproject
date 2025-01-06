@@ -19,6 +19,11 @@ namespace MVC
                 url: "Home/HomePage",
                 defaults: new { controller = "Home", action = "HomePage" }
             );
+            routes.MapRoute(
+                name: "PersonalArea",
+                url: "Personal_Area/PersonalArea",
+                defaults: new { controller = "PersonalArea", action = "PersonalArea", id = UrlParameter.Optional }
+            );
 
             // נתיב התחברות/הרשמה
             routes.MapRoute(
