@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\MVC",
-    "\\MVC\\Views",
-    "\\MVC\\Views\\Cart"
+    ""
   ],
-  "SelectedNode": "\\MVC\\Views\\Cart\\CartPage.cshtml",
+  "SelectedNode": "\\MVC.sln",
   "PreviewInSolutionExplorer": false
 }

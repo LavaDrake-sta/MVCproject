@@ -1,29 +1,35 @@
 ﻿using MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
-public class CartController : Controller
+namespace MVC.Controllers
 {
-    public ActionResult Index()
+    public class CartController : Controller
     {
-        var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-        return View(cart);
+        public ActionResult Index()
+        {
+            var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+            return View(cart);
+        }
+
+        [HttpPost]
+        public JsonResult RemoveFromCart(int bookId, string type)
+        {
+            var cart = Session["Cart"] as List<CartItem>;
+            if (cart != null)
+            {
+                var item = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
+                if (item != null)
+                {
+                    cart.Remove(item);
+                    Session["Cart"] = cart;
+                }
+            }
+            return Json(new { success = true });
+        }
     }
 
-    [HttpPost]
-    public JsonResult RemoveFromCart(int bookId, string type)
-    {
-        var cart = Session["Cart"] as List<CartItem>;
-        if (cart != null)
-        {
-            var item = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
-            if (item != null)
-            {
-                cart.Remove(item);
-                Session["Cart"] = cart;
-            }
-        }
-        return Json(new { success = true });
-    }
 }
