@@ -1,5 +1,7 @@
-﻿using MyMvcProject.Data;
+﻿using MVC.Models;
+using MyMvcProject.Data;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -158,6 +160,38 @@ namespace MVC.Controllers
                 System.Diagnostics.Debug.WriteLine($"Error in ReturnBook: {ex.Message}");
                 return Json(new { success = false, message = "An error occurred while returning the book." });
             }
+        }
+        [HttpPost]
+        public JsonResult AddToCart(int bookId, string type)
+        {
+            var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+
+            var book = db.books.FirstOrDefault(b => b.book_id == bookId);
+            if (book == null)
+            {
+                return Json(new { success = false, message = "ספר לא נמצא" });
+            }
+
+            var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
+            if (existingItem != null)
+            {
+                existingItem.Quantity++;
+            }
+            else
+            {
+                cart.Add(new CartItem
+                {
+                    BookId = book.book_id,
+                    BookName = book.book_name,
+                    Price = type == "Buy" ? book.price : (book.price)/4,
+                    Type = type,
+                    Quantity = 1
+                });
+            }
+
+            Session["Cart"] = cart;
+
+            return Json(new { success = true, message = "הספר נוסף לעגלה" });
         }
     }
 }

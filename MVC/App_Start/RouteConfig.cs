@@ -19,9 +19,10 @@ namespace MVC
                 url: "Home/HomePage",
                 defaults: new { controller = "Home", action = "HomePage" }
             );
+            // נתיב לעמוד אזור אישי
             routes.MapRoute(
                 name: "PersonalArea",
-                url: "Personal_Area/PersonalArea",
+                url: "PersonalArea/PersonalArea",
                 defaults: new { controller = "PersonalArea", action = "PersonalArea", id = UrlParameter.Optional }
             );
 
@@ -38,6 +39,20 @@ namespace MVC
                 url: "books/BuyBorrowBook",
                 defaults: new { controller = "books", action = "BuyBorrowBook" }
             );
+            //נתיב לעמוד תשלומים
+            routes.MapRoute(
+                name: "Checkout",
+                url: "order/CheckoutPage",
+                defaults: new { controller = "order", action = "Checkout" }
+            );
+            // נתיב של עגלה
+            routes.MapRoute(
+                name: "Cart",
+                url: "Cart/Index",
+                defaults: new { controller = "Cart", action = "Index" }
+            );
+            // נתיב לעמוד ביקורת על האתר
+
 
             // נתיב ברירת מחדל
             routes.MapRoute(

@@ -71,7 +71,7 @@ namespace MyMvcProject.Controllers
             ViewBag.BorrowedBooks = borrowedBooks;
             ViewBag.WaitingBooks = waitingBooks;
 
-            return View("PersonalArea");
+            return View();
         }
 
         [HttpPost]
