@@ -1,0 +1,35 @@
+﻿@*@model List<CartItem>*@
+
+<h2>עגלה</h2>
+<table>
+    <thead>
+        <tr>
+            <th>שם הספר</th>
+            <th>מחיר</th>
+            <th>כמות</th>
+            <th>סוג</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookName</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>@item.Type</td>
+                <td>
+                    <button onclick="removeFromCart(@item.BookId, '@item.Type')">הסר</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>function removeFromCart(bookId, type) {
+        $.post('/Cart/RemoveFromCart', { bookId: bookId, type: type }, function() {
+            location.reload();
+        });
+    }</script>
+<a href="/Order/Checkout" class="btn btn-primary">מעבר לתשלום</a>

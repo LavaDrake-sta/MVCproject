@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\MVC",
-    "\\MVC\\Migrations",
-    "\\MVC\\Views",
-    "\\MVC\\Views\\users"
+    ""
   ],
-  "SelectedNode": "\\MVC\\Migrations\\202501051143209_SyncDatabase.cs",
+  "SelectedNode": "\\MVC.sln",
   "PreviewInSolutionExplorer": false
 }
