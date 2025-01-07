@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\views\\books\\buyborrowbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\books\\buyborrowbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\css\\buyborrowbooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\css\\buyborrowbooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\css\\buyborrowbooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\css\\buyborrowbooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\models\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,46 +50,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomePage.cshtml",
+              "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\Home\\HomePage.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Home\\HomePage.cshtml",
+              "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\Home\\HomePage.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Home\\HomePage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T12:45:29.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "books.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\books.cs",
+              "RelativeDocumentMoniker": "MVC\\Models\\books.cs",
+              "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\books.cs",
+              "RelativeToolTip": "MVC\\Models\\books.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T12:40:29.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "BuyBorrowBooks.css",
               "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css",
               "RelativeDocumentMoniker": "MVC\\CSS\\BuyBorrowBooks.css",
               "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css",
               "RelativeToolTip": "MVC\\CSS\\BuyBorrowBooks.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAUwMQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-01-06T10:14:48.261Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BuyBorrowBook.cshtml",
               "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\books\\BuyBorrowBook.cshtml",
               "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
               "RelativeToolTip": "MVC\\Views\\books\\BuyBorrowBook.cshtml",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAUwJIAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAcwJIAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-06T10:07:12.364Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "booksController.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\booksController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\booksController.cs",
               "ToolTip": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\booksController.cs",
               "RelativeToolTip": "MVC\\Controllers\\booksController.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAwwKIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwIsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T16:35:28.682Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "MVC\\App_Start\\RouteConfig.cs",
