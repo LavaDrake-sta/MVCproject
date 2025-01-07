@@ -64,21 +64,21 @@
 
                     // הצגת כל הספרים
                     response.forEach(book => {
-                        booksContainer.innerHTML +=
-                            <div class="book-item">
-                                <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                        booksContainer.innerHTML += `
+                                <div class="book-item">
+                                    <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
                                     <h2>${book.book_name}</h2>
                                     <p><strong>Category:</strong> ${book.category}</p>
                                     <p><strong>Language:</strong> ${book.language}</p>
                                     <p><strong>Price:</strong> $${book.price}</p>
                                     <div class="actions">
-                                        ${book.IsRent ? <button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button> : ""}
+                                        ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
                                         <span id="rentCount_${book.book_id}">
                                             ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
                                         </span>
                                         <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
                                     </div>
-                            </div>;
+                                </div>`;
                     });
                 });
             }
@@ -97,28 +97,28 @@
 
                 // אם לא נמצאו ספרים
                 if (!response.success) {
-                    booksContainer.innerHTML = <p>Unfortunately, the book does not exist in the system, but we will add it soon.</p>;
+                    booksContainer.innerHTML = `<p>Unfortunately, the book does not exist in the system, but we will add it soon.</p>`;
                     return;
                 }
 
                 // הצגת הספרים שנמצאו
                 booksContainer.innerHTML = ""; // ניקוי התוכן הקיים
                 response.books.forEach(book => {
-                    booksContainer.innerHTML +=
-                        <div class="book-item">
-                            <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                    booksContainer.innerHTML += `
+                            <div class="book-item">
+                                <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
                                 <h2>${book.book_name}</h2>
                                 <p><strong>Category:</strong> ${book.category}</p>
                                 <p><strong>Language:</strong> ${book.language}</p>
                                 <p><strong>Price:</strong> $${book.price}</p>
                                 <div class="actions">
-                                    ${book.IsRent ? <button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button> : ""}
+                                    ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
                                     <span id="rentCount_${book.book_id}">
                                         ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
                                     </span>
                                     <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
                                 </div>
-                        </div>;
+                            </div>`;
                 });
             });
         }
@@ -126,16 +126,16 @@
         function rentBook(bookId) {
             $.post('/books/RentBook', { book_id: bookId }, function (response) {
                 if (response.success) {
-                    const rentCountSpan = $(#rentCount_${ bookId });
+                    const rentCountSpan = $(`#rentCount_${bookId}`);
                     const textParts = rentCountSpan.text().split(' ');
                     const currentCount = parseInt(textParts[0]) || 0;
-                    rentCountSpan.text(${ currentCount + 1} out of ${ textParts[2] } people have rented this book);
-            alert(response.message);
-        } else {
-            alert('Failed to rent the book: ' + response.message);
+                    rentCountSpan.text(`${currentCount + 1} out of ${textParts[2]} people have rented this book`);
+                    alert(response.message);
+                } else {
+                    alert('Failed to rent the book: ' + response.message);
+                }
+            });
         }
-                });
-            }
 
         function buyBook(bookId) {
             $.post('/books/BuyBook', { book_id: bookId }, function (response) {

@@ -1,0 +1,31 @@
+﻿@model List<MVC.Models.review>
+@{
+    var book = ViewBag.Book as MVC.Models.books;
+}
+
+<h2>ביקורות על הספר "@book.book_name"</h2>
+
+@if (!Model.Any())
+{
+    <p>אין ביקורות על הספר.</p>
+}
+else
+{
+    <ul>
+        @foreach (var review in Model)
+        {
+            <li>
+                <strong>@review.email:</strong>
+                <p>@review.Content</p>
+            </li>
+        }
+    </ul>
+}
+
+<h3>הוסף ביקורת על הספר "@book.book_name"</h3>
+<form method="post" action="/BookReview/AddReview">
+    <input type="hidden" name="bookId" value="@book.book_id" />
+    <textarea name="content" placeholder="כתוב ביקורת..." required></textarea>
+    <button type="submit" class="btn btn-primary">שלח</button>
+</form>
+

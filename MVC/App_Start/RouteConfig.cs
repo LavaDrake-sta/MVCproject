@@ -51,9 +51,18 @@ namespace MVC
                 url: "Cart/Index",
                 defaults: new { controller = "Cart", action = "Index" }
             );
-            // נתיב לעמוד ביקורת על האתר
-
-
+            // נתיב של עמוד ביקורת לאתר
+            routes.MapRoute(
+                name: "SiteReviews",
+                url: "SiteReview",
+                defaults: new { controller = "SiteReview", action = "Index" }
+            );
+            // נתיב של עמוד ביקורת של ספר 
+            routes.MapRoute(
+                name: "BookReviews",
+                url: "BookReview/{bookId}",
+                defaults: new { controller = "BookReview", action = "Index", bookId = UrlParameter.Optional }
+            );
             // נתיב ברירת מחדל
             routes.MapRoute(
                 name: "Default",

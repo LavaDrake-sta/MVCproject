@@ -1,0 +1,27 @@
+﻿@model List<MVC.Models.review>
+
+<h2>ביקורות על האתר</h2>
+
+@if (!Model.Any())
+{
+    <p>אין ביקורות על האתר.</p>
+}
+else
+{
+    <ul>
+        @foreach (var review in Model)
+        {
+            <li>
+                <strong>@review.email:</strong>
+                <p>@review.Content</p>
+            </li>
+        }
+    </ul>
+}
+
+<h3>הוסף ביקורת על האתר</h3>
+<form method="post" action="/SiteReview/AddReview">
+    <textarea name="content" placeholder="כתוב ביקורת..." required></textarea>
+    <button type="submit" class="btn btn-primary">שלח</button>
+</form>
+

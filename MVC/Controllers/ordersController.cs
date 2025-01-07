@@ -13,7 +13,7 @@ namespace MyMvcProject.Controllers
             db = new MvcProjectContext();
         }
 
-        public ActionResult Checkout()
+        public ActionResult CheckoutPage()
         {
             if (Session["UserName"] == null)
             {

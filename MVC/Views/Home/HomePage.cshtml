@@ -2,7 +2,9 @@
     Layout = null;
     var isLoggedIn = Session["UserName"] != null;
     var isAdmin = Session["UserType"] != null && Session["UserType"].ToString().Trim().ToLower() == "admin";
+    var cartItems = Session["Cart"] as List<CartItem> ?? new List<CartItem>(); // שמירת עגלה ב-Session
 }
+@using MVC.Models
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +21,17 @@
     <header>
         <h1>Books</h1>
     </header>
+
     <nav class="nav-container">
         <ul>
+            <!-- קישור לאזור האישי -->
             <li>
-                <a href="@Url.Action("PersonalArea","PersonalArea")">Personal Area</a>
+                <a href="@Url.Action("PersonalArea", "PersonalArea")">Personal Area</a>
             </li>
+
+            <!-- חיבור או התנתקות -->
             <li>
-                @if (Session["UserName"] != null)
+                @if (isLoggedIn)
                 {
                     <!-- כפתור "התנתקות" -->
                     <a href="#" onclick="document.getElementById('logoutForm').submit();" class="nav-link">התנתקות</a>
@@ -38,18 +44,29 @@
                 }
             </li>
 
-            <li><a href="@Url.Action("BuyBorrowBook", "books")">Buy/Rent Books</a></li>
-
-            @*<li><a href="buy.html">קניית ספרים</a></li>*@
+            <!-- קישור לקנייה והשכרת ספרים -->
             <li>
-                <a href="cart.html">
+                <a href="@Url.Action("BuyBorrowBook", "books")">Buy/Rent Books</a>
+            </li>
+
+            <!-- עגלה -->
+            <li>
+                <a href="@Url.Action("Index", "Cart")">
                     <i class="fa-solid fa-cart-shopping" style="margin-right: 5px;"></i>
                     CART
+                    @if (cartItems.Any())
+                    {
+                        <span> (@cartItems.Count)</span>
+                    }
                 </a>
             </li>
+
+            <!-- קישור לעמוד הניהול אם המשתמש הוא אדמין -->
             @if (isAdmin)
             {
-                <li><a href="@Url.Action("AdminPage", "Admin")" class="nav-link">ניהול מערכת</a></li>
+                <li>
+                    <a href="@Url.Action("AdminPage", "Admin")" class="nav-link">ניהול מערכת</a>
+                </li>
             }
         </ul>
     </nav>
@@ -57,8 +74,8 @@
     <div class="welcome-section">
         <h2>Welcome to the digital library</h2>
         <p>
-            .On this website, you can explore a variety of digital books, purchase or rent them, and read reviews
-            from other users about their favorite titles
+            On this website, you can explore a variety of digital books, purchase or rent them, and read reviews
+            from other users about their favorite titles.
         </p>
     </div>
 

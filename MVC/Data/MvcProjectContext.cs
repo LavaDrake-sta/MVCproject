@@ -19,6 +19,7 @@ namespace MyMvcProject.Data
         public DbSet<Borrowing_books> borrowing_Books { get; set; }
         public DbSet<waiting_list> waiting_Lists { get; set; }
         public DbSet<orders> orders { get; set; }
+        public DbSet<review> reviews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +30,7 @@ namespace MyMvcProject.Data
             modelBuilder.Entity<Borrowing_books>().HasKey(b => b.book_id);
             modelBuilder.Entity<waiting_list>().HasKey(w => w.name);
             modelBuilder.Entity<orders>().HasKey(o => o.order_number);
+            modelBuilder.Entity<review>().HasKey(o => o.ID_review);
 
             // הסרת ריבוי שמות בלשון רבים
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
