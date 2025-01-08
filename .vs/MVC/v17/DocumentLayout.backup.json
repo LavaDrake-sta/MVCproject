@@ -106,6 +106,19 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T13:35:11.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PersonalArea.css",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\PersonalArea.css",
+              "RelativeDocumentMoniker": "MVC\\CSS\\PersonalArea.css",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\PersonalArea.css",
+              "RelativeToolTip": "MVC\\CSS\\PersonalArea.css",
+              "ViewState": "AgIAADcAAAAAAAAAAAAqwEMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-08T12:28:49.621Z",
 =======
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
@@ -126,15 +139,15 @@
             {
               "$type": "Document",
 <<<<<<< HEAD
-              "DocumentIndex": 0,
-              "Title": "PersonalArea.css",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\PersonalArea.css",
-              "RelativeDocumentMoniker": "MVC\\CSS\\PersonalArea.css",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\CSS\\PersonalArea.css",
-              "RelativeToolTip": "MVC\\CSS\\PersonalArea.css",
-              "ViewState": "AgIAADcAAAAAAAAAAAAqwEMAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-08T12:28:49.621Z",
+              "DocumentIndex": 1,
+              "Title": "PersonalArea.cshtml",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "RelativeToolTip": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAqwGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-08T12:27:53.479Z",
 =======
               "DocumentIndex": 6,
               "Title": "books.cs",
@@ -196,38 +209,12 @@
               "ViewState": "AgIAACMAAAAAAAAAAAAcwDAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-06T10:07:12.364Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "booksController.cs",
-              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\booksController.cs",
-              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\booksController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T16:35:28.682Z",
 >>>>>>> 131959bbb37bfbd9a322f9b1acb93df385ae77e1
               "EditorCaption": ""
             },
             {
               "$type": "Document",
 <<<<<<< HEAD
-              "DocumentIndex": 1,
-              "Title": "PersonalArea.cshtml",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "RelativeToolTip": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "ViewState": "AgIAADcAAAAAAAAAAAAqwGMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-08T12:27:53.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "PersonalAreaController.cs",
               "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\PersonalAreaController.cs",
@@ -239,6 +226,19 @@
               "WhenOpened": "2025-01-08T12:27:45.522Z",
               "EditorCaption": ""
 =======
+              "DocumentIndex": 1,
+              "Title": "booksController.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\booksController.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\booksController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T16:35:28.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\App_Start\\RouteConfig.cs",
