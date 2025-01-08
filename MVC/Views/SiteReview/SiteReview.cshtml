@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Reviews</title>
+    <link rel="stylesheet" href="~/CSS/SiteReview.css">
+</head>
+<body>
+    <header>
+        <h1>Site Reviews</h1>
+    </header>
+
+    <main>
+        <section id="reviews">
+            <h2>Reviews</h2>
+            <ul>
+                @foreach (var review in Model)
+                {
+                    <li>
+                        <p><strong>Email:</strong> @review.email</p>
+                        <p><strong>Review:</strong> @review.Content</p>
+                    </li>
+                }
+            </ul>
+        </section>
+
+        <section id="add-review">
+            <h2>Add Your Review</h2>
+            <form action="@Url.Action("AddReview", "SiteReview")" method="post">
+                <textarea name="content" placeholder="Write your review here..." required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Digital Library</p>
+    </footer>
+</body>
+</html>
+

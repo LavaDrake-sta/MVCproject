@@ -1,35 +1,61 @@
-﻿@*@model List<CartItem>*@
+﻿@{
+    Layout = null;
+    var cart = Model as List<Dictionary<string, object>>;
+}
 
-<h2>עגלה</h2>
-<table>
-    <thead>
-        <tr>
-            <th>שם הספר</th>
-            <th>מחיר</th>
-            <th>כמות</th>
-            <th>סוג</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.BookName</td>
-                <td>@item.Price</td>
-                <td>@item.Quantity</td>
-                <td>@item.Type</td>
-                <td>
-                    <button onclick="removeFromCart(@item.BookId, '@item.Type')">הסר</button>
-                </td>
-            </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="~/CSS/CartPage.css">
+</head>
+<body>
+    <h1>Your Cart</h1>
+
+    @if (cart == null )
+    {
+        <p>Your cart is empty.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in cart)
+                {
+                    <tr>
+                        <td>@item["BookName"]</td>
+                        <td>@item["Price"]</td>
+                        <td>@item["Quantity"]</td>
+                        <td>@item["Type"]</td>
+                        <td>
+                            <button onclick="removeFromCart(@item["BookId"], '@item["Type"]')" class="btn btn-danger">Remove</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("CheckoutPage", "Order")" class="btn btn-primary">Proceed to Checkout</a>
+    }
+
+    <script>
+        function removeFromCart(bookId, type) {
+            $.post('@Url.Action("RemoveFromCart", "Cart")', { bookId: bookId, type: type }, function () {
+                location.reload();
+            });
         }
-    </tbody>
-</table>
-
-<script>function removeFromCart(bookId, type) {
-        $.post('/Cart/RemoveFromCart', { bookId: bookId, type: type }, function() {
-            location.reload();
-        });
-    }</script>
-<a href="/Order/Checkout" class="btn btn-primary">מעבר לתשלום</a>
+    </script>
+</body>
+</html>

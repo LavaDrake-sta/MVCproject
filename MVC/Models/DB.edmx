@@ -53,6 +53,7 @@
           <Property Name="category" Type="nchar" MaxLength="50" />
           <Property Name="date_taken" Type="date" Nullable="false" />
           <Property Name="return_date" Type="date" Nullable="false" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -264,6 +265,7 @@
           <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="books" Relationship="Self.FK_Borrowing_books_books" FromRole="Borrowing_books" ToRole="books" />
         </EntityType>
         <EntityType Name="orders">
@@ -481,6 +483,7 @@
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="date_taken" ColumnName="date_taken" />
                 <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
