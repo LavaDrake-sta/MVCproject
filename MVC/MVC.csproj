@@ -219,6 +219,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BookReviewController.cs" />
     <Compile Include="Controllers\booksController.cs" />
     <Compile Include="Controllers\Borrowed_books_listController.cs" />
     <Compile Include="Controllers\Borrowing_booksController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ordersController.cs" />
     <Compile Include="Controllers\PersonalAreaController.cs" />
+    <Compile Include="Controllers\SiteReviewController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Controllers\waiting_listController.cs" />
     <Compile Include="Data\MvcProjectContext.cs" />
@@ -267,6 +269,9 @@
       <DependentUpon>DB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\orders.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\review.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\users.cs">
@@ -369,6 +374,8 @@
     <Content Include="Views\books\BuyBorrowBook.cshtml" />
     <Content Include="Views\orders\CheckoutPage.cshtml" />
     <Content Include="Views\Cart\CartPage.cshtml" />
+    <Content Include="Views\BookReview\BookReview.cshtml" />
+    <Content Include="Views\SiteReview\SiteReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

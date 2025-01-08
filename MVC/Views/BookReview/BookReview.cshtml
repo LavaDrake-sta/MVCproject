@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+    var book = ViewBag.Book;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="~/CSS/BookReview.css">
+</head>
+<body>
+    <header>
+        <h1>Reviews for "@book.book_name"</h1>
+    </header>
+
+    <main>
+        <section id="reviews">
+            <h2>Reviews</h2>
+            <ul>
+                @foreach (var review in Model)
+                {
+                    <li>
+                        <p><strong>Email:</strong> @review.email</p>
+                        <p><strong>Review:</strong> @review.Content</p>
+                    </li>
+                }
+            </ul>
+        </section>
+
+        <section id="add-review">
+            <h2>Add Your Review</h2>
+            <form action="@Url.Action("AddReview", "BookReview", new { bookId = book.book_id })" method="post">
+                <textarea name="content" placeholder="Write your review here..." required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Digital Library</p>
+    </footer>
+</body>
+</html>
+

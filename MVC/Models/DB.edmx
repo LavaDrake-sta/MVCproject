@@ -32,6 +32,7 @@
           <Property Name="MaxRentCount" Type="int" />
           <Property Name="IsSold" Type="bit" />
           <Property Name="IsRent" Type="bit" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Borrowed_books_list">
           <Key>
@@ -52,6 +53,7 @@
           <Property Name="category" Type="nchar" MaxLength="50" />
           <Property Name="date_taken" Type="date" Nullable="false" />
           <Property Name="return_date" Type="date" Nullable="false" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -71,6 +73,16 @@
           <Property Name="product" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="buy_borrow" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="ID_review" />
+          </Key>
+          <Property Name="ID_review" Type="int" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="book_ID" Type="int" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -126,6 +138,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_review_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_waiting_list_waiting_list">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="waiting_list" Type="Self.waiting_list" Multiplicity="*" />
@@ -144,6 +180,7 @@
           <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="review" EntityType="Self.review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="waiting_list" EntityType="Self.waiting_list" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Borrowed_books_list_books" Association="Self.FK_Borrowed_books_list_books">
@@ -157,6 +194,14 @@
           <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
             <End Role="users" EntitySet="users" />
             <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_books" Association="Self.FK_review_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_users" Association="Self.FK_review_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="review" EntitySet="review" />
           </AssociationSet>
           <AssociationSet Name="FK_waiting_list_waiting_list" Association="Self.FK_waiting_list_waiting_list">
             <End Role="users" EntitySet="users" />
@@ -195,8 +240,10 @@
           <Property Name="MaxRentCount" Type="Int32" />
           <Property Name="IsSold" Type="Boolean" />
           <Property Name="IsRent" Type="Boolean" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Borrowed_books_list" Relationship="Self.FK_Borrowed_books_list_books" FromRole="books" ToRole="Borrowed_books_list" />
           <NavigationProperty Name="Borrowing_books" Relationship="Self.FK_Borrowing_books_books" FromRole="books" ToRole="Borrowing_books" />
+          <NavigationProperty Name="review" Relationship="Self.FK_review_books" FromRole="books" ToRole="review" />
         </EntityType>
         <EntityType Name="Borrowed_books_list">
           <Key>
@@ -218,6 +265,7 @@
           <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="books" Relationship="Self.FK_Borrowing_books_books" FromRole="Borrowing_books" ToRole="books" />
         </EntityType>
         <EntityType Name="orders">
@@ -240,6 +288,18 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="users" Relationship="Self.FK_orders_orders" FromRole="orders" ToRole="users" />
         </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="ID_review" />
+          </Key>
+          <Property Name="ID_review" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="book_ID" Type="Int32" />
+          <NavigationProperty Name="books" Relationship="Self.FK_review_books" FromRole="review" ToRole="books" />
+          <NavigationProperty Name="users" Relationship="Self.FK_review_users" FromRole="review" ToRole="users" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="email" />
@@ -249,6 +309,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_orders" FromRole="users" ToRole="orders" />
+          <NavigationProperty Name="review" Relationship="Self.FK_review_users" FromRole="users" ToRole="review" />
           <NavigationProperty Name="waiting_list" Relationship="Self.FK_waiting_list_waiting_list" FromRole="users" ToRole="waiting_list" />
         </EntityType>
         <EntityType Name="waiting_list">
@@ -285,6 +346,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_review_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="book_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_orders_orders">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
@@ -293,6 +366,18 @@
               <PropertyRef Name="email" />
             </Principal>
             <Dependent Role="orders">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="review">
               <PropertyRef Name="email" />
             </Dependent>
           </ReferentialConstraint>
@@ -315,6 +400,7 @@
           <EntitySet Name="Borrowed_books_list" EntityType="Self.Borrowed_books_list" />
           <EntitySet Name="Borrowing_books" EntityType="Self.Borrowing_books" />
           <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="review" EntityType="Self.review" />
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="waiting_list" EntityType="Self.waiting_list" />
           <AssociationSet Name="FK_Borrowed_books_list_books" Association="Self.FK_Borrowed_books_list_books">
@@ -325,9 +411,17 @@
             <End Role="books" EntitySet="books" />
             <End Role="Borrowing_books" EntitySet="Borrowing_books" />
           </AssociationSet>
+          <AssociationSet Name="FK_review_books" Association="Self.FK_review_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
           <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
             <End Role="users" EntitySet="users" />
             <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_users" Association="Self.FK_review_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="review" EntitySet="review" />
           </AssociationSet>
           <AssociationSet Name="FK_waiting_list_waiting_list" Association="Self.FK_waiting_list_waiting_list">
             <End Role="users" EntitySet="users" />
@@ -366,6 +460,7 @@
                 <ScalarProperty Name="MaxRentCount" ColumnName="MaxRentCount" />
                 <ScalarProperty Name="IsSold" ColumnName="IsSold" />
                 <ScalarProperty Name="IsRent" ColumnName="IsRent" />
+                <ScalarProperty Name="author" ColumnName="author" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -388,6 +483,7 @@
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="date_taken" ColumnName="date_taken" />
                 <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -408,6 +504,17 @@
                 <ScalarProperty Name="product" ColumnName="product" />
                 <ScalarProperty Name="buy_borrow" ColumnName="buy_borrow" />
                 <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="review">
+            <EntityTypeMapping TypeName="mvcprojectModel.review">
+              <MappingFragment StoreEntitySet="review">
+                <ScalarProperty Name="ID_review" ColumnName="ID_review" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="book_ID" ColumnName="book_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

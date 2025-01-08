@@ -49,17 +49,17 @@
                 <h2>You need to log in to view this page.</h2>
                 <a href="@Url.Action("Login", "Users")" class="login-link">Go to Login</a>
             </section>
-        }
-        else
-        {
-            <section class="user-details">
+            }
+            else
+            {
+            < section class="user-details">
                 <h2>Welcome, @userName</h2>
                 <p><strong>Email:</strong> @userEmail</p>
-                <form action="@Url.Action("UpdateDetails", "PersonalArea")" method="post" class="update-form">
-                    <input type="text" name="name" placeholder="New Name" />
-                    <input type="email" name="email" placeholder="New Email" />
-                    <input type="password" name="password" placeholder="New Password" />
-                    <button type="submit" class="update-button">Update Details</button>
+                <form action = "@Url.Action("UpdateDetails", "PersonalArea")" method="post" class="update-form">
+                    <input type = "text" name="name" placeholder="New Name" />
+                    <input type = "email" name="email" placeholder="New Email" />
+                    <input type = "password" name="password" placeholder="New Password" />
+                    <button type = "submit" class="update-button">Update Details</button>
                 </form>
             </section>
 
@@ -67,8 +67,8 @@
                 <h2>Your Orders</h2>
                 <ul>
                     @foreach (var order in orders)
-                    {
-                        <li>@order.product - @order.date - @order.price$</li>
+        {
+                        < li > @order.product - @order.date - @order.price$</ li >
                     }
                 </ul>
             </section>
@@ -76,9 +76,9 @@
             <section class="borrowed-books">
                 <h2>Your Borrowed Books</h2>
                 <ul>
-                    @foreach (var book in borrowedBooks)
-                    {
-                        <li>@book.book_name - Borrowed on: @book.date_taken, Return by: @book.return_date</li>
+                    @foreach(var book in borrowedBooks)
+        {
+                        < li > @book.book_name - Borrowed on: @book.date_taken, Return by: @book.return_date </ li >
                     }
                 </ul>
             </section>
@@ -86,9 +86,9 @@
             <section class="waiting-list">
                 <h2>Your Waiting List</h2>
                 <ul>
-                    @foreach (var book in waitingBooks)
-                    {
-                        <li>@book.book_name - Added on: @book.date</li>
+                    @foreach(var book in waitingBooks)
+        {
+                        < li > @book.book_name - Added on: @book.date </ li >
                     }
                 </ul>
             </section>

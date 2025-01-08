@@ -12,15 +12,15 @@ namespace MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Borrowing_books
+    public partial class review
     {
-        public int book_id { get; set; }
-        public string book_name { get; set; }
-        public string category { get; set; }
-        public System.DateTime date_taken { get; set; }
-        public System.DateTime return_date { get; set; }
-        public Nullable<int> user_id { get; set; }
+        public int ID_review { get; set; }
+        public string email { get; set; }
+        public string Content { get; set; }
+        public string type { get; set; }
+        public Nullable<int> book_ID { get; set; }
     
         public virtual books books { get; set; }
+        public virtual users users { get; set; }
     }
 }

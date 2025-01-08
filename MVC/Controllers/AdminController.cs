@@ -202,5 +202,20 @@ namespace MyMvcProject.Controllers
             }
             return Json(new { success = false, message = "המשתמש לא נמצא ברשימת ההמתנה." });
         }
+        [HttpGet]
+        public JsonResult GetSiteReviews()
+        {
+            var siteReviews = db.reviews
+                .Where(r => r.type == "Site") // שליפת ביקורות על האתר בלבד
+                .Select(r => new
+                {
+                    r.ID_review,
+                    r.Content,
+                    r.email,
+                })
+                .ToList();
+
+            return Json(siteReviews, JsonRequestBehavior.AllowGet);
+        }
     }
 }
