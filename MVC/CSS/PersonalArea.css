@@ -1,0 +1,120 @@
+﻿/* עיצוב גוף ורקע */
+body {
+    background-color: #f5f5fa; /* צבע רקע אחיד ועדין */
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* כותרת ראשית */
+header h1 {
+    text-align: center;
+    color: white;
+    background-color: #4a148c; /* צבע סגול כהה */
+    padding: 15px; /* צמצום גובה הכותרת */
+    font-size: 1.8em; /* גודל גופן מתואם */
+    margin: 0;
+}
+
+/* ניווט */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a148c; /* צבע אחיד לכותרת */
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+    /* כפתורים בתפריט הניווט */
+    .nav-container .btn-nav {
+        background-color: #1e88e5; /* כחול */
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9em;
+    }
+
+        .nav-container .btn-nav:hover {
+            background-color: #1565c0; /* כחול כהה יותר */
+        }
+
+    .nav-container .btn-logout {
+        background-color: #e53935;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9em;
+    }
+
+        .nav-container .btn-logout:hover {
+            background-color: #c62828;
+        }
+
+/* התאמת תוכן */
+main {
+    margin-top: 40px; /* מרווח מתחת לניווט */
+}
+
+/* עיצוב כפתורים */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* כפתורי ניווט */
+.btn-login,
+.btn-update,
+.nav-list a {
+    background-color: #4a148c; /* סגול כהה */
+}
+
+    .btn-login:hover,
+    .btn-update:hover,
+    .nav-list a:hover {
+        background-color: #350c6e; /* סגול כהה יותר */
+    }
+
+/* כפתור התנתקות */
+.btn-logout {
+    background-color: #e53935;
+}
+
+    .btn-logout:hover {
+        background-color: #c62828; /* אדום כהה יותר */
+    }
+
+/* חלקים מרכזיים */
+section {
+    margin: 30px auto;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* צל עדין */
+}
+
+/* כותרות חלקים */
+h2 {
+    color: #4a148c; /* סגול כהה */
+    border-bottom: 2px solid #4a148c;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* מרווח בין חלקים */
+section + section {
+    margin-top: 20px;
+}

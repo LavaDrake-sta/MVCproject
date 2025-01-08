@@ -21,45 +21,36 @@
 <body>
     <header>
         <h1>Personal Area</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-            <li><a href="@Url.Action("Index", "PersonalArea")">Personal Area</a></li>
+        <nav class="nav-container">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-nav">Home</a>
+            <a href="@Url.Action("LeaveSiteReview", "SiteReview")" class="btn btn-nav">Leave a Site Review</a>
             @if (Session["UserName"] != null)
             {
-                <li>
-                    <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
-                        <button type="submit" class="logout-button">Logout</button>
-                    </form>
-                </li>
+                <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Logout</button>
+                </form>
             }
-            else
-            {
-                <li><a href="@Url.Action("Login", "Users")">Login</a></li>
-            }
-        </ul>
-    </nav>
+        </nav>
+    </header>
 
     <main>
         @if (Session["UserName"] == null)
         {
             <section class="error-message">
                 <h2>You need to log in to view this page.</h2>
-                <a href="@Url.Action("Login", "Users")" class="login-link">Go to Login</a>
+                <a href="@Url.Action("Login", "Users")" class="btn btn-login">Go to Login</a>
             </section>
-            }
-            else
-            {
-            < section class="user-details">
+        }
+        else
+        {
+            <section class="user-details">
                 <h2>Welcome, @userName</h2>
                 <p><strong>Email:</strong> @userEmail</p>
-                <form action = "@Url.Action("UpdateDetails", "PersonalArea")" method="post" class="update-form">
-                    <input type = "text" name="name" placeholder="New Name" />
-                    <input type = "email" name="email" placeholder="New Email" />
-                    <input type = "password" name="password" placeholder="New Password" />
-                    <button type = "submit" class="update-button">Update Details</button>
+                <form action="@Url.Action("UpdateDetails", "PersonalArea")" method="post" class="update-form">
+                    <input type="text" name="name" placeholder="New Name" class="input-field" />
+                    <input type="email" name="email" placeholder="New Email" class="input-field" />
+                    <input type="password" name="password" placeholder="New Password" class="input-field" />
+                    <button type="submit" class="btn btn-update">Update Details</button>
                 </form>
             </section>
 
@@ -67,8 +58,13 @@
                 <h2>Your Orders</h2>
                 <ul>
                     @foreach (var order in orders)
-        {
-                        < li > @order.product - @order.date - @order.price$</ li >
+                    {
+                        <li>
+                            @order.product - @order.date - @order.price$
+                            <a href="@Url.Action("LeaveBookReview", "BookReview", new { bookId = order.book_id })" class="btn btn-review">
+                                Leave a Review
+                            </a>
+                        </li>
                     }
                 </ul>
             </section>
@@ -76,9 +72,9 @@
             <section class="borrowed-books">
                 <h2>Your Borrowed Books</h2>
                 <ul>
-                    @foreach(var book in borrowedBooks)
-        {
-                        < li > @book.book_name - Borrowed on: @book.date_taken, Return by: @book.return_date </ li >
+                    @foreach (var book in borrowedBooks)
+                    {
+                        <li>@book.book_name - Borrowed on: @book.date_taken, Return by: @book.return_date</li>
                     }
                 </ul>
             </section>
@@ -86,9 +82,9 @@
             <section class="waiting-list">
                 <h2>Your Waiting List</h2>
                 <ul>
-                    @foreach(var book in waitingBooks)
-        {
-                        < li > @book.book_name - Added on: @book.date </ li >
+                    @foreach (var book in waitingBooks)
+                    {
+                        <li>@book.book_name - Added on: @book.date</li>
                     }
                 </ul>
             </section>
