@@ -14,6 +14,12 @@ namespace MVC.Models
     
     public partial class books
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public books()
+        {
+            this.review = new HashSet<review>();
+        }
+    
         public int book_id { get; set; }
         public string book_name { get; set; }
         public string category { get; set; }
@@ -27,8 +33,11 @@ namespace MVC.Models
         public Nullable<int> MaxRentCount { get; set; }
         public Nullable<bool> IsSold { get; set; }
         public Nullable<bool> IsRent { get; set; }
+        public string author { get; set; }
     
         public virtual Borrowed_books_list Borrowed_books_list { get; set; }
         public virtual Borrowing_books Borrowing_books { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<review> review { get; set; }
     }
 }

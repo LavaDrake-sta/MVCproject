@@ -35,7 +35,8 @@ namespace MVC.Controllers
                     b.ImageUrl,
                     b.CurrentRentCount,
                     b.MaxRentCount,
-                    b.IsRent
+                    b.IsRent,
+                    b.author // הוספת השדה author
                 }).ToList();
 
                 return Json(books, JsonRequestBehavior.AllowGet);
@@ -65,7 +66,8 @@ namespace MVC.Controllers
                                   b.ImageUrl,
                                   b.CurrentRentCount,
                                   b.MaxRentCount,
-                                  b.IsRent
+                                  b.IsRent,
+                                  b.author // הוספת השדה author
                               })
                               .ToList();
 
@@ -161,6 +163,7 @@ namespace MVC.Controllers
                 return Json(new { success = false, message = "An error occurred while returning the book." });
             }
         }
+
         [HttpPost]
         public JsonResult AddToCart(int bookId, string type)
         {
@@ -183,7 +186,7 @@ namespace MVC.Controllers
                 {
                     BookId = book.book_id,
                     BookName = book.book_name,
-                    Price = type == "Buy" ? book.price : (book.price)/4,
+                    Price = type == "Buy" ? book.price : (book.price) / 4,
                     Type = type,
                     Quantity = 1
                 });

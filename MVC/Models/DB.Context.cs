@@ -30,6 +30,7 @@ namespace MVC.Models
         public virtual DbSet<Borrowed_books_list> Borrowed_books_list { get; set; }
         public virtual DbSet<Borrowing_books> Borrowing_books { get; set; }
         public virtual DbSet<orders> orders { get; set; }
+        public virtual DbSet<review> review { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<waiting_list> waiting_list { get; set; }
     }
