@@ -580,6 +580,10 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Co
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Up2Date
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.pdb
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.AssemblyReference.cache
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.SyncDatabase.resources
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.GenerateResource.cache
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.CoreCompileInputs.cache
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\MVC.dll.config
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\MVC.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\MVC.pdb
@@ -719,10 +723,6 @@ C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\pt-BR\Microsoft.D
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.AssemblyReference.cache
-C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.SyncDatabase.resources
-C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.GenerateResource.cache
-C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.CoreCompileInputs.cache
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.csproj.Up2Date
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.pdb
