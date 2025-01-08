@@ -17,13 +17,9 @@ namespace MyMvcProject.Controllers
         // הצגת ביקורות על ספר מסוים
         public ActionResult Index(int bookId)
         {
-            var reviews = db.reviews
-                .Where(r => r.type == "Book" && r.book_ID == bookId)
-                .OrderByDescending(r => r.ID_review)
-                .ToList();
 
             ViewBag.Book = db.books.FirstOrDefault(b => b.book_id == bookId);
-            return View(reviews);
+            return View();
         }
 
         // הוספת ביקורת על ספר

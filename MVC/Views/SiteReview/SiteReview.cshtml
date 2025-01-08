@@ -1,42 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+    var userEmail = Session["UserEmail"]; // יטען את המייל של המשתמש המחובר
+}
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Reviews</title>
-    <link rel="stylesheet" href="~/CSS/SiteReview.css">
+    <title>Leave a Site Review</title>
 </head>
+
 <body>
-    <header>
-        <h1>Site Reviews</h1>
-    </header>
-
-    <main>
-        <section id="reviews">
-            <h2>Reviews</h2>
-            <ul>
-                @foreach (var review in Model)
-                {
-                    <li>
-                        <p><strong>Email:</strong> @review.email</p>
-                        <p><strong>Review:</strong> @review.Content</p>
-                    </li>
-                }
-            </ul>
-        </section>
-
-        <section id="add-review">
-            <h2>Add Your Review</h2>
-            <form action="@Url.Action("AddReview", "SiteReview")" method="post">
-                <textarea name="content" placeholder="Write your review here..." required></textarea>
-                <button type="submit">Submit Review</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Digital Library</p>
-    </footer>
+    <h1>Leave a Site Review</h1>
+    <form action="@Url.Action("AddReview", "SiteReview")" method="post">
+        <input type="hidden" name="email" value="@userEmail" />
+        <label for="review">Your Review:</label>
+        <textarea id="review" name="reviewContent" rows="4" required></textarea>
+        <button type="submit" class="btn btn-submit">Submit Review</button>
+    </form>
 </body>
-</html>
 
+</html>

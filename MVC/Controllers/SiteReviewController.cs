@@ -17,12 +17,9 @@ namespace MyMvcProject.Controllers
         // הצגת ביקורות על האתר
         public ActionResult Index()
         {
-            var reviews = db.reviews
-                .Where(r => r.type == "Site")
-                .OrderByDescending(r => r.ID_review)
-                .ToList();
 
-            return View(reviews);
+
+            return View();
         }
 
         // הוספת ביקורת על האתר
