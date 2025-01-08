@@ -102,9 +102,14 @@ namespace MVC.Controllers
                     return Json(new { success = false, message = "Cannot rent this book. Maximum limit reached." });
                 }
 
+                // עדכון ספירת השכרות
                 book.CurrentRentCount++;
                 db.SaveChanges();
-                return Json(new { success = true, message = $"You have rented the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
+
+                // הוספה לעגלה
+                AddToCartInternal(book_id, "Rent");
+
+                return Json(new { success = true, redirectUrl = Url.Action("Cart", "books"), message = $"You have rented the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
             }
             catch (Exception ex)
             {
@@ -124,9 +129,14 @@ namespace MVC.Controllers
                     return Json(new { success = false, message = "Book not found" });
                 }
 
+                // סימון הספר כנמכר
                 book.IsSold = true;
                 db.SaveChanges();
-                return Json(new { success = true, message = $"You have purchased the book: {book.book_name}" });
+
+                // הוספה לעגלה
+                AddToCartInternal(book_id, "Buy");
+
+                return Json(new { success = true, redirectUrl = Url.Action("Cart", "books"), message = $"You have purchased the book: {book.book_name}" });
             }
             catch (Exception ex)
             {
@@ -167,6 +177,11 @@ namespace MVC.Controllers
         [HttpPost]
         public JsonResult AddToCart(int bookId, string type)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new { success = false, message = "You must be logged in to add items to the cart." });
+            }
+
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
@@ -195,6 +210,58 @@ namespace MVC.Controllers
             Session["Cart"] = cart;
 
             return Json(new { success = true, message = "הספר נוסף לעגלה" });
+        }
+
+        // פונקציה פנימית להוספת פריטים לעגלה
+        private void AddToCartInternal(int bookId, string type)
+        {
+            var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+
+            var book = db.books.FirstOrDefault(b => b.book_id == bookId);
+            if (book == null) return;
+
+            var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
+            if (existingItem != null)
+            {
+                existingItem.Quantity++;
+            }
+            else
+            {
+                cart.Add(new CartItem
+                {
+                    BookId = book.book_id,
+                    BookName = book.book_name,
+                    Price = type == "Buy" ? book.price : (book.price) / 4,
+                    Type = type,
+                    Quantity = 1
+                });
+            }
+
+            Session["Cart"] = cart;
+        }
+
+        // פעולה להצגת עגלת הקניות
+        [HttpGet]
+        public ActionResult Cart()
+        {
+            var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+            return View(cart); // הצגת העגלה ב-View
+        }
+
+        // פונקציה לבדיקה אם המשתמש מחובר
+        [HttpGet]
+        public JsonResult IsLoggedIn()
+        {
+            try
+            {
+                bool isLoggedIn = User.Identity.IsAuthenticated; // בדיקת התחברות
+                return Json(new { isLoggedIn = isLoggedIn }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in IsLoggedIn: {ex.Message}");
+                return Json(new { success = false, isLoggedIn = false, message = "Error while checking login status." }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
