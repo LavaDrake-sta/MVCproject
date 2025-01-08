@@ -238,6 +238,10 @@
     <Compile Include="Migrations\202501051143209_SyncDatabase.Designer.cs">
       <DependentUpon>202501051143209_SyncDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501081217473_CheckReviewTable.cs" />
+    <Compile Include="Migrations\202501081217473_CheckReviewTable.Designer.cs">
+      <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -304,6 +308,7 @@
     <Content Include="CSS\CheckOutPage.css" />
     <Content Include="CSS\Homepage.css" />
     <Content Include="CSS\LoginRegister.css" />
+    <Content Include="CSS\PersonalArea.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -413,6 +418,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202501051143209_SyncDatabase.resx">
       <DependentUpon>202501051143209_SyncDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501081217473_CheckReviewTable.resx">
+      <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
