@@ -3,7 +3,7 @@
     var cart = Session["Cart"] as List<MVC.Models.CartItem> ?? new List<MVC.Models.CartItem>();
 
 }
-
+<link rel="stylesheet" href="~/CSS/Cartpage.css">
 <h1>Your Cart</h1>
 @if (cart == null)
 {
@@ -30,7 +30,11 @@ else
                     <td>@item.Price</td>
                     <td>@item.Quantity</td>
                     <td>
-                        <button onclick="removeFromCart(@item.BookId, '@item.Type')" class="btn btn-danger">Remove</button>
+                        <form action="@Url.Action("RemoveFromCart", "Cart")" method="post" style="display: inline;">
+                            <input type="hidden" name="bookId" value="@item.BookId" />
+                            <input type="hidden" name="type" value="@item.Type" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
                     </td>
                 </tr>
             }
@@ -39,17 +43,3 @@ else
     <a href="@Url.Action("Checkout", "order")" class="btn btn-primary">Proceed to Checkout</a>
 
 }
-<script>
-    function removeFromCart(bookId, type) {
-        $.post('/Cart/RemoveFromCart', { bookId: bookId, type: type }, function (response) {
-            if (response.success) {
-                alert(response.message); // הודעה למשתמש
-                location.reload(); // טוען מחדש את העמוד
-            } else {
-                alert('Error: ' + response.message); // טיפול בשגיאה
-            }
-        }).fail(function () {
-            alert("An error occurred. Please try again."); // שגיאה כללית
-        });
-    }
-</script>

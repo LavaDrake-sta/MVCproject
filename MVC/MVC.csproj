@@ -247,6 +247,10 @@
     <Compile Include="Migrations\202501091116565_AddReviewsTable.Designer.cs">
       <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.cs" />
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.Designer.cs">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -310,6 +314,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\AdminPage.css" />
     <Content Include="CSS\BuyBorrowBooks.css" />
+    <Content Include="CSS\Cartpage.css" />
     <Content Include="CSS\CheckOutPage.css" />
     <Content Include="CSS\Homepage.css" />
     <Content Include="CSS\LoginRegister.css" />
@@ -382,7 +387,7 @@
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\PersonalArea\PersonalArea.cshtml" />
     <Content Include="Views\books\BuyBorrowBook.cshtml" />
-    <Content Include="Views\orders\CheckoutPage.cshtml" />
+    <Content Include="Views\order\Checkout.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\BookReview\BookReview.cshtml" />
     <Content Include="Views\SiteReview\SiteReview.cshtml" />
@@ -430,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501091116565_AddReviewsTable.resx">
       <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501091300529_AddReviewsTable1.resx">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
