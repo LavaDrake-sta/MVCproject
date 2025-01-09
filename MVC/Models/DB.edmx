@@ -54,6 +54,7 @@
           <Property Name="date_taken" Type="date" Nullable="false" />
           <Property Name="return_date" Type="date" Nullable="false" />
           <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailSent" Type="bit" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -282,6 +283,7 @@
           <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EmailSent" Type="Boolean" />
           <NavigationProperty Name="books" Relationship="Self.FK_Borrowing_books_books" FromRole="Borrowing_books" ToRole="books" />
           <NavigationProperty Name="users" Relationship="Self.FK_Borrowing_books_users" FromRole="Borrowing_books" ToRole="users" />
         </EntityType>
@@ -518,6 +520,7 @@
                 <ScalarProperty Name="date_taken" ColumnName="date_taken" />
                 <ScalarProperty Name="return_date" ColumnName="return_date" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
