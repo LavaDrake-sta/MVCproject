@@ -1,46 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\",
+  "WorkspaceRootPath": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\migrations\\202501091116565_addreviewstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\migrations\\202501091116565_addreviewstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\mvc\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\data\\mvcprojectcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\mvc\\data\\mvcprojectcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\data\\mvcprojectcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:MVC\\Controllers\\booksController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\views\\books\\buyborrowbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\mvc\\views\\books\\buyborrowbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\books\\buyborrowbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\models\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:MVC\\CSS\\BuyBorrowBooks.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\App_Start\\RouteConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:MVC\\App_Start\\RouteConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,133 +50,110 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "202501091116565_AddReviewsTable.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Migrations\\202501091116565_AddReviewsTable.cs",
-              "RelativeDocumentMoniker": "MVC\\Migrations\\202501091116565_AddReviewsTable.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Migrations\\202501091116565_AddReviewsTable.cs*",
-              "RelativeToolTip": "MVC\\Migrations\\202501091116565_AddReviewsTable.cs*",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA1wAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T11:17:02.913Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Cart.cshtml",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\Cart\\Cart.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Cart\\Cart.cshtml",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\Cart\\Cart.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Cart\\Cart.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-09T00:15:21.181Z",
-              "EditorCaption": ""
+              "Title": "DB.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx",
+              "RelativeDocumentMoniker": "MVC\\Models\\DB.edmx",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx [Diagram1]",
+              "RelativeToolTip": "MVC\\Models\\DB.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-01-09T12:44:46.44Z",
+              "EditorCaption": " [Diagram1]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmailController.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\EmailController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\EmailController.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\EmailController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\EmailController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAswFYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T22:08:28.448Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EmailController.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\EmailController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\EmailController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\EmailController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\EmailController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwB0AAAAiAAAAAAAAAA==",
+              "Title": "MvcProjectContext.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Data\\MvcProjectContext.cs",
+              "RelativeDocumentMoniker": "MVC\\Data\\MvcProjectContext.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Data\\MvcProjectContext.cs",
+              "RelativeToolTip": "MVC\\Data\\MvcProjectContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T11:03:19.86Z"
+              "WhenOpened": "2025-01-09T10:12:34.408Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MvcProjectContext.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Data\\MvcProjectContext.cs",
-              "RelativeDocumentMoniker": "MVC\\Data\\MvcProjectContext.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Data\\MvcProjectContext.cs",
-              "RelativeToolTip": "MVC\\Data\\MvcProjectContext.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T10:52:48.493Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ordersController.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\ordersController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\ordersController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\ordersController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\ordersController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwA8AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T10:39:28.331Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\CartController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-08T18:59:01.955Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "books.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\books.cs",
-              "RelativeDocumentMoniker": "MVC\\Models\\books.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\books.cs",
-              "RelativeToolTip": "MVC\\Models\\books.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T00:11:19.516Z"
+              "Title": "HomePage.cshtml",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\Home\\HomePage.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Home\\HomePage.cshtml",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\Home\\HomePage.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Home\\HomePage.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T12:45:29.816Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "booksController.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\booksController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\booksController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\booksController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\booksController.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAwwLgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-08T19:10:02.532Z"
+              "Title": "BuyBorrowBooks.css",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css",
+              "RelativeDocumentMoniker": "MVC\\CSS\\BuyBorrowBooks.css",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css",
+              "RelativeToolTip": "MVC\\CSS\\BuyBorrowBooks.css",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAUwMQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-06T10:14:48.261Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "BuyBorrowBook.cshtml",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\books\\BuyBorrowBook.cshtml",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
               "RelativeToolTip": "MVC\\Views\\books\\BuyBorrowBook.cshtml",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAAAKYAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAiwMUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-08T19:00:43.922Z"
+              "WhenOpened": "2025-01-06T10:07:12.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "booksController.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\booksController.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\booksController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\booksController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T16:35:28.682Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\CartItem.cs",
-              "RelativeDocumentMoniker": "MVC\\Models\\CartItem.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\CartItem.cs",
-              "RelativeToolTip": "MVC\\Models\\CartItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "MVC\\App_Start\\RouteConfig.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "MVC\\App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-08T18:59:23.537Z"
+              "WhenOpened": "2025-01-06T00:55:55.72Z"
             }
           ]
         }
