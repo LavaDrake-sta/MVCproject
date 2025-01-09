@@ -79,13 +79,13 @@ namespace MVC.Controllers
                 Session["Cart"] = cart;
 
                 TempData["SuccessMessage"] = "The item was removed from your cart.";
-                return RedirectToAction("Index"); // הפניה חזרה לעמוד העגלה
+                return RedirectToAction("Cart"); // הפניה חזרה לעמוד העגלה
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in RemoveFromCart: {ex.Message}");
                 TempData["ErrorMessage"] = "An error occurred while removing the item.";
-                return RedirectToAction("Index"); // הפניה חזרה לעמוד העגלה במקרה של שגיאה
+                return RedirectToAction("Cart"); // הפניה חזרה לעמוד העגלה במקרה של שגיאה
             }
         }
     }
