@@ -251,6 +251,10 @@
     <Compile Include="Migrations\202501091300529_AddReviewsTable1.Designer.cs">
       <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.cs" />
+    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.Designer.cs">
+      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -438,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501091300529_AddReviewsTable1.resx">
       <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.resx">
+      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
