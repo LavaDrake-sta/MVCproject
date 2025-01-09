@@ -2,7 +2,6 @@
     Layout = null;
     var userName = Session["UserName"];
     var userEmail = ViewBag.UserEmail;
-    var cartItems = ViewBag.CartItems;
 }
 
 <!DOCTYPE html>
@@ -21,19 +20,28 @@
     </header>
 
     <main>
+        <!-- בדיקה אם המשתמש מחובר -->
+        @if (userName == null)
+        {
+            <p>You are not logged in. Please <a href="@Url.Action("Login", "Users")">log in</a> to complete your order.</p>
+            return;
+        }
+
+        <!-- פרטי המשתמש -->
         <section class="order-details">
             <h2>Hello, @userName</h2>
             <p>Email: @userEmail</p>
 
             <h3>Your Cart Items:</h3>
             <ul>
-                @foreach (var item in cartItems)
+                @foreach (var item in ViewBag.CartItems)
                 {
                     <li>@item.product - @item.price$ (@item.buy_borrow)</li>
                 }
             </ul>
         </section>
 
+        <!-- טופס תשלום -->
         <section class="payment-form">
             <h2>Payment Details</h2>
             <form action="@Url.Action("SubmitOrder", "Order")" method="post" id="checkoutForm">
@@ -66,24 +74,39 @@
         <p>&copy; 2025 Digital Library</p>
     </footer>
 
+    <!-- JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // העברת אימייל למשתמש (אופציונלי)
             const emailInput = document.querySelector("#email");
             if (emailInput && "@userEmail") {
                 emailInput.value = "@userEmail";
             }
 
+            // אימות טופס
             document.querySelector("#checkoutForm").addEventListener("submit", function (event) {
-                const cardNumber = document.querySelector("#cardNumber").value;
-                const expiryDate = document.querySelector("#expiryDate").value;
-                const cvc = document.querySelector("#cvc").value;
+                const cardOwner = document.querySelector("#cardOwner").value.trim();
+                const cardNumber = document.querySelector("#cardNumber").value.trim();
+                const expiryDate = document.querySelector("#expiryDate").value.trim();
+                const cvc = document.querySelector("#cvc").value.trim();
 
-                const cardNumberValid = /^\d{16}$/.test(cardNumber);
-                const expiryDateValid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate);
-                const cvcValid = /^\d{3}$/.test(cvc);
+                let errors = [];
 
-                if (!cardNumberValid || !expiryDateValid || !cvcValid) {
-                    alert("Please ensure all payment details are correct.");
+                if (!cardOwner) {
+                    errors.push("Card Owner Name is required.");
+                }
+                if (!/^\d{16}$/.test(cardNumber)) {
+                    errors.push("Card Number must be a 16-digit number.");
+                }
+                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+                    errors.push("Expiry Date must be in the format MM/YY.");
+                }
+                if (!/^\d{3}$/.test(cvc)) {
+                    errors.push("CVC must be a 3-digit number.");
+                }
+
+                if (errors.length > 0) {
+                    alert(errors.join("\n"));
                     event.preventDefault();
                 }
             });
@@ -92,4 +115,3 @@
 </body>
 
 </html>
-

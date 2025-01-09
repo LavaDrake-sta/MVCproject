@@ -36,19 +36,20 @@ else
             }
         </tbody>
     </table>
-    <a href="@Url.Action("Checkout", "Order")" class="btn btn-primary">Proceed to Checkout</a>
+    <a href="@Url.Action("Checkout", "order")" class="btn btn-primary">Proceed to Checkout</a>
+
 }
 <script>
     function removeFromCart(bookId, type) {
         $.post('/Cart/RemoveFromCart', { bookId: bookId, type: type }, function (response) {
             if (response.success) {
-                alert(response.message); // הודעת הצלחה
-                location.reload(); // טוען מחדש את העמוד כדי לעדכן את העגלה
+                alert(response.message); // הודעה למשתמש
+                location.reload(); // טוען מחדש את העמוד
             } else {
-                alert('Error: ' + response.message); // הודעת שגיאה
+                alert('Error: ' + response.message); // טיפול בשגיאה
             }
         }).fail(function () {
-            alert("An error occurred. Please try again."); // טיפול בשגיאה כללית
+            alert("An error occurred. Please try again."); // שגיאה כללית
         });
     }
 </script>
