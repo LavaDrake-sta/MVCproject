@@ -61,7 +61,7 @@ namespace MVC.Controllers
 
         // הסרת פריט מהעגלה
         [HttpPost]
-        public JsonResult RemoveFromCart(int bookId, string type)
+        public ActionResult RemoveFromCart(int bookId, string type)
         {
             try
             {
@@ -78,12 +78,14 @@ namespace MVC.Controllers
                 // עדכון העגלה ב-Session
                 Session["Cart"] = cart;
 
-                return Json(new { success = true, message = "The item was removed from your cart." });
+                TempData["SuccessMessage"] = "The item was removed from your cart.";
+                return RedirectToAction("Index"); // הפניה חזרה לעמוד העגלה
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in RemoveFromCart: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while removing the item." });
+                TempData["ErrorMessage"] = "An error occurred while removing the item.";
+                return RedirectToAction("Index"); // הפניה חזרה לעמוד העגלה במקרה של שגיאה
             }
         }
     }
