@@ -3,14 +3,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
-using MVC.Models; // עדכן בהתאם למודל שלך
-using MyMvcProject.Data; // עדכן בהתאם לשם של ה-namespace שלך
+using MVC.Models; // ה-namespace שמכיל את המודלים ואת ה-DB Context
+using MyMvcProject.Data;
 
 namespace MyMvcProject.Controllers
 {
     public class EmailController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        // שימוש ב-DB Context
+        private MvcProjectContext db = new MvcProjectContext();
 
         // פונקציה לשליחת תזכורות במייל
         public void SendReminderEmails()
@@ -20,14 +21,15 @@ namespace MyMvcProject.Controllers
                 var today = DateTime.Now;
 
                 // מציאת ספרים שצריך להחזיר תוך 5 ימים
-                var dueBooks = db.Borrowing_books
+                var dueBooks = db.borrowing_Books
+                    .Include(b => b.users) // טעינה מוקדמת של המשתמשים
                     .Where(b => DbFunctions.DiffDays(today, b.return_date) == 5)
                     .ToList();
 
                 foreach (var book in dueBooks)
                 {
-                    // חיפוש המשתמש המקושר לספר
-                    var user = db.users.FirstOrDefault(u => u.Id == book.user_id);
+                    // משתמש מקושר דרך הקשר הניווט
+                    var user = book.users;
                     if (user != null)
                     {
                         bool emailSent = SendEmail(user.email, user.name, book.book_name, book.return_date);
@@ -43,6 +45,36 @@ namespace MyMvcProject.Controllers
             {
                 // טיפול בשגיאה כללית
                 Console.WriteLine($"Error occurred while sending reminder emails: {ex.Message}");
+            }
+        }
+
+        // פונקציה לשליפת ספרים לפי מייל
+        public ActionResult GetBooksByEmail(string email)
+        {
+            try
+            {
+                // שליפה של המשתמש לפי מייל
+                var user = db.users.Include(u => u.Borrowing_books)
+                                   .FirstOrDefault(u => u.email == email);
+
+                if (user == null)
+                {
+                    return Json(new { success = false, message = "User not found." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // שליפה של הספרים שהמשתמש שואל
+                var books = user.Borrowing_books.Select(b => new
+                {
+                    b.book_name,
+                    b.return_date
+                }).ToList();
+
+                return Json(new { success = true, books }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // טיפול בשגיאה כללית
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 
