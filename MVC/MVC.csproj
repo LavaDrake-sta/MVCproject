@@ -247,6 +247,10 @@
     <Compile Include="Migrations\202501091116565_AddReviewsTable.Designer.cs">
       <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.cs" />
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.Designer.cs">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501091116565_AddReviewsTable.resx">
       <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501091300529_AddReviewsTable1.resx">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
