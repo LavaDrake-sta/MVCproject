@@ -68,18 +68,14 @@ namespace MVC.Controllers
                 // שליפת העגלה מה-Session
                 var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
-                System.Diagnostics.Debug.WriteLine("Cart before removal: " + string.Join(", ", cart.Select(c => c.BookName)));
-
                 // חיפוש הפריט בעגלה
                 var itemToRemove = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
                 if (itemToRemove != null)
                 {
-                    cart.Remove(itemToRemove); // הסרת הפריט
+                    cart.Remove(itemToRemove); // הסרת הפריט מהעגלה
                 }
 
-                System.Diagnostics.Debug.WriteLine("Cart after removal: " + string.Join(", ", cart.Select(c => c.BookName)));
-
-                // עדכון ה-Session
+                // עדכון העגלה ב-Session
                 Session["Cart"] = cart;
 
                 return Json(new { success = true, message = "The item was removed from your cart." });
