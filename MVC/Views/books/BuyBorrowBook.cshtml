@@ -127,14 +127,15 @@
         }
 
         function rentBook(bookId) {
-            $.post('/books/AddToCart', { bookId: bookId, type: 'Rent' }, function (response) {
+            $.post('/books/RentBook', { book_id: bookId }, function (response) {
                 if (response.success) {
-                    alert(response.message);
+                    alert(response.message); // הודעת הצלחה
+                    location.reload(); // טען מחדש את העמוד לעדכון מצב העגלה
                 } else {
-                    alert('Failed to add the book to the cart: ' + response.message);
+                    alert(response.message); // הודעת כישלון
                 }
             }).fail(function () {
-                alert("An error occurred while adding the book to the cart.");
+                alert("An error occurred. Please try again."); // שגיאה כללית
             });
         }
 
@@ -147,6 +148,18 @@
                 }
             }).fail(function () {
                 alert("An error occurred while adding the book to the cart.");
+            });
+        }
+        function addToCart(bookId, type) {
+            $.post(`/books/${type === 'Rent' ? 'RentBook' : 'BuyBook'}`, { bookId: bookId }, function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    location.reload(); // טען מחדש את העמוד כדי לעדכן את העגלה
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            }).fail(function () {
+                alert("An error occurred. Please try again.");
             });
         }
     </script>

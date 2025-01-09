@@ -91,48 +91,64 @@ namespace MVC.Controllers
         {
             try
             {
+                // שליפת הספר מהמסד
                 var book = db.books.Find(book_id);
                 if (book == null)
                 {
                     return Json(new { success = false, message = "Book not found" });
                 }
 
+                // בדיקה אם הספר ניתן להשכרה
+                if (book.IsRent == false || book.IsRent == null)
+                {
+                    return Json(new { success = false, message = "This book cannot be rented." });
+                }
+
+                // בדיקה אם אפשר להשכיר מבחינת מגבלת השכרות
                 if (book.CurrentRentCount >= book.MaxRentCount)
                 {
                     return Json(new { success = false, message = "Cannot rent this book. Maximum limit reached." });
                 }
 
+                // עדכון מספר ההשכרות
                 book.CurrentRentCount++;
+
+                // הוספת הספר לעגלה
+                var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+                var existingItem = cart.FirstOrDefault(c => c.BookId == book.book_id && c.Type == "Rent");
+
+                if (existingItem != null)
+                {
+                    existingItem.Quantity++;
+                }
+                else
+                {
+                    cart.Add(new CartItem
+                    {
+                        BookId = book.book_id,
+                        BookName = book.book_name,
+                        Price = book.price / 4, // מחיר מושכר
+                        Type = "Rent",
+                        Quantity = 1
+                    });
+                }
+
+                Session["Cart"] = cart;
                 db.SaveChanges();
-                return Json(new { success = true, message = $"You have rented the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
+
+                return Json(new { success = true, message = "Book successfully rented and added to your cart!" });
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in RentBook: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while renting the book." });
+                return Json(new { success = false, message = "An error occurred while processing your request." });
             }
         }
 
         [HttpPost]
-        public JsonResult BuyBook(int book_id)
+        public JsonResult BuyBook(int bookId)
         {
-            try
-            {
-                var book = db.books.Find(book_id);
-                if (book == null)
-                {
-                    return Json(new { success = false, message = "Book not found" });
-                }
-
-                book.IsSold = true;
-                db.SaveChanges();
-                return Json(new { success = true, message = $"You have purchased the book: {book.book_name}" });
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error in BuyBook: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while purchasing the book." });
-            }
+            return AddToCart(bookId, "Buy");
         }
 
         [HttpPost]
@@ -172,9 +188,13 @@ namespace MVC.Controllers
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
             if (book == null)
             {
-                return Json(new { success = false, message = "ספר לא נמצא" });
+                return Json(new { success = false, message = "Book not found" });
             }
 
+            // חישוב מחיר לפי סוג הפעולה
+            var price = type == "Buy" ? book.price : book.price / 4;
+
+            // בדיקה אם הפריט כבר בעגלה
             var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
             if (existingItem != null)
             {
@@ -186,7 +206,7 @@ namespace MVC.Controllers
                 {
                     BookId = book.book_id,
                     BookName = book.book_name,
-                    Price = type == "Buy" ? book.price : (book.price) / 4,
+                    Price = price,
                     Type = type,
                     Quantity = 1
                 });
@@ -194,7 +214,7 @@ namespace MVC.Controllers
 
             Session["Cart"] = cart;
 
-            return Json(new { success = true, message = "הספר נוסף לעגלה" });
+            return Json(new { success = true, message = "The item was added to your cart!" });
         }
     }
 }
