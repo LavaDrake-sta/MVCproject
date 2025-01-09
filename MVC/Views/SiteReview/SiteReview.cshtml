@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    var userEmail = Session["UserEmail"]; // יטען את המייל של המשתמש המחובר
+    var userEmail = Session["UserEmail"]; // כתובת המייל של המשתמש המחובר
 }
 
 <!DOCTYPE html>
@@ -9,16 +9,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Leave a Site Review</title>
+    <link rel="stylesheet" href="~/CSS/pj_style.css">
 </head>
 
 <body>
     <h1>Leave a Site Review</h1>
+
+    <!-- הצגת הודעות שגיאה או הצלחה -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div style="color: red;">@TempData["ErrorMessage"]</div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div style="color: green;">@TempData["SuccessMessage"]</div>
+    }
+
+    <!-- טופס להוספת ביקורת -->
     <form action="@Url.Action("AddReview", "SiteReview")" method="post">
-        <input type="hidden" name="email" value="@userEmail" />
-        <label for="review">Your Review:</label>
-        <textarea id="review" name="reviewContent" rows="4" required></textarea>
+        <label for="reviewContent">Your Review:</label>
+        <textarea id="reviewContent" name="content" rows="4" required></textarea>
         <button type="submit" class="btn btn-submit">Submit Review</button>
     </form>
+
+    <!-- הצגת ביקורות קיימות -->
+    <h2>Existing Reviews</h2>
+    @if (ViewBag.Reviews != null && ViewBag.Reviews.Count > 0)
+    {
+        <ul>
+            @foreach (var review in ViewBag.Reviews)
+            {
+                <li>
+                    <strong>@review.email:</strong> @review.Content
+                    <small>(@review.created_at)</small>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No reviews yet. Be the first to leave one!</p>
+    }
 </body>
 
 </html>
