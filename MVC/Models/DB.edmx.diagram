@@ -4,19 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< HEAD
       <Diagram DiagramId="c93fbfff264b49149161e41d2e01f96b" Name="Diagram1">
         <EntityTypeShape EntityType="mvcprojectModel.C__MigrationHistory" Width="1.5" PointX="7.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcprojectModel.books" Width="1.5" PointX="5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcprojectModel.Borrowed_books_list" Width="1.5" PointX="7.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcprojectModel.Borrowing_books" Width="1.5" PointX="7.25" PointY="10.625" IsExpanded="true" />
-=======
-      <Diagram DiagramId="43929cae68ff4b51a64eb4829820417a" Name="Diagram1">
-        <EntityTypeShape EntityType="mvcprojectModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.books" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.Borrowed_books_list" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.Borrowing_books" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
->>>>>>> 131959bbb37bfbd9a322f9b1acb93df385ae77e1
         <EntityTypeShape EntityType="mvcprojectModel.orders" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcprojectModel.review" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcprojectModel.users" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />

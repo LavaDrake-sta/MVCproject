@@ -379,7 +379,7 @@
     <Content Include="Views\PersonalArea\PersonalArea.cshtml" />
     <Content Include="Views\books\BuyBorrowBook.cshtml" />
     <Content Include="Views\orders\CheckoutPage.cshtml" />
-    <Content Include="Views\Cart\CartPage.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\BookReview\BookReview.cshtml" />
     <Content Include="Views\SiteReview\SiteReview.cshtml" />
   </ItemGroup>

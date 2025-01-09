@@ -1,4 +1,4 @@
-﻿@{
+﻿ @{
     Layout = null; <!-- ביטול Layout כדי למנוע קונפליקטים -->
 }
 <!DOCTYPE html>
@@ -127,22 +127,26 @@
         }
 
         function rentBook(bookId) {
-            $.post('/books/RentBook', { book_id: bookId }, function (response) {
+            $.post('/books/AddToCart', { bookId: bookId, type: 'Rent' }, function (response) {
                 if (response.success) {
-                    const rentCountSpan = $(`#rentCount_${bookId}`);
-                    const textParts = rentCountSpan.text().split(' ');
-                    const currentCount = parseInt(textParts[0]) || 0;
-                    rentCountSpan.text(`${currentCount + 1} out of ${textParts[2]} people have rented this book`);
                     alert(response.message);
                 } else {
-                    alert('Failed to rent the book: ' + response.message);
+                    alert('Failed to add the book to the cart: ' + response.message);
                 }
+            }).fail(function () {
+                alert("An error occurred while adding the book to the cart.");
             });
         }
 
         function buyBook(bookId) {
-            $.post('/books/BuyBook', { book_id: bookId }, function (response) {
-                alert(response.message);
+            $.post('/books/AddToCart', { bookId: bookId, type: 'Buy' }, function (response) {
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert('Failed to add the book to the cart: ' + response.message);
+                }
+            }).fail(function () {
+                alert("An error occurred while adding the book to the cart.");
             });
         }
 
