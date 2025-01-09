@@ -1,5 +1,6 @@
 ﻿using MVC.Models;
 using MyMvcProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -29,11 +30,13 @@ namespace MVC.Controllers
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
             if (book == null)
             {
-                return Json(new { success = false, message = "הספר לא נמצא במערכת" });
+                return Json(new { success = false, message = "Book not found" });
             }
 
-            var price = type == "Buy" ? book.price : book.price / 4; // חישוב מחיר השכרה
+            // חישוב מחיר לפי סוג הפעולה
+            var price = type == "Buy" ? book.price : book.price / 4;
 
+            // בדיקה אם הפריט כבר בעגלה
             var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
             if (existingItem != null)
             {
@@ -53,24 +56,39 @@ namespace MVC.Controllers
 
             Session["Cart"] = cart;
 
-            return Json(new { success = true, message = "הספר נוסף לעגלה" });
+            return Json(new { success = true, message = "The item was added to your cart!" });
         }
 
         // הסרת פריט מהעגלה
         [HttpPost]
         public JsonResult RemoveFromCart(int bookId, string type)
         {
-            var cart = Session["Cart"] as List<Dictionary<string, object>> ?? new List<Dictionary<string, object>>();
-
-            var itemToRemove = cart.FirstOrDefault(item => (int)item["BookId"] == bookId && (string)item["Type"] == type);
-            if (itemToRemove != null)
+            try
             {
-                cart.Remove(itemToRemove);
+                // שליפת העגלה מה-Session
+                var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+
+                System.Diagnostics.Debug.WriteLine("Cart before removal: " + string.Join(", ", cart.Select(c => c.BookName)));
+
+                // חיפוש הפריט בעגלה
+                var itemToRemove = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
+                if (itemToRemove != null)
+                {
+                    cart.Remove(itemToRemove); // הסרת הפריט
+                }
+
+                System.Diagnostics.Debug.WriteLine("Cart after removal: " + string.Join(", ", cart.Select(c => c.BookName)));
+
+                // עדכון ה-Session
+                Session["Cart"] = cart;
+
+                return Json(new { success = true, message = "The item was removed from your cart." });
             }
-
-            Session["Cart"] = cart;
-
-            return Json(new { success = true });
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in RemoveFromCart: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while removing the item." });
+            }
         }
     }
 }
