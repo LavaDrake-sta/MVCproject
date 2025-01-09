@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\orders\\checkoutpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,14 +43,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "orders.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\orders.cs",
-              "RelativeDocumentMoniker": "MVC\\Models\\orders.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\orders.cs",
-              "RelativeToolTip": "MVC\\Models\\orders.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAkwBgAAAAnAAAAAAAAAA==",
+              "Title": "ordersController.cs",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\ordersController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\ordersController.cs",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\ordersController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\ordersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T11:39:44.59Z",
+              "WhenOpened": "2025-01-09T12:47:17.885Z",
               "EditorCaption": ""
             },
             {
@@ -61,7 +61,7 @@
               "RelativeDocumentMoniker": "MVC\\Views\\orders\\CheckoutPage.cshtml",
               "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\orders\\CheckoutPage.cshtml",
               "RelativeToolTip": "MVC\\Views\\orders\\CheckoutPage.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-09T11:38:57.236Z",
               "EditorCaption": ""
