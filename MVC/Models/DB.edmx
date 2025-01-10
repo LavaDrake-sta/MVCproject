@@ -84,7 +84,6 @@
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="book_ID" Type="int" />
-          <Property Name="created_at" Type="datetime" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -317,7 +316,6 @@
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="book_ID" Type="Int32" />
-          <Property Name="created_at" Type="DateTime" Precision="3" />
           <NavigationProperty Name="books" Relationship="Self.FK_review_books" FromRole="review" ToRole="books" />
           <NavigationProperty Name="users" Relationship="Self.FK_review_users" FromRole="review" ToRole="users" />
         </EntityType>
@@ -554,7 +552,6 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="book_ID" ColumnName="book_ID" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
