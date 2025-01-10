@@ -1,45 +1,67 @@
 ﻿@{
     Layout = null;
     var cart = Session["Cart"] as List<MVC.Models.CartItem> ?? new List<MVC.Models.CartItem>();
+}
 
-}
-<link rel="stylesheet" href="~/CSS/Cartpage.css">
-<h1>Your Cart</h1>
-@if (cart == null)
-{
-    <p>Your cart is empty.</p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Book Name</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in cart)
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="~/CSS/Cartpage.css">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            @if (cart == null)
             {
-                <tr>
-                    <td>@item.BookName</td>
-                    <td>@item.Type</td>
-                    <td>@item.Price</td>
-                    <td>@item.Quantity</td>
-                    <td>
-                        <form action="@Url.Action("RemoveFromCart", "Cart")" method="post" style="display: inline;">
-                            <input type="hidden" name="bookId" value="@item.BookId" />
-                            <input type="hidden" name="type" value="@item.Type" />
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
+                <p class="empty-cart">Your cart is empty.</p>
             }
-        </tbody>
-    </table>
-    <a href="@Url.Action("Checkout", "order")" class="btn btn-primary">Proceed to Checkout</a>
+            else
+            {
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in cart)
+                        {
+                            <tr>
+                                <td>@item.BookName</td>
+                                <td>@item.Type</td>
+                                <td>@item.Price</td>
+                                <td>@item.Quantity</td>
+                                <td>
+                                    <form action="@Url.Action("RemoveFromCart", "Cart")" method="post" style="display: inline;">
+                                        <input type="hidden" name="bookId" value="@item.BookId" />
+                                        <input type="hidden" name="type" value="@item.Type" />
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-}
+                <div class="button-container">
+                    <a href="@Url.Action("Checkout", "order")" class="btn btn-primary">Proceed to Checkout</a>
+                </div>
+            }
+        </div>
+    </main>
+
+    <footer>
+        <!-- תוכן Footer -->
+    </footer>
+</body>
+</html>
