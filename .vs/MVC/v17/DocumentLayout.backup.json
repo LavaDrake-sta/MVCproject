@@ -11,12 +11,16 @@
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\sitereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\controllers\\personalareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\personalareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\views\\sitereview\\sitereview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\sitereview\\sitereview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\controllers\\personalareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\personalareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\css\\homepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -39,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\mvc\\data\\mvcprojectcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\data\\mvcprojectcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,59 +74,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SiteReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\SiteReviewController.cs",
-              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\SiteReviewController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAswEMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T19:48:38.893Z",
-              "EditorCaption": ""
+              "DocumentIndex": 4,
+              "Title": "DB.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx",
+              "RelativeDocumentMoniker": "MVC\\Models\\DB.edmx",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx [Diagram1]",
+              "RelativeToolTip": "MVC\\Models\\DB.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-01-09T20:07:32.55Z",
+              "EditorCaption": " [Diagram1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SiteReview.cshtml",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\SiteReview\\SiteReview.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\SiteReview\\SiteReview.cshtml",
               "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\SiteReview\\SiteReview.cshtml",
               "RelativeToolTip": "MVC\\Views\\SiteReview\\SiteReview.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-09T19:49:44.582Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "PersonalAreaController.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\PersonalAreaController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\PersonalAreaController.cs",
               "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\PersonalAreaController.cs",
               "RelativeToolTip": "MVC\\Controllers\\PersonalAreaController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAkwHQAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwHQAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T19:47:30.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Homepage.css",
-              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\Homepage.css",
-              "RelativeDocumentMoniker": "MVC\\CSS\\Homepage.css",
-              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\Homepage.css",
-              "RelativeToolTip": "MVC\\CSS\\Homepage.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-09T19:33:11.421Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "HomePage.cshtml",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\Home\\HomePage.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\Home\\HomePage.cshtml",
@@ -145,14 +131,14 @@
               "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
               "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
               "RelativeToolTip": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABAAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-09T18:23:18.095Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PersonalArea.css",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\PersonalArea.css",
               "RelativeDocumentMoniker": "MVC\\CSS\\PersonalArea.css",
@@ -165,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "EmailController.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\EmailController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\EmailController.cs",
@@ -178,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BuyBorrowBooks.css",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\BuyBorrowBooks.css",
               "RelativeDocumentMoniker": "MVC\\CSS\\BuyBorrowBooks.css",
@@ -191,14 +177,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DB.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx",
-              "RelativeDocumentMoniker": "MVC\\Models\\DB.edmx",
-              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx [Diagram1]",
-              "RelativeToolTip": "MVC\\Models\\DB.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-01-09T12:44:46.44Z"
+              "DocumentIndex": 1,
+              "Title": "SiteReviewController.cs",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\SiteReviewController.cs",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\SiteReviewController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T19:48:38.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Homepage.css",
+              "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\Homepage.css",
+              "RelativeDocumentMoniker": "MVC\\CSS\\Homepage.css",
+              "ToolTip": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\CSS\\Homepage.css",
+              "RelativeToolTip": "MVC\\CSS\\Homepage.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-09T19:33:11.421Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

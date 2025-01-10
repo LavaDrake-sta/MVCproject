@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\views\\personalarea\\personalarea.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\personalarea\\personalarea.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\views\\sitereview\\sitereview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\sitereview\\sitereview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\db.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\sni12\\onedrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\github\\mvcproject\\mvc\\css\\homepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "DB.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Models\\DB.edmx",
               "RelativeDocumentMoniker": "MVC\\Models\\DB.edmx",
@@ -86,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "SiteReview.cshtml",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\SiteReview\\SiteReview.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\SiteReview\\SiteReview.cshtml",
@@ -99,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PersonalAreaController.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\PersonalAreaController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\PersonalAreaController.cs",
@@ -125,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PersonalArea.cshtml",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
@@ -177,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SiteReviewController.cs",
               "DocumentMoniker": "C:\\Users\\sni12\\OneDrive\\\u05DE\u05E1\u05DE\u05DB\u05D9\u05DD\\GitHub\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\SiteReviewController.cs",
