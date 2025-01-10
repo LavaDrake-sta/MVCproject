@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="16d73ea4cce64ce088046d3582b2f711" Name="Diagram1" ZoomLevel="47">
+      <Diagram DiagramId="e38eb107448d4b36b3c8a275a74ae61d" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="mvcprojectModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.books" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.Borrowed_books_list" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.Borrowing_books" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.orders" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.review" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.users" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcprojectModel.waiting_list" Width="1.5" PointX="2.875" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.books" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.Borrowed_books_list" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.Borrowing_books" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.orders" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.review" Width="1.5" PointX="5.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.users" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcprojectModel.waiting_list" Width="1.5" PointX="2.75" PointY="14.125" IsExpanded="true" />
         <AssociationConnector Association="mvcprojectModel.FK_Borrowed_books_list_books" ManuallyRouted="false" />
         <AssociationConnector Association="mvcprojectModel.FK_Borrowing_books_books" ManuallyRouted="false" />
         <AssociationConnector Association="mvcprojectModel.FK_review_books" ManuallyRouted="false" />

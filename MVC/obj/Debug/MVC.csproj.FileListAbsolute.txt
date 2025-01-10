@@ -727,6 +727,7 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migration
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.AddReviewsTable.resources
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.AddReviewsTable1.resources
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.AddOrderStatusAndDeliveryDate.resources
+C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateOrdersTable.resources
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.GenerateResource.cache
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.CoreCompileInputs.cache
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Up2Date
