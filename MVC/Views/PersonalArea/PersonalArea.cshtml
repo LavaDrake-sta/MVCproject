@@ -23,7 +23,7 @@
         <h1>Personal Area</h1>
         <nav class="nav-container">
             <a href="@Url.Action("HomePage", "Home")" class="btn btn-nav">Home</a>
-            <a href="@Url.Action("Index", "SiteReview")" class="btn btn-nav">Leave a Site Review</a>
+            <a href="@Url.Action("SiteReview", "SiteReview")" class="btn btn-nav">Leave a Site Review</a>
             @if (Session["UserName"] != null)
             {
                 <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
@@ -61,7 +61,7 @@
                     {
                         <li>
                             @order.product - @order.date - @order.price$
-                            <a href="@Url.Action("Index", "BookReview", new { bookId = order.book_id })" class="btn btn-review">
+                            <a href="@Url.Action("BookReview", "BookReview", new { bookId = order.book_id })" class="btn btn-review">
                                 Leave a Review
                             </a>
                         </li>

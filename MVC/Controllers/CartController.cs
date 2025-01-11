@@ -23,20 +23,29 @@ namespace MVC.Controllers
 
         // הוספת פריט לעגלה
         [HttpPost]
-        public JsonResult AddToCart(int bookId, string type)
+        public ActionResult AddToCart(int bookId, string type)
         {
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
+
             if (book == null)
             {
-                return Json(new { success = false, message = "Book not found" });
+                TempData["ErrorMessage"] = "הספר לא נמצא.";
+                return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // חישוב מחיר לפי סוג הפעולה
+            // 📦 בדיקה אם כל העותקים להשכרה כבר הושכרו
+            if (type == "Rent" && book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
+            {
+                // התראה עם הצעה להיכנס לרשימת המתנה
+                TempData["OfferWaitingList"] = bookId;
+                TempData["ErrorMessage"] = $"כל העותקים של הספר \"{book.book_name}\" מושכרים כרגע. האם תרצה להצטרף לרשימת ההמתנה?";
+                return RedirectToAction("Cart", "Cart");
+            }
+
+            // חישוב מחיר
             var price = type == "Buy" ? book.price : book.price / 4;
 
-            // בדיקה אם הפריט כבר בעגלה
             var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
             if (existingItem != null)
             {
@@ -56,38 +65,38 @@ namespace MVC.Controllers
 
             Session["Cart"] = cart;
 
-            return Json(new { success = true, message = "The item was added to your cart!" });
+            TempData["SuccessMessage"] = "הספר נוסף לעגלה.";
+            return RedirectToAction("Cart", "Cart");
         }
+
 
         // הסרת פריט מהעגלה
         [HttpPost]
-        public JsonResult RemoveFromCart(int bookId, string type)
+        public ActionResult RemoveFromCart(int bookId, string type)
         {
             try
             {
                 // שליפת העגלה מה-Session
                 var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
-                System.Diagnostics.Debug.WriteLine("Cart before removal: " + string.Join(", ", cart.Select(c => c.BookName)));
-
                 // חיפוש הפריט בעגלה
                 var itemToRemove = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
                 if (itemToRemove != null)
                 {
-                    cart.Remove(itemToRemove); // הסרת הפריט
+                    cart.Remove(itemToRemove); // הסרת הפריט מהעגלה
                 }
 
-                System.Diagnostics.Debug.WriteLine("Cart after removal: " + string.Join(", ", cart.Select(c => c.BookName)));
-
-                // עדכון ה-Session
+                // עדכון העגלה ב-Session
                 Session["Cart"] = cart;
 
-                return Json(new { success = true, message = "The item was removed from your cart." });
+                TempData["SuccessMessage"] = "The item was removed from your cart.";
+                return RedirectToAction("Cart"); // הפניה חזרה לעמוד העגלה
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in RemoveFromCart: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while removing the item." });
+                TempData["ErrorMessage"] = "An error occurred while removing the item.";
+                return RedirectToAction("Cart"); // הפניה חזרה לעמוד העגלה במקרה של שגיאה
             }
         }
     }

@@ -224,6 +224,7 @@
     <Compile Include="Controllers\Borrowed_books_listController.cs" />
     <Compile Include="Controllers\Borrowing_booksController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ordersController.cs" />
     <Compile Include="Controllers\PersonalAreaController.cs" />
@@ -241,6 +242,22 @@
     <Compile Include="Migrations\202501081217473_CheckReviewTable.cs" />
     <Compile Include="Migrations\202501081217473_CheckReviewTable.Designer.cs">
       <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501091116565_AddReviewsTable.cs" />
+    <Compile Include="Migrations\202501091116565_AddReviewsTable.Designer.cs">
+      <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.cs" />
+    <Compile Include="Migrations\202501091300529_AddReviewsTable1.Designer.cs">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.cs" />
+    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.Designer.cs">
+      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501101419320_UpdateOrdersTable.cs" />
+    <Compile Include="Migrations\202501101419320_UpdateOrdersTable.Designer.cs">
+      <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -305,6 +322,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\AdminPage.css" />
     <Content Include="CSS\BuyBorrowBooks.css" />
+    <Content Include="CSS\Cartpage.css" />
     <Content Include="CSS\CheckOutPage.css" />
     <Content Include="CSS\Homepage.css" />
     <Content Include="CSS\LoginRegister.css" />
@@ -377,13 +395,14 @@
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\PersonalArea\PersonalArea.cshtml" />
     <Content Include="Views\books\BuyBorrowBook.cshtml" />
-    <Content Include="Views\orders\CheckoutPage.cshtml" />
+    <Content Include="Views\order\Checkout.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\BookReview\BookReview.cshtml" />
     <Content Include="Views\SiteReview\SiteReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -421,6 +440,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501081217473_CheckReviewTable.resx">
       <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501091116565_AddReviewsTable.resx">
+      <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501091300529_AddReviewsTable1.resx">
+      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.resx">
+      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501101419320_UpdateOrdersTable.resx">
+      <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
