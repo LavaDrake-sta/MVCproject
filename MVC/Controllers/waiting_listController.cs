@@ -137,15 +137,6 @@ namespace MVC.Controllers
                 return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // בדיקה אם המשתמש כבר ברשימת ההמתנה
-            var alreadyInList = db.waiting_Lists.Any(w => w.email == user.email && w.book_name == book.book_name);
-
-            if (alreadyInList)
-            {
-                TempData["ErrorMessage"] = "אתה כבר ברשימת ההמתנה לספר זה.";
-                return RedirectToAction("BuyBorrowBook", "books");
-            }
-
             var waitingEntry = new waiting_list
             {
                 name = user.name,

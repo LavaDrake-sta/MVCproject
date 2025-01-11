@@ -98,16 +98,13 @@ namespace MVC.Controllers
                 return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // בדיקה אם אין עותקים פנויים להשכרה
             if (book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
             {
-                // הצעת הצטרפות לרשימת המתנה
                 TempData["OfferWaitingList"] = bookId;
-                TempData["ErrorMessage"] = $"אין עותקים זמינים להשכרה עבור הספר \"{book.book_name}\". האם תרצה להיכנס לרשימת המתנה?";
+                TempData["ErrorMessage"] = $"אין עותקים זמינים להשכרה עבור הספר \"{book.book_name}\". האם תרצה להצטרף לרשימת המתנה?";
                 return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // הוספה לעגלה (בלי לשנות מלאי כרגע)
             var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == "Rent");
             if (existingItem != null)
             {
@@ -127,10 +124,9 @@ namespace MVC.Controllers
 
             Session["Cart"] = cart;
 
-            TempData["SuccessMessage"] = "הספר נוסף לעגלה בהצלחה.";
+            TempData["SuccessMessage"] = "הספר נוסף לעגלה.";
             return RedirectToAction("BuyBorrowBook", "books");
         }
-
 
         [HttpPost]
         public JsonResult BuyBook(int bookId)
@@ -138,34 +134,6 @@ namespace MVC.Controllers
             return AddToCart(bookId, "Buy");
         }
 
-        [HttpPost]
-        public JsonResult ReturnBook(int book_id)
-        {
-            try
-            {
-                var book = db.books.Find(book_id);
-                if (book == null)
-                {
-                    return Json(new { success = false, message = "Book not found" });
-                }
-
-                if (book.CurrentRentCount > 0)
-                {
-                    book.CurrentRentCount--;
-                    db.SaveChanges();
-                    return Json(new { success = true, message = $"You have returned the book: {book.book_name}. Current rentals: {book.CurrentRentCount}" });
-                }
-                else
-                {
-                    return Json(new { success = false, message = "No active rentals to return for this book." });
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error in ReturnBook: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while returning the book." });
-            }
-        }
 
         [HttpPost]
         public JsonResult AddToCart(int bookId, string type)

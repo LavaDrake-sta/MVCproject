@@ -28,13 +28,13 @@
                 @if (Session["UserName"] != null)
                 {
                     <!-- כפתור "התנתקות" -->
-                    <a href="#" onclick="document.getElementById('logoutForm').submit();" class="nav-link">התנתקות</a>
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();" class="nav-link">Sign out</a>
                     <form id="logoutForm" method="post" action="@Url.Action("Logout", "Users")" style="display: none;"></form>
                 }
                 else
                 {
                     <!-- כפתור "התחברות/הרשמה" -->
-                    <a href="@Url.Action("LoginRegister", "Users")" class="nav-link">התחברות/הרשמה</a>
+                    <a href="@Url.Action("LoginRegister", "Users")" class="nav-link">Sign in/Sigh up</a>
                 }
             </li>
 

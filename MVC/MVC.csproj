@@ -259,6 +259,10 @@
     <Compile Include="Migrations\202501101419320_UpdateOrdersTable.Designer.cs">
       <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501111801409_AddOrderNumberToOrders.cs" />
+    <Compile Include="Migrations\202501111801409_AddOrderNumberToOrders.Designer.cs">
+      <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -452,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501101419320_UpdateOrdersTable.resx">
       <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501111801409_AddOrderNumberToOrders.resx">
+      <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
