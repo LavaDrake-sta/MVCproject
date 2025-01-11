@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using MVC.Models;
 using MyMvcProject.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MyMvcProject.Controllers
 {
@@ -52,14 +53,12 @@ namespace MyMvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitOrder(string cardOwner, string cardNumber, string expiryDate, string cvc, int numberOfPayments)
         {
-            // בדיקה אם המשתמש מחובר
             if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לבצע הזמנה.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // בדיקת תקינות פרטי האשראי
             if (string.IsNullOrEmpty(cardOwner) ||
                 !IsValidCardNumber(cardNumber) ||
                 !IsValidExpiryDate(expiryDate) ||
@@ -69,7 +68,6 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Checkout");
             }
 
-            // שליפת עגלה מה-Session
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
             if (!cart.Any())
@@ -80,19 +78,32 @@ namespace MyMvcProject.Controllers
 
             try
             {
+                // 🔢 שליפת מספר ההזמנה האחרון
+                int lastOrderNumber = db.orders.Any() ? db.orders.Max(o => o.order_number) : 0;
+                int newOrderNumber = lastOrderNumber + 1;
+
                 foreach (var item in cart)
                 {
                     var userName = Session["UserName"].ToString();
                     var user = db.users.FirstOrDefault(u => u.name == userName);
+                    var book = db.books.FirstOrDefault(b => b.book_id == item.BookId);
 
-                    if (user == null)
+                    if (user == null || book == null)
                     {
-                        TempData["ErrorMessage"] = "משתמש לא נמצא במערכת.";
+                        TempData["ErrorMessage"] = "אירעה שגיאה במציאת משתמש או ספר.";
                         return RedirectToAction("Checkout");
                     }
 
+                    // 📦 עדכון מלאי לאחר תשלום
+                    if (item.Type == "Rent" && book.IsRent == true)
+                    {
+                        book.CurrentRentCount += item.Quantity;
+                    }
+
+                    // 📝 יצירת ההזמנה
                     var order = new orders
                     {
+                        order_number = newOrderNumber,
                         email = user.email,
                         first_name = userName.Split(' ')[0],
                         last_name = userName.Split(' ').Length > 1 ? userName.Split(' ')[1] : "",
@@ -112,9 +123,12 @@ namespace MyMvcProject.Controllers
 
                 db.SaveChanges();
 
+                // 🛒 ניקוי העגלה לאחר ההזמנה
                 Session["Cart"] = null;
-                TempData["SuccessMessage"] = "ההזמנה בוצעה בהצלחה!";
-                return RedirectToAction("PersonalArea", "User");
+
+                // ✅ הודעת הצלחה עם הפניה לעמוד הבית
+                TempData["SuccessMessage"] = $"ההזמנה בוצעה בהצלחה! מספר הזמנה: {newOrderNumber}. תוכל לראות את הספר באזור האישי שלך.";
+                return RedirectToAction("Index", "Home");  // הפניה לעמוד הבית
             }
             catch (Exception)
             {
@@ -122,5 +136,6 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Checkout");
             }
         }
+
     }
 }

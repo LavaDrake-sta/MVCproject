@@ -1,4 +1,4 @@
-﻿/* Reset & Base Styles */
+﻿/* עיצוב כללי */
 body {
     background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
     font-family: Arial, sans-serif;
@@ -6,12 +6,9 @@ body {
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Header Styles */
+/* כותרת */
 header {
     position: fixed;
     top: 0;
@@ -28,47 +25,30 @@ header {
         font-size: 1.8em;
     }
 
-/* Main Content Styles */
+/* תוכן עגלה */
 main {
     margin-top: 70px;
-    margin-bottom: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
     padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Cart Container */
-.cart-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .empty-cart {
     font-size: 1.2em;
     color: #600060;
-    text-align: center;
 }
 
-/* Table Styles */
+/* טבלה */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 20px auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
 }
 
-    .cart-table th,
-    .cart-table td {
+    .cart-table th, .cart-table td {
         padding: 10px;
         text-align: center;
         border: 1px solid #ddd;
@@ -83,7 +63,7 @@ main {
         background-color: #f9f9f9;
     }
 
-/* Button Styles */
+/* כפתורים */
 .btn {
     padding: 10px 20px;
     border: none;
@@ -92,7 +72,6 @@ main {
     font-size: 1em;
     color: white;
     text-decoration: none;
-    transition: background-color 0.3s ease;
 }
 
 .btn-danger {
@@ -104,22 +83,16 @@ main {
     }
 
 .btn-primary {
-    background-color: #600060;
+    background-color: #1e88e5;
     margin-top: 20px;
     display: inline-block;
 }
 
     .btn-primary:hover {
-        background-color: rgba(61, 0, 61, 0.9);
+        background-color: #1565c0;
     }
 
-/* Button Container */
-.button-container {
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Footer Styles */
+/* כותרת תחתונה */
 footer {
     text-align: center;
     padding: 8px;
