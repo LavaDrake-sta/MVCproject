@@ -60,7 +60,6 @@
           <Key>
             <PropertyRef Name="order_number" />
           </Key>
-          <Property Name="order_number" Type="int" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -74,6 +73,7 @@
           <Property Name="product" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="buy_borrow" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="order_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="review">
           <Key>
@@ -292,7 +292,6 @@
           <Key>
             <PropertyRef Name="order_number" />
           </Key>
-          <Property Name="order_number" Type="Int32" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -306,6 +305,7 @@
           <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="buy_borrow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="order_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="users" Relationship="Self.FK_orders_orders" FromRole="orders" ToRole="users" />
         </EntityType>
         <EntityType Name="review">
@@ -529,7 +529,6 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="mvcprojectModel.orders">
               <MappingFragment StoreEntitySet="orders">
-                <ScalarProperty Name="order_number" ColumnName="order_number" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
@@ -543,6 +542,7 @@
                 <ScalarProperty Name="product" ColumnName="product" />
                 <ScalarProperty Name="buy_borrow" ColumnName="buy_borrow" />
                 <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

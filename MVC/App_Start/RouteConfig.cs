@@ -41,9 +41,9 @@ namespace MVC
             );
             //נתיב לעמוד תשלומים
             routes.MapRoute(
-                name: "Checkout",
-                url: "orders/CheckoutPage",
-                defaults: new { controller = "order", action = "Checkout" }
+                name: "SubmitOrder",
+                url: "Order/SubmitOrder",
+                defaults: new { controller = "Order", action = "SubmitOrder" }
             );
             // נתיב של עגלה
             routes.MapRoute(

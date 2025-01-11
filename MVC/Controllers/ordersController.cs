@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using MVC.Models;
 using MyMvcProject.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MyMvcProject.Controllers
 {
@@ -43,23 +44,47 @@ namespace MyMvcProject.Controllers
             return System.Text.RegularExpressions.Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/\d{2}$");
         }
 
+        // פירוק תאריך תוקף
+        private DateTime? ParseExpiryDate(string expiryDate)
+        {
+            if (IsValidExpiryDate(expiryDate))
+            {
+                var parts = expiryDate.Split('/');
+                int month = int.Parse(parts[0]);
+                int year = int.Parse("20" + parts[1]);  // הוספת "20" לשנה
+
+                return new DateTime(year, month, 1);
+            }
+            return null;
+        }
+
         // בדיקת תקינות קוד CVC
         private bool IsValidCVC(string cvc)
         {
             return !string.IsNullOrEmpty(cvc) && cvc.All(char.IsDigit) && cvc.Length == 3;
         }
+        private string FormatExpiryDate(string expiryDate)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/\d{2}$"))
+            {
+                var parts = expiryDate.Split('/');
+                return $"{parts[0]}/{parts[1]}";  // MM/YY
+            }
+            return "Invalid";
+        }
+
 
         [HttpPost]
         public ActionResult SubmitOrder(string cardOwner, string cardNumber, string expiryDate, string cvc, int numberOfPayments)
         {
-            // בדיקה אם המשתמש מחובר
+            // 1️⃣ בדיקת התחברות
             if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לבצע הזמנה.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // בדיקת תקינות פרטי האשראי
+            // 2️⃣ בדיקת תקינות פרטי האשראי
             if (string.IsNullOrEmpty(cardOwner) ||
                 !IsValidCardNumber(cardNumber) ||
                 !IsValidExpiryDate(expiryDate) ||
@@ -69,7 +94,7 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Checkout");
             }
 
-            // שליפת עגלה מה-Session
+            // 3️⃣ שליפת העגלה מה-Session
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
             if (!cart.Any())
@@ -80,17 +105,65 @@ namespace MyMvcProject.Controllers
 
             try
             {
+                // 4️⃣ שליפת פרטי המשתמש
+                var userName = Session["UserName"].ToString();
+                var user = db.users.FirstOrDefault(u => u.name == userName);
+
+                if (user == null)
+                {
+                    TempData["ErrorMessage"] = "אירעה שגיאה במציאת המשתמש.";
+                    return RedirectToAction("Checkout");
+                }
+
+                // 5️⃣ ביצוע הזמנה לכל פריט בעגלה
                 foreach (var item in cart)
                 {
-                    var userName = Session["UserName"].ToString();
-                    var user = db.users.FirstOrDefault(u => u.name == userName);
+                    var book = db.books.FirstOrDefault(b => b.book_id == item.BookId);
 
-                    if (user == null)
+                    if (book == null)
                     {
-                        TempData["ErrorMessage"] = "משתמש לא נמצא במערכת.";
+                        TempData["ErrorMessage"] = "אירעה שגיאה במציאת הספר.";
                         return RedirectToAction("Checkout");
                     }
 
+                    // 6️⃣ עדכון מלאי והשכרה
+                    if (item.Type == "Rent" && book.IsRent == true)
+                    {
+                        // בדיקה אם יש מספיק מלאי להשכרה
+                        if (book.CurrentRentCount + item.Quantity > book.MaxRentCount)
+                        {
+                            TempData["ErrorMessage"] = $"לא ניתן להשכיר את הספר {book.book_name}, אין מלאי זמין.";
+                            return RedirectToAction("Checkout");
+                        }
+
+                        book.CurrentRentCount += item.Quantity;
+
+                        // ➕ הוספה לרשימת ההשכרות האישית
+                        var borrowingBook = new Borrowing_books
+                        {
+                            book_id = book.book_id,
+                            book_name = book.book_name,
+                            category = book.category,
+                            date_taken = DateTime.Now,
+                            return_date = DateTime.Now.AddDays(7),  // השכרה ל-7 ימים
+                            email = user.email,
+                            EmailSent = false
+                        };
+                        db.borrowing_Books.Add(borrowingBook);
+
+                        // ➕ הוספה לרשימת כל ההשכרות
+                        var borrowedBook = new Borrowed_books_list
+                        {
+                            book_id = book.book_id,
+                            book_name = book.book_name,
+                            category = book.category,
+                            Date_taken = DateTime.Now,
+                            return_date = DateTime.Now.AddDays(7)
+                        };
+                        db.borrowed_Books_Lists.Add(borrowedBook);
+                    }
+
+                    // 7️⃣ יצירת ההזמנה
                     var order = new orders
                     {
                         email = user.email,
@@ -98,7 +171,7 @@ namespace MyMvcProject.Controllers
                         last_name = userName.Split(' ').Length > 1 ? userName.Split(' ')[1] : "",
                         card_owner_name = cardOwner,
                         card_number = cardNumber,
-                        expiry_date = expiryDate,
+                        expiry_date = FormatExpiryDate(expiryDate),  // עיבוד תוקף אשראי
                         CVC = cvc,
                         number_of_payments = numberOfPayments,
                         price = item.Price * item.Quantity,
@@ -110,17 +183,25 @@ namespace MyMvcProject.Controllers
                     db.orders.Add(order);
                 }
 
+                // 8️⃣ שמירת כל השינויים במסד הנתונים
                 db.SaveChanges();
 
+                // 9️⃣ ניקוי העגלה לאחר ההזמנה
                 Session["Cart"] = null;
-                TempData["SuccessMessage"] = "ההזמנה בוצעה בהצלחה!";
-                return RedirectToAction("PersonalArea", "User");
+
+                // 🔔 הצגת הודעת הצלחה
+                TempData["SuccessMessage"] = $"ההזמנה בוצעה בהצלחה! תוכל לראות את הספרים באזור האישי שלך.";
+
+                // 🔄 הפניה לעמוד הבית
+                return RedirectToAction("HomePage", "Home");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "אירעה שגיאה בעת ביצוע ההזמנה. אנא נסה שוב.";
+                TempData["ErrorMessage"] = $"אירעה שגיאה בעת ביצוע ההזמנה: {ex.Message}";
                 return RedirectToAction("Checkout");
             }
         }
+
+
     }
 }

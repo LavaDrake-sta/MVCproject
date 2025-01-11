@@ -2,6 +2,15 @@
     Layout = null;
     var userName = Session["UserName"];
     var userEmail = ViewBag.UserEmail;
+    var totalPrice = 0M;
+
+    if (ViewBag.CartItems != null)
+    {
+        foreach (var item in ViewBag.CartItems)
+        {
+            totalPrice += item.Price * item.Quantity; // חישוב המחיר הכולל
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -20,52 +29,70 @@
     </header>
 
     <main>
-        <!-- בדיקה אם המשתמש מחובר -->
-        @*@if (userName == null)
+        <!-- הודעת שגיאה או הצלחה -->
+        @if (TempData["ErrorMessage"] != null)
         {
-            <p>You are not logged in. Please <a href="@Url.Action("Login", "Users")">log in</a> to complete your order.</p>
-            return;
-        }*@
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
 
         <!-- פרטי המשתמש -->
         <section class="order-details">
             <h2>Hello, @userName</h2>
-            <p>Email: @userEmail</p>
+            <p><strong>Email:</strong> @userEmail</p>
 
             <h3>Your Cart Items:</h3>
             <ul>
                 @foreach (var item in ViewBag.CartItems)
                 {
-                    <li>@item.BookName - @item.Price$ (@item.Type)</li>
+                    <li>@item.BookName - @item.Price$ (@item.Type) x @item.Quantity</li>
                 }
             </ul>
+
+            <!-- ✅ הצגת המחיר הכולל -->
+            <h3>Total Price: $@totalPrice</h3>
         </section>
 
         <!-- טופס תשלום -->
         <section class="payment-form">
             <h2>Payment Details</h2>
-            <form action="@Url.Action("SubmitOrder", "orders")" method="post" id="checkoutForm">
+            <form action="@Url.Action("SubmitOrder", "Order")" method="post" id="checkoutForm">
                 <div>
                     <label for="cardOwner">Card Owner Name:</label>
-                    <input type="text" id="cardOwner" name="cardOwner" required>
+                    <input type="text" id="cardOwner" name="cardOwner" required />
                 </div>
 
                 <div>
                     <label for="cardNumber">Card Number:</label>
-                    <input type="text" id="cardNumber" name="cardNumber" pattern="\\d{16}" maxlength="16" required placeholder="16-digit number">
+                    <input type="text" id="cardNumber" name="cardNumber" maxlength="16" required />
                 </div>
 
                 <div>
                     <label for="expiryDate">Expiry Date (MM/YY):</label>
-                    <input type="text" id="expiryDate" name="expiryDate" maxlength="5" placeholder="MM/YY" required />
+                    <input type="text" id="expiryDate" name="expiryDate" maxlength="5" required />
                 </div>
 
                 <div>
                     <label for="cvc">CVC:</label>
-                    <input type="text" id="cvc" name="cvc" pattern="\\d{3}" maxlength="3" required placeholder="3-digit code">
+                    <input type="text" id="cvc" name="cvc" maxlength="3" required />
                 </div>
 
-                <button type="submit" class="checkout-button">Place Order</button>
+                <!-- ✅ אפשרות בחירה במספר תשלומים -->
+                <div>
+                    <label for="numberOfPayments">Number of Payments:</label>
+                    <select id="numberOfPayments" name="numberOfPayments" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit Order</button>
             </form>
         </section>
     </main>
@@ -73,6 +100,17 @@
     <footer>
         <p>&copy; 2025 Digital Library</p>
     </footer>
-
 </body>
+<script>document.addEventListener("DOMContentLoaded", function () {
+        const expiryInput = document.getElementById("expiryDate");
+
+        expiryInput.addEventListener("input", function (e) {
+            let input = e.target.value.replace(/\D/g, '');  // מסיר תווים לא מספריים
+
+            if (input.length > 2) {
+                input = input.substring(0, 2) + '/' + input.substring(2, 4);
+            }
+            e.target.value = input;
+        });
+    });</script>
 </html>

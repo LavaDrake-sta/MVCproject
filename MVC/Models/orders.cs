@@ -14,7 +14,6 @@ namespace MVC.Models
     
     public partial class orders
     {
-        public int order_number { get; set; }
         public string email { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
@@ -28,6 +27,7 @@ namespace MVC.Models
         public string product { get; set; }
         public string buy_borrow { get; set; }
         public System.DateTime date { get; set; }
+        public int order_number { get; set; }
     
         public virtual users users { get; set; }
     }

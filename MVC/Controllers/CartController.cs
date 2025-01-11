@@ -23,20 +23,29 @@ namespace MVC.Controllers
 
         // הוספת פריט לעגלה
         [HttpPost]
-        public JsonResult AddToCart(int bookId, string type)
+        public ActionResult AddToCart(int bookId, string type)
         {
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
+
             if (book == null)
             {
-                return Json(new { success = false, message = "Book not found" });
+                TempData["ErrorMessage"] = "הספר לא נמצא.";
+                return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // חישוב מחיר לפי סוג הפעולה
+            // 📦 בדיקה אם כל העותקים להשכרה כבר הושכרו
+            if (type == "Rent" && book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
+            {
+                // התראה עם הצעה להיכנס לרשימת המתנה
+                TempData["OfferWaitingList"] = bookId;
+                TempData["ErrorMessage"] = $"כל העותקים של הספר \"{book.book_name}\" מושכרים כרגע. האם תרצה להצטרף לרשימת ההמתנה?";
+                return RedirectToAction("Cart", "Cart");
+            }
+
+            // חישוב מחיר
             var price = type == "Buy" ? book.price : book.price / 4;
 
-            // בדיקה אם הפריט כבר בעגלה
             var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
             if (existingItem != null)
             {
@@ -56,8 +65,10 @@ namespace MVC.Controllers
 
             Session["Cart"] = cart;
 
-            return Json(new { success = true, message = "The item was added to your cart!" });
+            TempData["SuccessMessage"] = "הספר נוסף לעגלה.";
+            return RedirectToAction("Cart", "Cart");
         }
+
 
         // הסרת פריט מהעגלה
         [HttpPost]
