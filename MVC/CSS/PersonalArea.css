@@ -1,7 +1,6 @@
 ﻿/* עיצוב גוף ורקע */
 body {
-    background-color: #f3e5f5; /* צבע רקע אחיד ובהיר */
-    background: linear-gradient(to right, #f3e5f5, #512da8); /* מעבר צבעים עדין */
+    background-color: #f5f5fa; /* צבע רקע אחיד ועדין */
     font-family: Arial, sans-serif;
     color: #333;
     margin: 0;
@@ -12,9 +11,9 @@ body {
 header h1 {
     text-align: center;
     color: white;
-    background-color: rgba(61, 0, 61, 0.8);
-    padding: 15px;
-    font-size: 1.8em;
+    background-color: #4a148c; /* צבע סגול כהה */
+    padding: 15px; /* צמצום גובה הכותרת */
+    font-size: 1.8em; /* גודל גופן מתואם */
     margin: 0;
 }
 
@@ -23,7 +22,7 @@ header h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(61, 0, 61, 0.8);
+    background-color: #4a148c; /* צבע אחיד לכותרת */
     padding: 10px 20px;
     position: relative;
     z-index: 1;
@@ -31,7 +30,7 @@ header h1 {
 
     /* כפתורים בתפריט הניווט */
     .nav-container .btn-nav {
-        background-color: #512da8; /* אינדיגו כהה */
+        background-color: #1e88e5; /* כחול */
         color: white;
         padding: 8px 15px;
         border-radius: 5px;
@@ -40,10 +39,9 @@ header h1 {
     }
 
         .nav-container .btn-nav:hover {
-            background-color: #673ab7; /* אינדיגו בהיר יותר */
+            background-color: #1565c0; /* כחול כהה יותר */
         }
 
-    /* כפתור התנתקות */
     .nav-container .btn-logout {
         background-color: #e53935;
         color: white;
@@ -60,7 +58,7 @@ header h1 {
 
 /* התאמת תוכן */
 main {
-    margin-top: 40px;
+    margin-top: 40px; /* מרווח מתחת לניווט */
 }
 
 /* עיצוב כפתורים */
@@ -80,13 +78,13 @@ main {
 .btn-login,
 .btn-update,
 .nav-list a {
-    background-color: #6a1b9a; /* סגול בוהק */
+    background-color: #4a148c; /* סגול כהה */
 }
 
     .btn-login:hover,
     .btn-update:hover,
     .nav-list a:hover {
-        background-color: #8e24aa; /* סגול בהיר יותר */
+        background-color: #350c6e; /* סגול כהה יותר */
     }
 
 /* כפתור התנתקות */
@@ -95,7 +93,7 @@ main {
 }
 
     .btn-logout:hover {
-        background-color: #c62828;
+        background-color: #c62828; /* אדום כהה יותר */
     }
 
 /* חלקים מרכזיים */
@@ -105,13 +103,13 @@ section {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* צל עדין */
 }
 
 /* כותרות חלקים */
 h2 {
-    color: #6a1b9a;
-    border-bottom: 2px solid #6a1b9a;
+    color: #4a148c; /* סגול כהה */
+    border-bottom: 2px solid #4a148c;
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
@@ -119,10 +117,4 @@ h2 {
 /* מרווח בין חלקים */
 section + section {
     margin-top: 20px;
-}
-
-/* שינוי צבע במעבר עכבר על כפתורים */
-button:hover {
-    background-color: #8e24aa;
-    transition: background-color 0.3s ease;
 }

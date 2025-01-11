@@ -42,7 +42,7 @@ namespace MVC
             //נתיב לעמוד תשלומים
             routes.MapRoute(
                 name: "Checkout",
-                url: "orders/CheckoutPage",
+                url: "order/CheckoutPage",
                 defaults: new { controller = "order", action = "Checkout" }
             );
             // נתיב של עגלה

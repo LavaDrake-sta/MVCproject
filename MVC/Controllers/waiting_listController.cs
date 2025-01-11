@@ -124,42 +124,5 @@ namespace MVC.Controllers
             }
             base.Dispose(disposing);
         }
-        [HttpPost]
-        public ActionResult AddToWaitingList(int bookId)
-        {
-            var userName = Session["UserName"]?.ToString();
-            var user = db.users.FirstOrDefault(u => u.name == userName);
-            var book = db.books.FirstOrDefault(b => b.book_id == bookId);
-
-            if (user == null || book == null)
-            {
-                TempData["ErrorMessage"] = "משתמש או ספר לא נמצאו.";
-                return RedirectToAction("BuyBorrowBook", "books");
-            }
-
-            // בדיקה אם המשתמש כבר ברשימת ההמתנה
-            var alreadyInList = db.waiting_Lists.Any(w => w.email == user.email && w.book_name == book.book_name);
-
-            if (alreadyInList)
-            {
-                TempData["ErrorMessage"] = "אתה כבר ברשימת ההמתנה לספר זה.";
-                return RedirectToAction("BuyBorrowBook", "books");
-            }
-
-            var waitingEntry = new waiting_list
-            {
-                name = user.name,
-                book_name = book.book_name,
-                email = user.email,
-                date = DateTime.Now
-            };
-
-            db.waiting_Lists.Add(waitingEntry);
-            db.SaveChanges();
-
-            TempData["SuccessMessage"] = $"נכנסת לרשימת ההמתנה עבור הספר {book.book_name}.";
-            return RedirectToAction("BuyBorrowBook", "books");
-        }
-
     }
 }

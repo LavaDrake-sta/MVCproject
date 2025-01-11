@@ -87,50 +87,63 @@ namespace MVC.Controllers
 
         // פונקציות השכרה, קנייה והחזרה
         [HttpPost]
-        public ActionResult RentBook(int bookId)
+        public JsonResult RentBook(int book_id)
         {
-            var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-            var book = db.books.FirstOrDefault(b => b.book_id == bookId);
-
-            if (book == null)
+            try
             {
-                TempData["ErrorMessage"] = "הספר לא נמצא.";
-                return RedirectToAction("BuyBorrowBook", "books");
-            }
-
-            // בדיקה אם אין עותקים פנויים להשכרה
-            if (book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
-            {
-                // הצעת הצטרפות לרשימת המתנה
-                TempData["OfferWaitingList"] = bookId;
-                TempData["ErrorMessage"] = $"אין עותקים זמינים להשכרה עבור הספר \"{book.book_name}\". האם תרצה להיכנס לרשימת המתנה?";
-                return RedirectToAction("BuyBorrowBook", "books");
-            }
-
-            // הוספה לעגלה (בלי לשנות מלאי כרגע)
-            var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == "Rent");
-            if (existingItem != null)
-            {
-                existingItem.Quantity++;
-            }
-            else
-            {
-                cart.Add(new CartItem
+                // שליפת הספר מהמסד
+                var book = db.books.Find(book_id);
+                if (book == null)
                 {
-                    BookId = book.book_id,
-                    BookName = book.book_name,
-                    Price = book.price / 4,
-                    Type = "Rent",
-                    Quantity = 1
-                });
+                    return Json(new { success = false, message = "Book not found" });
+                }
+
+                // בדיקה אם הספר ניתן להשכרה
+                if (book.IsRent == false || book.IsRent == null)
+                {
+                    return Json(new { success = false, message = "This book cannot be rented." });
+                }
+
+                // בדיקה אם אפשר להשכיר מבחינת מגבלת השכרות
+                if (book.CurrentRentCount >= book.MaxRentCount)
+                {
+                    return Json(new { success = false, message = "Cannot rent this book. Maximum limit reached." });
+                }
+
+                // עדכון מספר ההשכרות
+                book.CurrentRentCount++;
+
+                // הוספת הספר לעגלה
+                var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+                var existingItem = cart.FirstOrDefault(c => c.BookId == book.book_id && c.Type == "Rent");
+
+                if (existingItem != null)
+                {
+                    existingItem.Quantity++;
+                }
+                else
+                {
+                    cart.Add(new CartItem
+                    {
+                        BookId = book.book_id,
+                        BookName = book.book_name,
+                        Price = book.price / 4, // מחיר מושכר
+                        Type = "Rent",
+                        Quantity = 1
+                    });
+                }
+
+                Session["Cart"] = cart;
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "Book successfully rented and added to your cart!" });
             }
-
-            Session["Cart"] = cart;
-
-            TempData["SuccessMessage"] = "הספר נוסף לעגלה בהצלחה.";
-            return RedirectToAction("BuyBorrowBook", "books");
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in RentBook: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while processing your request." });
+            }
         }
-
 
         [HttpPost]
         public JsonResult BuyBook(int bookId)

@@ -50,29 +50,28 @@
           </Key>
           <Property Name="book_id" Type="int" Nullable="false" />
           <Property Name="book_name" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="category" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nchar" MaxLength="50" />
           <Property Name="date_taken" Type="date" Nullable="false" />
           <Property Name="return_date" Type="date" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailSent" Type="bit" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
             <PropertyRef Name="order_number" />
           </Key>
-          <Property Name="order_number" Type="int" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="card_owner_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="card_number" Type="nvarchar" MaxLength="53" Nullable="false" />
+          <Property Name="order_number" Type="float" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="float" Nullable="false" />
+          <Property Name="card_owner_name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="card_number" Type="float" Nullable="false" />
           <Property Name="expiry_date" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CVC" Type="nchar" MaxLength="3" Nullable="false" />
-          <Property Name="number_of_payments" Type="int" Nullable="false" />
+          <Property Name="CVC" Type="float" Nullable="false" />
+          <Property Name="number_of_payments" Type="float" Nullable="false" />
           <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="product" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="buy_borrow" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="buy_borrow" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="review">
@@ -80,18 +79,17 @@
             <PropertyRef Name="ID_review" />
           </Key>
           <Property Name="ID_review" Type="int" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="book_ID" Type="int" />
-          <Property Name="created_at" Type="datetime" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="email" />
           </Key>
           <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -102,7 +100,7 @@
           <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="book_name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Borrowed_books_list_books">
           <End Role="books" Type="Self.books" Multiplicity="1" />
@@ -125,18 +123,6 @@
             </Principal>
             <Dependent Role="Borrowing_books">
               <PropertyRef Name="book_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Borrowing_books_users">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="Borrowing_books" Type="Self.Borrowing_books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="email" />
-            </Principal>
-            <Dependent Role="Borrowing_books">
-              <PropertyRef Name="email" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -203,10 +189,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Borrowing_books_books" Association="Self.FK_Borrowing_books_books">
             <End Role="books" EntitySet="books" />
-            <End Role="Borrowing_books" EntitySet="Borrowing_books" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Borrowing_books_users" Association="Self.FK_Borrowing_books_users">
-            <End Role="users" EntitySet="users" />
             <End Role="Borrowing_books" EntitySet="Borrowing_books" />
           </AssociationSet>
           <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
@@ -280,31 +262,29 @@
           </Key>
           <Property Name="book_id" Type="Int32" Nullable="false" />
           <Property Name="book_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="date_taken" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmailSent" Type="Boolean" />
+          <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="books" Relationship="Self.FK_Borrowing_books_books" FromRole="Borrowing_books" ToRole="books" />
-          <NavigationProperty Name="users" Relationship="Self.FK_Borrowing_books_users" FromRole="Borrowing_books" ToRole="users" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
             <PropertyRef Name="order_number" />
           </Key>
-          <Property Name="order_number" Type="Int32" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="card_owner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="card_number" Type="String" MaxLength="53" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_number" Type="Double" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Double" Nullable="false" />
+          <Property Name="card_owner_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="card_number" Type="Double" Nullable="false" />
           <Property Name="expiry_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CVC" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="number_of_payments" Type="Int32" Nullable="false" />
+          <Property Name="CVC" Type="Double" Nullable="false" />
+          <Property Name="number_of_payments" Type="Double" Nullable="false" />
           <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="buy_borrow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="buy_borrow" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="users" Relationship="Self.FK_orders_orders" FromRole="orders" ToRole="users" />
         </EntityType>
@@ -313,11 +293,10 @@
             <PropertyRef Name="ID_review" />
           </Key>
           <Property Name="ID_review" Type="Int32" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="book_ID" Type="Int32" />
-          <Property Name="created_at" Type="DateTime" Precision="3" />
           <NavigationProperty Name="books" Relationship="Self.FK_review_books" FromRole="review" ToRole="books" />
           <NavigationProperty Name="users" Relationship="Self.FK_review_users" FromRole="review" ToRole="users" />
         </EntityType>
@@ -326,10 +305,9 @@
             <PropertyRef Name="email" />
           </Key>
           <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Borrowing_books" Relationship="Self.FK_Borrowing_books_users" FromRole="users" ToRole="Borrowing_books" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_orders" FromRole="users" ToRole="orders" />
           <NavigationProperty Name="review" Relationship="Self.FK_review_users" FromRole="users" ToRole="review" />
           <NavigationProperty Name="waiting_list" Relationship="Self.FK_waiting_list_waiting_list" FromRole="users" ToRole="waiting_list" />
@@ -341,7 +319,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="book_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="users" Relationship="Self.FK_waiting_list_waiting_list" FromRole="waiting_list" ToRole="users" />
         </EntityType>
         <Association Name="FK_Borrowed_books_list_books">
@@ -377,18 +355,6 @@
             </Principal>
             <Dependent Role="review">
               <PropertyRef Name="book_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Borrowing_books_users">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="Borrowing_books" Type="Self.Borrowing_books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="email" />
-            </Principal>
-            <Dependent Role="Borrowing_books">
-              <PropertyRef Name="email" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -448,10 +414,6 @@
           <AssociationSet Name="FK_review_books" Association="Self.FK_review_books">
             <End Role="books" EntitySet="books" />
             <End Role="review" EntitySet="review" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Borrowing_books_users" Association="Self.FK_Borrowing_books_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="Borrowing_books" EntitySet="Borrowing_books" />
           </AssociationSet>
           <AssociationSet Name="FK_orders_orders" Association="Self.FK_orders_orders">
             <End Role="users" EntitySet="users" />
@@ -521,8 +483,7 @@
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="date_taken" ColumnName="date_taken" />
                 <ScalarProperty Name="return_date" ColumnName="return_date" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -554,7 +515,6 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="book_ID" ColumnName="book_ID" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

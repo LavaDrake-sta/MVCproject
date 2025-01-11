@@ -14,16 +14,16 @@ namespace MVC.Models
     
     public partial class orders
     {
-        public int order_number { get; set; }
+        public double order_number { get; set; }
         public string email { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
-        public int id { get; set; }
+        public double id { get; set; }
         public string card_owner_name { get; set; }
-        public string card_number { get; set; }
+        public double card_number { get; set; }
         public string expiry_date { get; set; }
-        public string CVC { get; set; }
-        public int number_of_payments { get; set; }
+        public double CVC { get; set; }
+        public double number_of_payments { get; set; }
         public decimal price { get; set; }
         public string product { get; set; }
         public string buy_borrow { get; set; }

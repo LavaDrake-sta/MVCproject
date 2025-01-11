@@ -15,7 +15,7 @@ namespace MyMvcProject.Controllers
         }
 
         // הצגת ביקורות על האתר
-        public ActionResult SiteReview()
+        public ActionResult Index()
         {
 
 
@@ -29,7 +29,7 @@ namespace MyMvcProject.Controllers
             if (string.IsNullOrEmpty(content))
             {
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
-                return RedirectToAction("SiteReview");
+                return RedirectToAction("Index");
             }
 
             db.reviews.Add(new review
@@ -38,12 +38,11 @@ namespace MyMvcProject.Controllers
                 Content = content,
                 type = "Site",
                 book_ID = null // לא רלוונטי לביקורות על האתר
-                
             });
 
             db.SaveChanges();
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("SiteReview");
+            return RedirectToAction("Index");
         }
     }
 }

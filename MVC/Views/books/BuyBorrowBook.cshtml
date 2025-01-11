@@ -18,29 +18,6 @@
     </div>
 
     <div class="container">
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-warning">
-                @TempData["ErrorMessage"]
-
-                @if (TempData["OfferWaitingList"] != null)
-                {
-                    <form action="@Url.Action("AddToWaitingList", "waiting_list")" method="post" style="display:inline;">
-                        <input type="hidden" name="bookId" value="@TempData["OfferWaitingList"]" />
-                        <button type="submit" class="btn btn-primary">כן, הוסף אותי לרשימת המתנה</button>
-                        <a href="@Url.Action("BuyBorrowBook", "books")" class="btn btn-secondary">לא, חזור לחנות</a>
-                    </form>
-                }
-            </div>
-        }
-
-        <!-- ✅ הודעת הצלחה -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["SuccessMessage"]
-            </div>
-        }
         <h1>Books List</h1>
         <div id="booksContainer" class="books-list">
             @foreach (var book in Model)

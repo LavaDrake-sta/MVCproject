@@ -15,7 +15,7 @@ namespace MyMvcProject.Controllers
         }
 
         // הצגת ביקורות על ספר מסוים
-        public ActionResult BookReview(int bookId)
+        public ActionResult Index(int bookId)
         {
 
             ViewBag.Book = db.books.FirstOrDefault(b => b.book_id == bookId);
@@ -29,7 +29,7 @@ namespace MyMvcProject.Controllers
             if (string.IsNullOrEmpty(content))
             {
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
-                return RedirectToAction("BookReview", new { bookId });
+                return RedirectToAction("Index", new { bookId });
             }
 
             db.reviews.Add(new review
@@ -42,7 +42,7 @@ namespace MyMvcProject.Controllers
 
             db.SaveChanges();
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("BookReview", new { bookId });
+            return RedirectToAction("Index", new { bookId });
         }
     }
 }

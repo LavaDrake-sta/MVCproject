@@ -19,10 +19,8 @@ namespace MVC.Models
         public string category { get; set; }
         public System.DateTime date_taken { get; set; }
         public System.DateTime return_date { get; set; }
-        public string email { get; set; }
-        public Nullable<bool> EmailSent { get; set; }
+        public Nullable<int> user_id { get; set; }
     
         public virtual books books { get; set; }
-        public virtual users users { get; set; }
     }
 }
