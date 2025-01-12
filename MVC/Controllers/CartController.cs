@@ -23,51 +23,107 @@ namespace MVC.Controllers
 
         // הוספת פריט לעגלה
         [HttpPost]
-        public ActionResult AddToCart(int bookId, string type)
+        public JsonResult AddToCart(int bookId, string type, bool? addToWaitingList)
         {
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
 
             if (book == null)
             {
-                TempData["ErrorMessage"] = "הספר לא נמצא.";
-                return RedirectToAction("BuyBorrowBook", "books");
+                return Json(new { success = false, message = "הספר לא נמצא במערכת." });
             }
 
-            // 📦 בדיקה אם כל העותקים להשכרה כבר הושכרו
-            if (type == "Rent" && book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
+            // 📦 טיפול בהשכרה (Rent)
+            if (type == "Rent")
             {
-                // התראה עם הצעה להיכנס לרשימת המתנה
-                TempData["OfferWaitingList"] = bookId;
-                TempData["ErrorMessage"] = $"כל העותקים של הספר \"{book.book_name}\" מושכרים כרגע. האם תרצה להצטרף לרשימת ההמתנה?";
-                return RedirectToAction("Cart", "Cart");
-            }
-
-            // חישוב מחיר
-            var price = type == "Buy" ? book.price : book.price / 4;
-
-            var existingItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == type);
-            if (existingItem != null)
-            {
-                existingItem.Quantity++;
-            }
-            else
-            {
-                cart.Add(new CartItem
+                if (book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
                 {
-                    BookId = book.book_id,
-                    BookName = book.book_name,
-                    Price = price,
-                    Type = type,
-                    Quantity = 1
-                });
+                    if (addToWaitingList == null)
+                    {
+                        return Json(new
+                        {
+                            success = false,
+                            offerWaitingList = true,
+                            message = $"אין מלאי להשכרה עבור הספר \"{book.book_name}\". האם תרצה להצטרף לרשימת המתנה?"
+                        });
+                    }
+
+                    if (addToWaitingList == true)
+                    {
+                        var userName = Session["UserName"]?.ToString();
+                        var user = db.users.FirstOrDefault(u => u.name == userName);
+
+                        if (user != null)
+                        {
+                            var waitingEntry = new waiting_list
+                            {
+                                name = user.name,
+                                book_name = book.book_name,
+                                email = user.email,
+                                date = DateTime.Now
+                            };
+
+                            db.waiting_Lists.Add(waitingEntry);
+                            db.SaveChanges();
+
+                            return Json(new { success = true, message = $"נוספת לרשימת ההמתנה עבור הספר \"{book.book_name}\"." });
+                        }
+                    }
+
+                    return Json(new { success = false, message = "לא הצלחנו להוסיף אותך לרשימת ההמתנה." });
+                }
+
+                var existingRentItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == "Rent");
+                if (existingRentItem != null)
+                {
+                    existingRentItem.Quantity++;
+                }
+                else
+                {
+                    cart.Add(new CartItem
+                    {
+                        BookId = book.book_id,
+                        BookName = book.book_name,
+                        Price = book.price / 4,
+                        Type = "Rent",
+                        Quantity = 1
+                    });
+                }
+
+                Session["Cart"] = cart;
+
+                return Json(new { success = true, message = $"הספר \"{book.book_name}\" נוסף לעגלה בהצלחה." });
             }
 
-            Session["Cart"] = cart;
+            // 🛒 טיפול ברכישה רגילה (Buy)
+            if (type == "Buy")
+            {
+                var existingBuyItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == "Buy");
+                if (existingBuyItem != null)
+                {
+                    existingBuyItem.Quantity++;
+                }
+                else
+                {
+                    cart.Add(new CartItem
+                    {
+                        BookId = book.book_id,
+                        BookName = book.book_name,
+                        Price = book.price,
+                        Type = "Buy",
+                        Quantity = 1
+                    });
+                }
 
-            TempData["SuccessMessage"] = "הספר נוסף לעגלה.";
-            return RedirectToAction("Cart", "Cart");
+                Session["Cart"] = cart;
+
+                return Json(new { success = true, message = $"הספר \"{book.book_name}\" נוסף לעגלה בהצלחה." });
+            }
+
+            return Json(new { success = false, message = "סוג הפעולה לא תקין." });
         }
+
+
 
 
         // הסרת פריט מהעגלה
@@ -98,6 +154,52 @@ namespace MVC.Controllers
                 TempData["ErrorMessage"] = "An error occurred while removing the item.";
                 return RedirectToAction("Cart"); // הפניה חזרה לעמוד העגלה במקרה של שגיאה
             }
+        }
+        [HttpPost]
+        public ActionResult AddToWaitingList(int bookId)
+        {
+            // 1️⃣ בדיקה אם המשתמש מחובר
+            if (Session["UserName"] == null)
+            {
+                TempData["ErrorMessage"] = "עליך להתחבר כדי להצטרף לרשימת ההמתנה.";
+                return RedirectToAction("Login", "Users");
+            }
+
+            // 2️⃣ שליפת פרטי המשתמש והספר
+            var userName = Session["UserName"].ToString();
+            var user = db.users.FirstOrDefault(u => u.name == userName);
+            var book = db.books.FirstOrDefault(b => b.book_id == bookId);
+
+            if (user == null || book == null)
+            {
+                TempData["ErrorMessage"] = "אירעה שגיאה במציאת המשתמש או הספר.";
+                return RedirectToAction("BuyBorrowBook", "books");
+            }
+
+            // 3️⃣ בדיקה אם המשתמש כבר ברשימת ההמתנה
+            var alreadyInList = db.waiting_Lists.Any(w => w.email == user.email && w.book_name == book.book_name);
+
+            if (alreadyInList)
+            {
+                TempData["ErrorMessage"] = "אתה כבר ברשימת ההמתנה עבור הספר הזה.";
+                return RedirectToAction("BuyBorrowBook", "books");
+            }
+
+            // 4️⃣ הוספה לרשימת ההמתנה
+            var waitingEntry = new waiting_list
+            {
+                name = user.name,
+                book_name = book.book_name,
+                email = user.email,
+                date = DateTime.Now
+            };
+
+            db.waiting_Lists.Add(waitingEntry);
+            db.SaveChanges();
+
+            // 5️⃣ הודעת הצלחה
+            TempData["SuccessMessage"] = $"נוספת לרשימת ההמתנה עבור הספר \"{book.book_name}\".";
+            return RedirectToAction("BuyBorrowBook", "books");
         }
     }
 }
