@@ -23,55 +23,71 @@ namespace MyMvcProject.Controllers
 
         public ActionResult PersonalArea()
         {
-            if (!IsUserLoggedIn())
+            // 🔒 בדיקה אם המשתמש מחובר
+            if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לצפות באזור האישי.";
                 return RedirectToAction("Login", "Users");
             }
 
+            // 📧 שליפת שם המשתמש והאימייל שלו
             string userName = Session["UserName"].ToString();
             string userEmail = db.users
                 .Where(u => u.name == userName)
                 .Select(u => u.email)
                 .FirstOrDefault();
 
+            // ❌ בדיקה אם לא נמצא אימייל
             if (string.IsNullOrEmpty(userEmail))
             {
-                TempData["ErrorMessage"] = "משתמש לא נמצא במסד הנתונים.";
+                TempData["ErrorMessage"] = "משתמש לא נמצא במערכת.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // שליפת הזמנות הקשורות למשתמש לפי email
-            var orders = db.orders
-                .Where(o => o.email == userEmail)
-                .ToList();
-
-            // שליפת ספרים מושכרים
-            var borrowedBooks = db.borrowing_Books
-                .Where(b => b.category == userEmail)
-                .ToList();
-
-            List<waiting_list> waitingBooks;
             try
             {
-                waitingBooks = db.waiting_Lists
-                    .Where(w => w.email == userEmail)
+                // ✅ שליפת כל ההזמנות שבוצעו לפי המייל
+                var allOrders = db.orders
+                    .Where(o => o.email == userEmail)
+                    .OrderByDescending(o => o.date)  // סידור מהחדש לישן
                     .ToList();
+
+                // ✅ שליפת כל הספרים שנרכשו (Buy)
+                var purchasedBooks = allOrders
+                    .Where(o => o.buy_borrow == "Buy")
+                    .ToList();
+
+                // ✅ שליפת כל הספרים שהושכרו (Rent)
+                var rentedBooks = allOrders
+                    .Where(o => o.buy_borrow == "Rent")
+                    .ToList();
+
+                // ✅ שליפת כל הספרים המושכרים לפי המייל
+                var borrowedBooks = db.borrowing_Books
+                    .Where(b => b.email == userEmail)
+                    .OrderBy(b => b.return_date)  // סידור לפי תאריך החזרה
+                    .ToList();
+
+                // ✅ שליפת כל הספרים ברשימת המתנה לפי המייל
+                var waitingBooks = db.waiting_Lists
+                    .Where(w => w.email == userEmail)
+                    .OrderBy(w => w.date)  // סידור לפי תאריך הצטרפות
+                    .ToList();
+
+                // 📦 שליחת המידע ל-View
+                ViewBag.AllOrders = allOrders;
+                ViewBag.PurchasedBooks = purchasedBooks;
+                ViewBag.RentedBooks = rentedBooks;
+                ViewBag.BorrowedBooks = borrowedBooks;
+                ViewBag.WaitingBooks = waitingBooks;
+
+                return View();
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "אירעה שגיאה בשליפת ספרים מרשימת המתנה: " + ex.Message;
-                waitingBooks = new List<waiting_list>();
+                TempData["ErrorMessage"] = "אירעה שגיאה בעת שליפת המידע: " + ex.Message;
+                return RedirectToAction("Error", "Home");
             }
-
-            // העברת הנתונים ל-View
-            ViewBag.UserName = userName;
-            ViewBag.UserEmail = userEmail;
-            ViewBag.Orders = orders;
-            ViewBag.BorrowedBooks = borrowedBooks;
-            ViewBag.WaitingBooks = waitingBooks;
-
-            return View();
         }
 
         [HttpPost]

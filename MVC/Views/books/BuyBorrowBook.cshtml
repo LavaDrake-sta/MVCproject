@@ -1,4 +1,4 @@
-﻿ @{
+﻿@{
     Layout = null; <!-- ביטול Layout כדי למנוע קונפליקטים -->
 }
 <!DOCTYPE html>
@@ -11,26 +11,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <!-- שדה חיפוש -->
+
+    <!-- 🔎 שדה חיפוש -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search for a book..." />
         <button onclick="searchBooks()">Search</button>
     </div>
 
     <div class="container">
-        @if (TempData["ErrorMessage"] != null)
+        <!-- 🔔 הודעת שגיאה לרשימת המתנה -->
+        @if (TempData["OfferWaitingList"] != null)
         {
             <div class="alert alert-warning">
                 @TempData["ErrorMessage"]
 
-                @if (TempData["OfferWaitingList"] != null)
-                {
-                    <form action="@Url.Action("AddToWaitingList", "waiting_list")" method="post" style="display:inline;">
-                        <input type="hidden" name="bookId" value="@TempData["OfferWaitingList"]" />
-                        <button type="submit" class="btn btn-primary">כן, הוסף אותי לרשימת המתנה</button>
-                        <a href="@Url.Action("BuyBorrowBook", "books")" class="btn btn-secondary">לא, חזור לחנות</a>
-                    </form>
-                }
+                <form action="@Url.Action("AddToCart", "Cart")" method="post" style="display:inline;">
+                    <input type="hidden" name="bookId" value="@TempData["OfferWaitingList"]" />
+                    <input type="hidden" name="type" value="Rent" />
+                    <input type="hidden" name="addToWaitingList" value="true" />
+                    <button type="submit" class="btn btn-primary">כן, הוסף אותי לרשימת המתנה</button>
+                </form>
+
+                <form action="@Url.Action("AddToCart", "Cart")" method="post" style="display:inline;">
+                    <input type="hidden" name="bookId" value="@TempData["OfferWaitingList"]" />
+                    <input type="hidden" name="type" value="Rent" />
+                    <input type="hidden" name="addToWaitingList" value="false" />
+                    <button type="submit" class="btn btn-secondary">לא, חזור לחנות</button>
+                </form>
             </div>
         }
 
@@ -41,74 +48,63 @@
                 @TempData["SuccessMessage"]
             </div>
         }
+
         <h1>Books List</h1>
+
         <div id="booksContainer" class="books-list">
             @foreach (var book in Model)
             {
                 <div class="book-item">
-                    <!-- הצגת תמונת הספר -->
+                    <!-- 📚 הצגת תמונת הספר -->
                     <img src="@book.ImageUrl" alt="@book.book_name" class="book-image">
 
-                    <!-- פרטי הספר -->
+                    <!-- 📖 פרטי הספר -->
                     <h2>@book.book_name</h2>
                     <p><strong>Author:</strong> @book.author</p>
                     <p><strong>Category:</strong> @book.category</p>
                     <p><strong>Language:</strong> @book.language</p>
                     <p><strong>Price:</strong> $@book.price</p>
 
-                    <!-- כפתורי פעולה -->
+                    <!-- 🔘 כפתורי פעולה -->
                     <div class="actions">
                         @if (book.IsRent == null || book.IsRent)
                         {
-                            <button class="rent-button" onclick="rentBook(@book.book_id)">Rent</button>
+                            <button onclick="addToCart(@(book.book_id), 'Rent')" class="btn btn-warning rent-button">RENT</button>
                             <span id="rentCount_@book.book_id">
                                 @book.CurrentRentCount out of @book.MaxRentCount people have rented this book
                             </span>
                         }
-                        <button class="buy-button" onclick="buyBook(@book.book_id)">Buy</button>
+                        <button onclick="addToCart(@(book.book_id), 'Buy')" class="btn btn-success buy-button">BUY NOW</button>
                     </div>
                 </div>
             }
         </div>
     </div>
 
-    <!-- אזור ה-JavaScript -->
+    <!-- 📝 JavaScript -->
     <script>
-        // הוספת מאזין לאירוע input בשדה החיפוש
-        document.getElementById("searchInput").addEventListener("input", function () {
-            const query = this.value.trim();
+        // 📦 הוספת ספר לעגלה (קנייה/השכרה)
+        function addToCart(bookId, type) {
+            $.post('/Cart/AddToCart', { bookId: bookId, type: type }, function (response) {
+                if (response.success) {
+                    alert(response.message);
+                } else if (response.offerWaitingList) {
+                    if (confirm(response.message)) {
+                        $.post('/Cart/AddToCart', { bookId: bookId, type: type, addToWaitingList: true }, function (waitResponse) {
+                            alert(waitResponse.message);
+                        });
+                    } else {
+                        alert("לא הצטרפת לרשימת ההמתנה.");
+                    }
+                } else {
+                    alert(response.message);
+                }
+            }).fail(function () {
+                alert("אירעה שגיאה. אנא נסה שוב.");
+            });
+        }
 
-            if (!query) {
-                // אם השדה ריק, טוענים את כל הספרים מחדש
-                $.get('/books/GetAllBooks', function (response) {
-                    const booksContainer = document.getElementById("booksContainer");
-
-                    // ניקוי התצוגה הקיימת
-                    booksContainer.innerHTML = "";
-
-                    // הצגת כל הספרים
-                    response.forEach(book => {
-                        booksContainer.innerHTML += `
-                                <div class="book-item">
-                                    <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
-                                    <h2>${book.book_name}</h2>
-                                    <p><strong>Author:</strong> ${book.author}</p>
-                                    <p><strong>Category:</strong> ${book.category}</p>
-                                    <p><strong>Language:</strong> ${book.language}</p>
-                                    <p><strong>Price:</strong> $${book.price}</p>
-                                    <div class="actions">
-                                        ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
-                                        <span id="rentCount_${book.book_id}">
-                                            ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
-                                        </span>
-                                        <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
-                                    </div>
-                                </div>`;
-                    });
-                });
-            }
-        });
-
+        // 🔎 פונקציית חיפוש ספרים
         function searchBooks() {
             const query = document.getElementById("searchInput").value.trim();
             if (!query) {
@@ -116,18 +112,15 @@
                 return;
             }
 
-            // בקשה לשרת לחיפוש ספרים
             $.get('/books/SearchBooks', { query }, function (response) {
                 const booksContainer = document.getElementById("booksContainer");
 
-                // אם לא נמצאו ספרים
                 if (!response.success) {
                     booksContainer.innerHTML = `<p>Unfortunately, the book does not exist in the system, but we will add it soon.</p>`;
                     return;
                 }
 
-                // הצגת הספרים שנמצאו
-                booksContainer.innerHTML = ""; // ניקוי התוכן הקיים
+                booksContainer.innerHTML = "";
                 response.books.forEach(book => {
                     booksContainer.innerHTML += `
                             <div class="book-item">
@@ -138,51 +131,11 @@
                                 <p><strong>Language:</strong> ${book.language}</p>
                                 <p><strong>Price:</strong> $${book.price}</p>
                                 <div class="actions">
-                                    ${book.IsRent ? `<button class="rent-button" onclick="rentBook(${book.book_id})">Rent</button>` : ""}
-                                    <span id="rentCount_${book.book_id}">
-                                        ${book.CurrentRentCount} out of ${book.MaxRentCount} people have rented this book
-                                    </span>
-                                    <button class="buy-button" onclick="buyBook(${book.book_id})">Buy</button>
+                                    ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
+                                    <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
                                 </div>
                             </div>`;
                 });
-            });
-        }
-
-        function rentBook(bookId) {
-            $.post('/books/RentBook', { book_id: bookId }, function (response) {
-                if (response.success) {
-                    alert(response.message); // הודעת הצלחה
-                    location.reload(); // טען מחדש את העמוד לעדכון מצב העגלה
-                } else {
-                    alert(response.message); // הודעת כישלון
-                }
-            }).fail(function () {
-                alert("An error occurred. Please try again."); // שגיאה כללית
-            });
-        }
-
-        function buyBook(bookId) {
-            $.post('/books/AddToCart', { bookId: bookId, type: 'Buy' }, function (response) {
-                if (response.success) {
-                    alert(response.message);
-                } else {
-                    alert('Failed to add the book to the cart: ' + response.message);
-                }
-            }).fail(function () {
-                alert("An error occurred while adding the book to the cart.");
-            });
-        }
-        function addToCart(bookId, type) {
-            $.post(`/books/${type === 'Rent' ? 'RentBook' : 'BuyBook'}`, { bookId: bookId }, function (response) {
-                if (response.success) {
-                    alert(response.message);
-                    location.reload(); // טען מחדש את העמוד כדי לעדכן את העגלה
-                } else {
-                    alert('Error: ' + response.message);
-                }
-            }).fail(function () {
-                alert("An error occurred. Please try again.");
             });
         }
     </script>
