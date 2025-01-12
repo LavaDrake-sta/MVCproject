@@ -1,128 +1,152 @@
-﻿/* עיצוב גוף ורקע */
-body {
-    background-color: #f3e5f5; /* צבע רקע אחיד ובהיר */
-    background: linear-gradient(to right, #f3e5f5, #512da8); /* מעבר צבעים עדין */
-    font-family: Arial, sans-serif;
-    color: #333;
+﻿/* General Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* כותרת ראשית */
-header h1 {
-    text-align: center;
-    color: white;
-    background-color: rgba(61, 0, 61, 0.8);
-    padding: 15px;
-    font-size: 1.8em;
+body {
+    background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
+    font-family: Arial, sans-serif;
     margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    direction: ltr;
+    text-align: left;
 }
 
-/* ניווט */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(61, 0, 61, 0.8);
-    padding: 10px 20px;
-    position: relative;
-    z-index: 1;
+.personal-area-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
-    /* כפתורים בתפריט הניווט */
-    .nav-container .btn-nav {
-        background-color: #512da8; /* אינדיגו כהה */
-        color: white;
-        padding: 8px 15px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 0.9em;
-    }
-
-        .nav-container .btn-nav:hover {
-            background-color: #673ab7; /* אינדיגו בהיר יותר */
-        }
-
-    /* כפתור התנתקות */
-    .nav-container .btn-logout {
-        background-color: #e53935;
-        color: white;
-        padding: 8px 15px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-size: 0.9em;
-    }
-
-        .nav-container .btn-logout:hover {
-            background-color: #c62828;
-        }
-
-/* התאמת תוכן */
-main {
-    margin-top: 40px;
-}
-
-/* עיצוב כפתורים */
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
+/* Header Styles */
+header {
+    background-color: #4a148c;
     color: white;
-    text-align: center;
-    display: inline-block;
-    text-decoration: none;
-}
-
-/* כפתורי ניווט */
-.btn-login,
-.btn-update,
-.nav-list a {
-    background-color: #6a1b9a; /* סגול בוהק */
-}
-
-    .btn-login:hover,
-    .btn-update:hover,
-    .nav-list a:hover {
-        background-color: #8e24aa; /* סגול בהיר יותר */
-    }
-
-/* כפתור התנתקות */
-.btn-logout {
-    background-color: #e53935;
-}
-
-    .btn-logout:hover {
-        background-color: #c62828;
-    }
-
-/* חלקים מרכזיים */
-section {
-    margin: 30px auto;
-    max-width: 800px;
-    background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* כותרות חלקים */
-h2 {
-    color: #6a1b9a;
-    border-bottom: 2px solid #6a1b9a;
-    padding-bottom: 5px;
     margin-bottom: 20px;
 }
 
-/* מרווח בין חלקים */
-section + section {
+    header h1 {
+        font-size: 2rem;
+    }
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        background-color: #6a1b9a;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+        .nav-links a:hover {
+            background-color: #7b1fa2;
+            transform: scale(1.05);
+        }
+
+/* Main Content Styles */
+main {
     margin-top: 20px;
 }
 
-/* שינוי צבע במעבר עכבר על כפתורים */
-button:hover {
-    background-color: #8e24aa;
-    transition: background-color 0.3s ease;
+.personal-section {
+    margin-bottom: 20px;
+    background-color: rgba(249, 249, 249, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #4a148c;
+    margin-bottom: 15px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.personal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+    .personal-table th, .personal-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .personal-table th {
+        background-color: #6a1b9a;
+        color: white;
+        font-weight: bold;
+    }
+
+    .personal-table td {
+        background-color: #ffffff;
+    }
+
+    .personal-table tr:nth-child(even) td {
+        background-color: rgba(243, 229, 245, 0.9);
+    }
+
+    .personal-table tr:hover td {
+        background-color: rgba(225, 190, 231, 0.9);
+    }
+
+/* Footer Styles */
+footer {
+    background-color: #4a148c;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1rem;
+    min-height: 50px;
+}
+
+    footer p {
+        margin: 0;
+    }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .personal-table th, .personal-table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
 }

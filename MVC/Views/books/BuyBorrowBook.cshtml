@@ -75,7 +75,19 @@
                             </span>
                         }
                         <button onclick="addToCart(@(book.book_id), 'Buy')" class="btn btn-success buy-button">BUY NOW</button>
+                        <button onclick="loadReviews(@book.book_id)" class="btn btn-info review-button">VIEW REVIEW</button>
                     </div>
+
+                    <!-- חלונית לביקורות -->
+                    <div id="reviewBox_@book.book_id" class="review-box" style="display: none;">
+                        <h4>Reviews for @book.book_name</h4>
+                        <div id="reviewsContent_@book.book_id">
+                            <!-- כאן יטענו הביקורות -->
+                            <p>Loading reviews...</p>
+                        </div>
+                        <button onclick="closeReview('reviewBox_@book.book_id')" class="btn btn-secondary">CLOSE</button>
+                    </div>
+
                 </div>
             }
         </div>
@@ -123,21 +135,59 @@
                 booksContainer.innerHTML = "";
                 response.books.forEach(book => {
                     booksContainer.innerHTML += `
-                            <div class="book-item">
-                                <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
-                                <h2>${book.book_name}</h2>
-                                <p><strong>Author:</strong> ${book.author}</p>
-                                <p><strong>Category:</strong> ${book.category}</p>
-                                <p><strong>Language:</strong> ${book.language}</p>
-                                <p><strong>Price:</strong> $${book.price}</p>
-                                <div class="actions">
-                                    ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
-                                    <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
-                                </div>
-                            </div>`;
+                                <div class="book-item">
+                                    <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                                    <h2>${book.book_name}</h2>
+                                    <p><strong>Author:</strong> ${book.author}</p>
+                                    <p><strong>Category:</strong> ${book.category}</p>
+                                    <p><strong>Language:</strong> ${book.language}</p>
+                                    <p><strong>Price:</strong> $${book.price}</p>
+                                    <div class="actions">
+                                        ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
+                                        <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
+                                    </div>
+                                </div>`;
                 });
             });
         }
+
+        function loadReviews(bookId) {
+            const reviewBox = document.getElementById(`reviewBox_${bookId}`);
+            const reviewContent = document.getElementById(`reviewsContent_${bookId}`);
+
+            // הצגת חלונית הטעינה
+            reviewBox.style.display = "block";
+            reviewContent.innerHTML = "<p>Loading reviews...</p>";
+
+            // שליחת בקשת AJAX לשרת
+            fetch(`/books/GetBookReviews?bookId=${bookId}`)
+                .then(response => response.text())
+                .then(data => {
+                    reviewContent.innerHTML = data; // הצגת התוכן שהתקבל מהשרת
+                })
+                .catch(error => {
+                    console.error("Error loading reviews:", error);
+                    reviewContent.innerHTML = "<p>Error loading reviews. Please try again later.</p>";
+                });
+        }
+
+        function closeReview(reviewBoxId) {
+            const reviewBox = document.getElementById(reviewBoxId);
+            reviewBox.style.display = "none";
+        }
+
+
     </script>
+    <!-- Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Reviews</h2>
+            <div id="reviewsContainer">
+                <!-- הביקורות ייטענו דינמית -->
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

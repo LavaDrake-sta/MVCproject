@@ -8,145 +8,153 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Area</title>
-    <link rel="stylesheet" href="~/CSS/Homepage.css">
-    <link rel="stylesheet" href="~/CSS/PersonalArea.css"> <!-- סטייל מותאם אישית -->
+    <link rel="stylesheet" href="~/CSS/PersonalArea.css">
 </head>
 
 <body>
-    <header>
-        <h1>Personal Area</h1>
-        <nav class="nav-container">
-            <a href="@Url.Action("HomePage", "Home")" class="btn btn-nav">Home</a>
-            <a href="@Url.Action("SiteReview", "SiteReview")" class="btn btn-nav">Leave a Site Review</a>
-            @if (Session["UserName"] != null)
+    <div class="personal-area-container">
+        <header class="personal-area-header">
+            <h1>אזור אישי</h1>
+            <nav class="personal-nav">
+                <a href="@Url.Action("HomePage", "Home")" class="personal-nav-button">דף הבית</a>
+                <a href="@Url.Action("SiteReview", "SiteReview")" class="personal-nav-button">כתיבת ביקורת</a>
+                @if (Session["UserName"] != null)
+                {
+                    <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
+                        <button type="submit" class="personal-nav-button btn-logout">התנתק</button>
+                    </form>
+                }
+            </nav>
+        </header>
+
+        <main>
+            @if (Session["UserName"] == null)
             {
-                <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
-                    <button type="submit" class="btn btn-logout">Logout</button>
-                </form>
+                <section class="personal-section">
+                    <h2 class="section-title">עליך להתחבר כדי לצפות בדף זה</h2>
+                    <a href="@Url.Action("Login", "Users")" class="personal-nav-button">התחבר</a>
+                </section>
             }
-        </nav>
-    </header>
+            else
+            {
+                <!-- ספרים שנרכשו -->
+                <section class="personal-section">
+                    <h2 class="section-title">הספרים שרכשת</h2>
+                    @if (ViewBag.PurchasedBooks != null && ViewBag.PurchasedBooks.Count > 0)
+                    {
+                        <div class="table-container">
+                            <table class="personal-table">
+                                <thead>
+                                    <tr>
+                                        <th>שם הספר</th>
+                                        <th>מחיר</th>
+                                        <th>תאריך רכישה</th>
+                                        <th>ביקורת</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in ViewBag.PurchasedBooks)
+                                    {
+                                        <tr>
+                                            <td>@book.product</td>
+                                            <td>₪@book.price</td>
+                                            <td>@book.date.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <a href="@Url.Action("BookReview", "BookReview", new { bookName = book.product })" class="personal-nav-button">
+                                                    השאר ביקורת
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>לא נמצאו רכישות.</p>
+                    }
+                </section>
 
-    <main>
-        @if (Session["UserName"] == null)
-        {
-            <section class="error-message">
-                <h2>You need to log in to view this page.</h2>
-                <a href="@Url.Action("Login", "Users")" class="btn btn-login">Go to Login</a>
-            </section>
-        }
-        else
-        {
-            <!-- ✅ ספרים שנרכשו -->
-            <section class="purchased-books">
-                <h2>הספרים שרכשת</h2>
-                @if (ViewBag.PurchasedBooks != null && ViewBag.PurchasedBooks.Count > 0)
-                {
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>שם הספר</th>
-                                <th>מחיר</th>
-                                <th>תאריך רכישה</th>
-                                <th>ביקורת</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var book in ViewBag.PurchasedBooks)
-                            {
-                                <tr>
-                                    <td>@book.product</td>
-                                    <td>$@book.price</td>
-                                    <td>@book.date.ToString("dd/MM/yyyy")</td>
-                                    <td>
-                                        <a href="@Url.Action("BookReview", "BookReview", new { bookName = book.product })" class="btn btn-review">
-                                            השאר ביקורת
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <p>לא נמצאו רכישות.</p>
-                }
-            </section>
+                <!-- ספרים מושכרים -->
+                <section class="personal-section">
+                    <h2 class="section-title">הספרים שהשכרת</h2>
+                    @if (ViewBag.BorrowedBooks != null && ViewBag.BorrowedBooks.Count > 0)
+                    {
+                        <div class="table-container">
+                            <table class="personal-table">
+                                <thead>
+                                    <tr>
+                                        <th>שם הספר</th>
+                                        <th>קטגוריה</th>
+                                        <th>תאריך השכרה</th>
+                                        <th>תאריך החזרה</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in ViewBag.BorrowedBooks)
+                                    {
+                                        <tr>
+                                            <td>@book.book_name</td>
+                                            <td>@book.category</td>
+                                            <td>@book.date_taken.ToString("dd/MM/yyyy")</td>
+                                            <td>@book.return_date.ToString("dd/MM/yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>לא נמצאו ספרים מושכרים.</p>
+                    }
+                </section>
 
-            <!-- ✅ ספרים מושכרים -->
-            <section class="borrowed-books">
-                <h2>הספרים שאתה משכיר</h2>
-                @if (ViewBag.BorrowedBooks != null && ViewBag.BorrowedBooks.Count > 0)
-                {
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>שם הספר</th>
-                                <th>קטגוריה</th>
-                                <th>תאריך השכרה</th>
-                                <th>תאריך החזרה</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var book in ViewBag.BorrowedBooks)
-                            {
-                                <tr>
-                                    <td>@book.book_name</td>
-                                    <td>@book.category</td>
-                                    <td>@book.date_taken.ToString("dd/MM/yyyy")</td>
-                                    <td>@book.return_date.ToString("dd/MM/yyyy")</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <p>לא נמצאו ספרים מושכרים.</p>
-                }
-            </section>
+                <!-- רשימת המתנה -->
+                <section class="personal-section">
+                    <h2 class="section-title">רשימת ההמתנה שלך</h2>
+                    @if (ViewBag.WaitingBooks != null && ViewBag.WaitingBooks.Count > 0)
+                    {
+                        <div class="table-container">
+                            <table class="personal-table">
+                                <thead>
+                                    <tr>
+                                        <th>שם הספר</th>
+                                        <th>תאריך הצטרפות לרשימה</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in ViewBag.WaitingBooks)
+                                    {
+                                        <tr>
+                                            <td>@book.book_name</td>
+                                            <td>@book.date.ToString("dd/MM/yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>לא נמצאו ספרים ברשימת ההמתנה.</p>
+                    }
+                </section>
+            }
+        </main>
 
-            <!-- ✅ ספרים ברשימת המתנה -->
-            <section class="waiting-list">
-                <h2>רשימת ההמתנה שלך</h2>
-                @if (ViewBag.WaitingBooks != null && ViewBag.WaitingBooks.Count > 0)
-                {
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>שם הספר</th>
-                                <th>תאריך הצטרפות לרשימה</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var book in ViewBag.WaitingBooks)
-                            {
-                                <tr>
-                                    <td>@book.book_name</td>
-                                    <td>@book.date.ToString("dd/MM/yyyy")</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <p>לא נמצאו ספרים ברשימת ההמתנה.</p>
-                }
-            </section>
-        }
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Digital Library</p>
-    </footer>
+        <footer class="personal-section">
+            <p>&copy; 2025 Digital Library</p>
+        </footer>
+    </div>
 </body>
 
 </html>
