@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using MVC.Models;
@@ -14,6 +15,53 @@ namespace MyMvcProject.Controllers
         public PersonalAreaController()
         {
             db = new MvcProjectContext();
+        }
+        // הורדת ספר לדוגמה
+        public FileResult DownloadBook(int bookId, string format)
+        {
+            // יצירת נתיב לתיקיית קבצים זמניים
+            string tempFolderPath = Server.MapPath("~/TempFiles");
+
+            // בדיקה אם התיקיה קיימת, אם לא - יצירתה
+            if (!Directory.Exists(tempFolderPath))
+            {
+                Directory.CreateDirectory(tempFolderPath);
+            }
+            // יצירת קובץ טקסט זמני
+            string fileName = "SampleBook.txt";
+            string filePath = Path.Combine(Server.MapPath("~/TempFiles"), fileName);
+
+            // כתיבת תוכן לדוגמה לקובץ
+            if (!System.IO.File.Exists(filePath))
+            {
+                System.IO.File.WriteAllText(filePath, "This is a sample book content for download.");
+            }
+
+            // קביעת סוג הקובץ להורדה
+            string contentType = "application/octet-stream";
+            if (format == "pdf")
+                contentType = "application/pdf";
+            else if (format == "epub")
+                contentType = "application/epub+zip";
+            else if (format == "f2b")
+                contentType = "application/octet-stream";
+            else if (format == "mobi")
+                contentType = "application/x-mobipocket-ebook";
+
+            return File(filePath, contentType, fileName);
+        }
+        // מחיקת ספר מהיסטוריית ההזמנות
+        [HttpPost]
+        public ActionResult DeleteOrder(int orderId)
+        {
+            var order = db.orders.FirstOrDefault(o => o.id == orderId);
+            if (order != null)
+            {
+                db.orders.Remove(order);
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "ההזמנה נמחקה בהצלחה.";
+            }
+            return RedirectToAction("PersonalArea");
         }
 
         private bool IsUserLoggedIn()
@@ -132,6 +180,87 @@ namespace MyMvcProject.Controllers
                 var hash = sha256.ComputeHash(bytes);
                 return System.Convert.ToBase64String(hash);
             }
+        }
+        [HttpPost]
+        public ActionResult ReturnBookNow(int bookId)
+        {
+            if (Session["UserName"] == null)
+            {
+                TempData["ErrorMessage"] = "עליך להתחבר כדי להחזיר ספר.";
+                return RedirectToAction("Login", "Users");
+            }
+
+            string userName = Session["UserName"].ToString();
+
+            // שליפת האימייל מה-DB לפי שם המשתמש
+            string userEmail = db.users.FirstOrDefault(u => u.name == userName)?.email;
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                TempData["ErrorMessage"] = "משתמש לא נמצא במערכת.";
+                return RedirectToAction("Login", "Users");
+            }
+
+            var borrowedBook = db.borrowing_Books.FirstOrDefault(b => b.book_id == bookId && b.email == userEmail);
+            if (borrowedBook == null)
+            {
+                TempData["ErrorMessage"] = "הספר לא נמצא ברשימת ההשאלות שלך.";
+                return RedirectToAction("PersonalArea");
+            }
+
+            var dbBook = db.books.FirstOrDefault(b => b.book_id == bookId);
+            if (dbBook == null)
+            {
+                TempData["ErrorMessage"] = "הספר לא נמצא במערכת.";
+                return RedirectToAction("PersonalArea");
+            }
+
+            if (dbBook.CurrentRentCount.HasValue && dbBook.CurrentRentCount > 0)
+            {
+                dbBook.CurrentRentCount--;
+            }
+            else
+            {
+                dbBook.CurrentRentCount = 0;
+            }
+
+            db.borrowing_Books.Remove(borrowedBook);
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = "הספר הוחזר בהצלחה.";
+            return RedirectToAction("PersonalArea");
+        }
+        public void AutoReturnBorrowedBooks()
+        {
+            var today = DateTime.Today;
+            var borrowedBooks = db.borrowing_Books.Where(b => b.return_date <= today).ToList();
+
+            foreach (var book in borrowedBooks)
+            {
+                var dbBook = db.books.FirstOrDefault(b => b.book_id == book.book_id);
+                if (dbBook != null)
+                {
+                    dbBook.CurrentRentCount--;
+                }
+                db.borrowing_Books.Remove(book);
+            }
+            db.SaveChanges();
+        }
+        [HttpPost]
+        public ActionResult RemoveFromWaitingList(string bookName)
+        {
+            var waitingBook = db.waiting_Lists.FirstOrDefault(w => w.book_name == bookName);
+            if (waitingBook != null)
+            {
+                db.waiting_Lists.Remove(waitingBook);
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "הספר הוסר מרשימת ההמתנה בהצלחה.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "הספר לא נמצא ברשימת ההמתנה.";
+            }
+            return RedirectToAction("PersonalArea");
         }
     }
 }

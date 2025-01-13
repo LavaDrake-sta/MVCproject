@@ -15,34 +15,43 @@ namespace MyMvcProject.Controllers
         }
 
         // הצגת ביקורות על ספר מסוים
-        public ActionResult BookReview(int bookId)
+        public ActionResult BookReview(string book_name)
         {
 
-            ViewBag.Book = db.books.FirstOrDefault(b => b.book_id == bookId);
+            ViewBag.Book = db.books.FirstOrDefault(b => b.book_name == book_name);
             return View();
         }
 
         // הוספת ביקורת על ספר
+
+        // הוספת ביקורת על ספר לפי שם הספר
         [HttpPost]
-        public ActionResult AddReview(int bookId, string content)
+        public ActionResult AddReview(string bookName, string content)
         {
             if (string.IsNullOrEmpty(content))
             {
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
-                return RedirectToAction("BookReview", new { bookId });
+                return RedirectToAction("BookReview", new { bookName });
+            }
+
+            var book = db.books.FirstOrDefault(b => b.book_name == bookName);
+            if (book == null)
+            {
+                TempData["ErrorMessage"] = "הספר לא נמצא.";
+                return RedirectToAction("PersonalArea");
             }
 
             db.reviews.Add(new review
             {
-                email = User.Identity.Name, // שם משתמש מחובר
+                email = User.Identity.Name,
                 Content = content,
                 type = "Book",
-                book_ID = bookId
+                book_ID = book.book_id
             });
 
             db.SaveChanges();
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("BookReview", new { bookId });
+            return RedirectToAction("PersonalArea");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/* General Styles */
+﻿/* כללי */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,79 +8,103 @@
 body {
     background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f9;
     color: #333;
-    direction: ltr;
-    text-align: left;
 }
 
-.personal-area-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-/* Header Styles */
+/* כותרת */
 header {
-    background-color: #4a148c;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(61, 0, 61, 0.9); /* סגול כהה עם שקיפות */
     color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    text-align: center;
+    padding: 15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
 
     header h1 {
-        font-size: 2rem;
+        font-size: 2.2em;
+        margin: 0;
     }
 
-.nav-links {
+/* תפריט ניווט */
+.nav-container {
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 10px;
 }
 
-    .nav-links a {
+    .nav-container a {
         text-decoration: none;
         color: white;
-        background-color: #6a1b9a;
+        background-color: rgba(61, 0, 61, 0.9);
         padding: 12px 20px;
-        border-radius: 5px;
+        border-radius: 30px;
         font-weight: bold;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s, transform 0.3s;
+        font-size: 1em;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
     }
 
-        .nav-links a:hover {
+        .nav-container a:hover {
             background-color: #7b1fa2;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-/* Main Content Styles */
+/* כפתורים */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+    .btn:hover {
+        background-color: #350c6e;
+        transform: scale(1.1);
+    }
+
+.btn-danger {
+    background-color: #e53935;
+    color: white;
+}
+
+    .btn-danger:hover {
+        background-color: #c62828;
+    }
+
+.btn-primary {
+    background-color: rgba(61, 0, 61, 0.8);
+    color: white;
+}
+
+/* תוכן מרכזי */
 main {
-    margin-top: 20px;
+    margin-top: 150px;
+    text-align: center;
 }
 
 .personal-section {
-    margin-bottom: 20px;
     background-color: rgba(249, 249, 249, 0.9);
-    border: 1px solid #ccc;
-    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.section-title {
-    font-size: 1.8rem;
-    color: #4a148c;
-    margin-bottom: 15px;
-}
-
+/* טבלאות */
 .table-container {
     overflow-x: auto;
 }
@@ -88,7 +112,7 @@ main {
 .personal-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
     .personal-table th, .personal-table td {
@@ -98,13 +122,8 @@ main {
     }
 
     .personal-table th {
-        background-color: #6a1b9a;
+        background-color: rgba(61, 0, 61, 0.9);
         color: white;
-        font-weight: bold;
-    }
-
-    .personal-table td {
-        background-color: #ffffff;
     }
 
     .personal-table tr:nth-child(even) td {
@@ -115,38 +134,35 @@ main {
         background-color: rgba(225, 190, 231, 0.9);
     }
 
-/* Footer Styles */
+/* פוטר */
 footer {
-    background-color: #4a148c;
+    background-color: rgba(61, 0, 61, 0.9);
     color: white;
     padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
+    text-align: center;
     font-size: 1rem;
-    min-height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 20px;
 }
 
-    footer p {
-        margin: 0;
+/* מסכים קטנים */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.6em;
     }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .nav-links {
+    .nav-container {
         flex-direction: column;
         gap: 10px;
     }
 
+        .nav-container a {
+            font-size: 0.9em;
+        }
+
     .personal-table th, .personal-table td {
-        font-size: 0.9rem;
+        font-size: 0.9em;
         padding: 8px;
-    }
-
-    header h1 {
-        font-size: 1.6rem;
-    }
-
-    .section-title {
-        font-size: 1.4rem;
     }
 }

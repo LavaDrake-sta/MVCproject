@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +20,14 @@
 <body>
     <div class="personal-area-container">
         <header class="personal-area-header">
-            <h1>אזור אישי</h1>
+            <h1>Personal Area</h1>
             <nav class="personal-nav">
-                <a href="@Url.Action("HomePage", "Home")" class="personal-nav-button">דף הבית</a>
-                <a href="@Url.Action("SiteReview", "SiteReview")" class="personal-nav-button">כתיבת ביקורת</a>
+                <a href="@Url.Action("HomePage", "Home")" class="personal-nav-button">Home Page</a>
+                <a href="@Url.Action("SiteReview", "SiteReview")" class="personal-nav-button">Write a Review</a>
                 @if (Session["UserName"] != null)
                 {
                     <form action="@Url.Action("Logout", "Users")" method="post" style="display: inline;">
-                        <button type="submit" class="personal-nav-button btn-logout">התנתק</button>
+                        <button type="submit" class="personal-nav-button btn-logout">Logout</button>
                     </form>
                 }
             </nav>
@@ -38,25 +37,27 @@
             @if (Session["UserName"] == null)
             {
                 <section class="personal-section">
-                    <h2 class="section-title">עליך להתחבר כדי לצפות בדף זה</h2>
-                    <a href="@Url.Action("Login", "Users")" class="personal-nav-button">התחבר</a>
+                    <h2 class="section-title">You must log in to view this page</h2>
+                    <a href="@Url.Action("Login", "Users")" class="personal-nav-button">Login</a>
                 </section>
             }
             else
             {
-                <!-- ספרים שנרכשו -->
+                <!-- Purchased Books -->
                 <section class="personal-section">
-                    <h2 class="section-title">הספרים שרכשת</h2>
+                    <h2 class="section-title">Your Purchased Books</h2>
                     @if (ViewBag.PurchasedBooks != null && ViewBag.PurchasedBooks.Count > 0)
                     {
                         <div class="table-container">
                             <table class="personal-table">
                                 <thead>
                                     <tr>
-                                        <th>שם הספר</th>
-                                        <th>מחיר</th>
-                                        <th>תאריך רכישה</th>
-                                        <th>ביקורת</th>
+                                        <th>Book Name</th>
+                                        <th>Price</th>
+                                        <th>Purchase Date</th>
+                                        <th>Review</th>
+                                        <th>Download</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,9 +68,32 @@
                                             <td>₪@book.price</td>
                                             <td>@book.date.ToString("dd/MM/yyyy")</td>
                                             <td>
-                                                <a href="@Url.Action("BookReview", "BookReview", new { bookName = book.product })" class="personal-nav-button">
-                                                    השאר ביקורת
+                                                <a href="@Url.Action("BookReview", "PersonalArea", new { bookName = book.product })" class="personal-nav-button">
+                                                    Review
                                                 </a>
+                                            </td>
+
+                                            <!-- הורדה בפורמטים שונים -->
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="personal-nav-button dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        Download
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "pdf" })">PDF</a>
+                                                        <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "epub" })">EPUB</a>
+                                                        <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "f2b" })">F2B</a>
+                                                        <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "mobi" })">MOBI</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <!-- מחיקה עם אישור -->
+                                            <td>
+                                                <form action="@Url.Action("DeleteOrder", "PersonalArea")" method="post" onsubmit="return confirm('האם אתה בטוח שברצונך למחוק את הספר מהיסטוריית ההזמנות?');">
+                                                    <input type="hidden" name="orderId" value="@book.id" />
+                                                    <button type="submit" class="personal-nav-button btn-delete">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     }
@@ -79,23 +103,24 @@
                     }
                     else
                     {
-                        <p>לא נמצאו רכישות.</p>
+                        <p>No purchases found.</p>
                     }
                 </section>
 
-                <!-- ספרים מושכרים -->
+                <!-- Borrowed Books -->
                 <section class="personal-section">
-                    <h2 class="section-title">הספרים שהשכרת</h2>
+                    <h2 class="section-title">Your Borrowed Books</h2>
                     @if (ViewBag.BorrowedBooks != null && ViewBag.BorrowedBooks.Count > 0)
                     {
                         <div class="table-container">
                             <table class="personal-table">
                                 <thead>
                                     <tr>
-                                        <th>שם הספר</th>
-                                        <th>קטגוריה</th>
-                                        <th>תאריך השכרה</th>
-                                        <th>תאריך החזרה</th>
+                                        <th>Book Name</th>
+                                        <th>Category</th>
+                                        <th>Borrow Date</th>
+                                        <th>Return Date</th>
+                                        <th>Return Now</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -106,6 +131,12 @@
                                             <td>@book.category</td>
                                             <td>@book.date_taken.ToString("dd/MM/yyyy")</td>
                                             <td>@book.return_date.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <form action="@Url.Action("ReturnBookNow", "PersonalArea")" method="post" onsubmit="return confirm('האם אתה בטוח שברצונך להחזיר את הספר?');">
+                                                    <input type="hidden" name="bookId" value="@book.book_id" />
+                                                    <button type="submit" class="personal-nav-button btn-return">Return</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -114,21 +145,22 @@
                     }
                     else
                     {
-                        <p>לא נמצאו ספרים מושכרים.</p>
+                        <p>No borrowed books found.</p>
                     }
                 </section>
 
-                <!-- רשימת המתנה -->
+                <!-- Waiting List -->
                 <section class="personal-section">
-                    <h2 class="section-title">רשימת ההמתנה שלך</h2>
+                    <h2 class="section-title">Your Waiting List</h2>
                     @if (ViewBag.WaitingBooks != null && ViewBag.WaitingBooks.Count > 0)
                     {
                         <div class="table-container">
                             <table class="personal-table">
                                 <thead>
                                     <tr>
-                                        <th>שם הספר</th>
-                                        <th>תאריך הצטרפות לרשימה</th>
+                                        <th>Book Name</th>
+                                        <th>Date Added</th>
+                                        <th>Remove from List</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,6 +169,12 @@
                                         <tr>
                                             <td>@book.book_name</td>
                                             <td>@book.date.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <form action="@Url.Action("RemoveFromWaitingList", "PersonalArea")" method="post" onsubmit="return confirm('האם אתה בטוח שברצונך להסיר את הספר מרשימת ההמתנה?');">
+                                                    <input type="hidden" name="bookName" value="@book.book_name" />
+                                                    <button type="submit" class="personal-nav-button btn-remove">Remove</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -145,7 +183,7 @@
                     }
                     else
                     {
-                        <p>לא נמצאו ספרים ברשימת ההמתנה.</p>
+                        <p>No books in the waiting list.</p>
                     }
                 </section>
             }

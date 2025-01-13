@@ -180,8 +180,10 @@
                     <td>
                         <button onclick="editBook(${book.book_id})">ערוך</button>
                         <button onclick="deleteBook(${book.book_id})">מחק</button>
+                        <button onclick="editBookPrice(${book.book_id})">ערוך מחיר ספר</button>
+
                     </td>
-                </tr>`;
+                </tr>`
             });
         }
 
@@ -232,16 +234,41 @@
 
         // פונקציות לניהול
         async function addBook() {
+            // Fetch all books to determine the last book_id
+            const booksResponse = await fetch('/Admin/GetBooks');
+            const books = await booksResponse.json();
+
+            // Calculate the next book_id
+            const lastBook = books.length > 0 ? books[books.length - 1] : null;
+            const nextBookId = lastBook ? lastBook.book_id + 1 : 1;
+
             const book_name = prompt("הכנס שם ספר:");
             const category = prompt("הכנס קטגוריה:");
             const language = prompt("הכנס שפה:");
             const publisher = prompt("הכנס שם הוצאה:");
-            const Publication_date = prompt("הכנס תאריך פרסום (YYYY-MM-DD):");
+            const publication_date = prompt("הכנס תאריך פרסום (YYYY-MM-DD):");
             const link = prompt("הכנס קישור לספר:");
             const price = parseFloat(prompt("הכנס מחיר:"));
             const ImageUrl = prompt("הכנס כתובת URL לתמונה:");
+            const author = prompt("הכנס שם מחבר:");
+            const MaxRentCount = parseInt(prompt("הכנס כמות השכרות מקסימלית:"));
 
-            const book = { book_name, category, language, publisher, Publication_date, link, price, ImageUrl };
+            const book = {
+                book_id: nextBookId,
+                book_name,
+                category,
+                language,
+                publisher,
+                publication_date,
+                link,
+                price,
+                ImageUrl,
+                author,
+                MaxRentCount,
+                CurrentRentCount: 0,
+                IsSold: true,
+                IsRent: true
+            };
 
             const response = await fetch('/Admin/AddBook', {
                 method: 'POST',
@@ -253,12 +280,30 @@
             alert(result.message);
 
             if (result.success) {
-                loadBooks(); // רענון רשימת הספרים
+                loadBooks(); // Refresh the book list
             }
         }
 
         async function addUser() {
-            // הוספת משתמש חדש
+            const name = prompt("הכנס שם משתמש:");
+            const email = prompt("הכנס אימייל:");
+            const password = prompt("הכנס סיסמה:");
+            const type = prompt("הכנס סוג משתמש (Admin/User):");
+
+            const user = { name, email, password, type };
+
+            const response = await fetch('/Admin/AddUser', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+
+            if (result.success) {
+                loadUsers(); // Refresh the user list
+            }
         }
 
         async function addToWaitingList() {
@@ -282,6 +327,29 @@
                 loadWaitingList(); // רענון רשימת ההמתנה
             }
         }
+        async function editBookPrice() {
+            const bookId = parseInt(prompt("הכנס את מזהה הספר (ID):"));
+            const newPrice = parseFloat(prompt("הכנס את המחיר החדש:"));
+
+            if (isNaN(bookId) || isNaN(newPrice)) {
+                alert("אנא הזן ערכים חוקיים.");
+                return;
+            }
+
+            const response = await fetch('/Admin/EditBookPrice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ book_id: bookId, newPrice: newPrice }),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+
+            if (result.success) {
+                loadBooks(); // רענון רשימת הספרים
+            }
+        }
+
     </script>
 </body>
 </html>

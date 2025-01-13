@@ -195,19 +195,19 @@ span {
     }
 }
 
- עיצוב הרקע 
+עיצוב הרקע
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);  רקע כהה עם שקיפות 
-    z-index: 999;  מעל כל תוכן הדף 
-    display: none;  מוסתר כברירת מחדל 
+    background: rgba(0, 0, 0, 0.5); /*רקע כהה עם שקיפות*/
+    z-index: 999; /* מעל כל תוכן הדף*/
+    display: none; /*מוסתר כברירת מחדל */
 }
 
- עיצוב החלונית 
+עיצוב החלונית
 .review-box {
     background: #fff;
     border: 1px solid #ccc;
@@ -218,33 +218,33 @@ span {
     top: 20%;
     left: 50%;
     transform: translate(-50%, -20%);
-    z-index: 1000;  מעל הרקע 
+    z-index: 1000; /* מעל הרקע*/
     width: 50%;
     display: none;
 }
 
-    .review-box h4 {
-        margin-top: 0;
-        color: #6d1a74;
-        text-align: center;
-    }
+.review-box h4 {
+    margin-top: 0;
+    color: #6d1a74;
+    text-align: center;
+}
 
-    .review-box ul {
-        padding: 0;
-        list-style-type: none;
-    }
+.review-box ul {
+    padding: 0;
+    list-style-type: none;
+}
 
-    .review-box li {
-        margin-bottom: 10px;
-        padding: 5px 0;
-        border-bottom: 1px solid #eee;
-    }
+.review-box li {
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
 
-    .review-box .btn {
-        display: block;
-        margin: 10px auto;
-        text-align: center;
-    }
+.review-box .btn {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
 
 #cartButton, #homeButton {
     direction: rtl; /* מוודא שהכיוון מתאים לשפה */

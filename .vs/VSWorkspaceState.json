@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MVC",
+    "\\MVC\\CSS"
   ],
-  "SelectedNode": "\\MVC.sln",
+  "SelectedNode": "\\MVC\\CSS\\Cartpage.css",
   "PreviewInSolutionExplorer": false
 }
