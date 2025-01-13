@@ -17,8 +17,6 @@ namespace MyMvcProject.Controllers
         // הצגת ביקורות על האתר
         public ActionResult SiteReview()
         {
-
-
             return View();
         }
 
@@ -34,16 +32,15 @@ namespace MyMvcProject.Controllers
 
             db.reviews.Add(new review
             {
-                email = User.Identity.Name, // שם משתמש מחובר
+                email = User.Identity.Name,
                 Content = content,
                 type = "Site",
-                book_ID = null // לא רלוונטי לביקורות על האתר
-                
+                book_ID = null
             });
 
             db.SaveChanges();
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("SiteReview");
+            return RedirectToAction("PersonalArea");
         }
     }
 }

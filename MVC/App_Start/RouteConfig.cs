@@ -54,14 +54,14 @@ namespace MVC
             // נתיב לעמוד ביקורת על האתר
             routes.MapRoute(
                 name: "SiteReview",
-                url: "SiteReview/Index",
-                defaults: new { controller = "SiteReview", action = "Index" }
+                url: "SiteReview/SiteReview",
+                defaults: new { controller = "SiteReview", action = "SiteReview" }
             );
             // נתיב לביקורת על ספר 
             routes.MapRoute(
                 name: "BookReview",
-                url: "BookReview/Index",
-                defaults: new { controller = "BookReview", action = "Index" }
+                url: "BookReview/BookReview",
+                defaults: new { controller = "BookReview", action = "BookReview" }
             );
             // נתיב ברירת מחדל
             routes.MapRoute(

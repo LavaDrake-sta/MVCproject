@@ -217,5 +217,18 @@ namespace MyMvcProject.Controllers
 
             return Json(siteReviews, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult EditBookPrice(int book_id, decimal newPrice)
+        {
+            var existingBook = db.books.Find(book_id);
+            if (existingBook != null)
+            {
+                existingBook.price = newPrice;
+                db.SaveChanges();
+                return Json(new { success = true, message = "מחיר הספר עודכן בהצלחה." });
+            }
+            return Json(new { success = false, message = "הספר לא נמצא." });
+        }
+
     }
 }

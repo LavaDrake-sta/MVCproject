@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
 
     <body>
 
@@ -20,16 +19,20 @@
             <input type="text" id="searchInput" placeholder="Search for a book..." />
             <button onclick="searchBooks()">Search</button>
         </div>
-
         <div class="nav-container">
             <!-- 🛒 כפתור עגלה -->
-            <a href="/cart" id="cartButton">
-                <i class="fa fa-shopping-cart"></i> עגלה
-            </a>
+            <form action="@Url.Action("Cart", "Cart")" method="post" style="display:inline;">
+                <button type="submit" id="cartButton">
+                    <i class="fa fa-shopping-cart"></i> עגלה
+                </button>
+            </form>
+
             <!--Home-->
-            <a href="/home" id="homeButton">
-                <i class="fa fa-home"></i> דף בית
-            </a>
+            <form action="@Url.Action("Index", "Home")" method="get" style="display:inline;">
+                <button type="submit" id="homeButton">
+                    <i class="fa fa-home"></i> דף בית
+                </button>
+            </form>
         </div>
 
         <div class="container">
@@ -39,6 +42,7 @@
                 <input type="text" id="searchInput" placeholder="Search for a book..." />
                 <button onclick="searchBooks()">Search</button>
             </div>
+        </div>
 
             <div class="container">
                 <!-- 🔔 הודעת שגיאה לרשימת המתנה -->
@@ -160,18 +164,18 @@
                         booksContainer.innerHTML = "";
                         response.books.forEach(book => {
                             booksContainer.innerHTML += `
-                                                        <div class="book-item">
-                                                            <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
-                                                            <h2>${book.book_name}</h2>
-                                                            <p><strong>Author:</strong> ${book.author}</p>
-                                                            <p><strong>Category:</strong> ${book.category}</p>
-                                                            <p><strong>Language:</strong> ${book.language}</p>
-                                                            <p><strong>Price:</strong> $${book.price}</p>
-                                                            <div class="actions">
-                                                                ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
-                                                                <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
-                                                            </div>
-                                                        </div>`;
+                                                                    <div class="book-item">
+                                                                        <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                                                                        <h2>${book.book_name}</h2>
+                                                                        <p><strong>Author:</strong> ${book.author}</p>
+                                                                        <p><strong>Category:</strong> ${book.category}</p>
+                                                                        <p><strong>Language:</strong> ${book.language}</p>
+                                                                        <p><strong>Price:</strong> $${book.price}</p>
+                                                                        <div class="actions">
+                                                                            ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
+                                                                            <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
+                                                                        </div>
+                                                                    </div>`;
                         });
                     });
                 }
@@ -193,13 +197,13 @@
                             if (data.success) {
                                 reviewContent.innerHTML = data.reviews
                                     .map(review => `
-                                                <li>
-                                                    <strong>Email:</strong> ${review.email}<br />
-                                                    <strong>Content:</strong> ${review.Content}<br />
-                                                    <strong>Type:</strong> ${review.type}<br />
-                                                    <strong>Date:</strong> ${review.created_at}<br />
-                                                </li>
-                                            `)
+                                                            <li>
+                                                                <strong>Email:</strong> ${review.email}<br />
+                                                                <strong>Content:</strong> ${review.Content}<br />
+                                                                <strong>Type:</strong> ${review.type}<br />
+                                                                <strong>Date:</strong> ${review.created_at}<br />
+                                                            </li>
+                                                        `)
                                     .join('');
                             } else {
                                 reviewContent.innerHTML = `<p>${data.message}</p>`;
