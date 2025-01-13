@@ -3,24 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|MVC||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\views\\personalarea\\personalarea.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\personalarea\\personalarea.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\controllers\\bookreviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\bookreviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\bookreviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\controllers\\sitereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\controllers\\sitereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\sitereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\mvc\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5279151D-165B-43D2-92E5-BD13E03488DA}|MVC\\MVC.csproj|c:\\users\\adist\\source\\repos\\lavadrake-sta\\mvcproject\\mvc\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|909d16b3-c8e8-43d1-a2b8-26ea0d4b6b57"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +36,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,8 +51,37 @@
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "MVC",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\MVC.csproj",
+              "RelativeDocumentMoniker": "MVC\\MVC.csproj",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\MVC.csproj",
+              "RelativeToolTip": "MVC\\MVC.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-13T16:37:42.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PersonalArea.cshtml",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "RelativeToolTip": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-13T15:00:51.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "orders.cs",
               "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\orders.cs",
               "RelativeDocumentMoniker": "MVC\\Models\\orders.cs",
@@ -54,12 +89,11 @@
               "RelativeToolTip": "MVC\\Models\\orders.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T15:08:13.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T15:08:13.55Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "review.cs",
               "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Models\\review.cs",
               "RelativeDocumentMoniker": "MVC\\Models\\review.cs",
@@ -67,47 +101,31 @@
               "RelativeToolTip": "MVC\\Models\\review.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T15:07:46.791Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T15:07:46.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SiteReviewController.cs",
+              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\SiteReviewController.cs",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\SiteReviewController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAIwBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-13T15:01:44.709Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "SiteReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\SiteReviewController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\SiteReviewController.cs*",
-              "RelativeToolTip": "MVC\\Controllers\\SiteReviewController.cs*",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAIwBIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T15:01:44.709Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "BookReviewController.cs",
               "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\BookReviewController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\BookReviewController.cs",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\BookReviewController.cs*",
-              "RelativeToolTip": "MVC\\Controllers\\BookReviewController.cs*",
+              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Controllers\\BookReviewController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\BookReviewController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAywBYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T15:01:24.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PersonalArea.cshtml",
-              "DocumentMoniker": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml",
-              "ToolTip": "C:\\Users\\adist\\source\\repos\\LavaDrake-sta\\MVCproject\\MVC\\Views\\PersonalArea\\PersonalArea.cshtml*",
-              "RelativeToolTip": "MVC\\Views\\PersonalArea\\PersonalArea.cshtml*",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEkAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-13T15:00:51.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T15:01:24.259Z"
             }
           ]
         }
