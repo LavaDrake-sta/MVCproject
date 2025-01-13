@@ -201,51 +201,40 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
+            // מחיקת הספר מטבלת Borrowing_books
             var borrowedBook = db.borrowing_Books.FirstOrDefault(b => b.book_id == bookId && b.email == userEmail);
-            if (borrowedBook == null)
+            if (borrowedBook != null)
             {
-                TempData["ErrorMessage"] = "הספר לא נמצא ברשימת ההשאלות שלך.";
-                return RedirectToAction("PersonalArea");
+                db.borrowing_Books.Remove(borrowedBook);
             }
 
+            // מחיקת הספר מטבלת Borrowed_books_list
+            var borrowedBookList = db.borrowed_Books_Lists.FirstOrDefault(b => b.book_id == bookId);
+            if (borrowedBookList != null)
+            {
+                db.borrowed_Books_Lists.Remove(borrowedBookList);
+            }
+
+            // עדכון מונה ההשכרות
             var dbBook = db.books.FirstOrDefault(b => b.book_id == bookId);
-            if (dbBook == null)
+            if (dbBook != null)
             {
-                TempData["ErrorMessage"] = "הספר לא נמצא במערכת.";
-                return RedirectToAction("PersonalArea");
+                if (dbBook.CurrentRentCount.HasValue && dbBook.CurrentRentCount > 0)
+                {
+                    dbBook.CurrentRentCount--;
+                }
+                else
+                {
+                    dbBook.CurrentRentCount = 0;
+                }
             }
 
-            if (dbBook.CurrentRentCount.HasValue && dbBook.CurrentRentCount > 0)
-            {
-                dbBook.CurrentRentCount--;
-            }
-            else
-            {
-                dbBook.CurrentRentCount = 0;
-            }
-
-            db.borrowing_Books.Remove(borrowedBook);
             db.SaveChanges();
 
             TempData["SuccessMessage"] = "הספר הוחזר בהצלחה.";
             return RedirectToAction("PersonalArea");
         }
-        public void AutoReturnBorrowedBooks()
-        {
-            var today = DateTime.Today;
-            var borrowedBooks = db.borrowing_Books.Where(b => b.return_date <= today).ToList();
-
-            foreach (var book in borrowedBooks)
-            {
-                var dbBook = db.books.FirstOrDefault(b => b.book_id == book.book_id);
-                if (dbBook != null)
-                {
-                    dbBook.CurrentRentCount--;
-                }
-                db.borrowing_Books.Remove(book);
-            }
-            db.SaveChanges();
-        }
+       
         [HttpPost]
         public ActionResult RemoveFromWaitingList(string bookName)
         {
