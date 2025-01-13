@@ -88,16 +88,45 @@ header {
             transform: scale(1.05); /* הקטנת אפקט ההגדלה */
         }
 
-.welcome-section {
+/*.welcome-section {
     margin-top: 110px;
     padding-top: 10px;
     width: 100%;
-    text-align: center; /* ממרכז את התוכן */
+    text-align: center;*/ /* ממרכז את התוכן */
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}*/
+
+.welcome-section {
+    position: relative;
+    margin-top: 50px;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5); /* צבע מלא */
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+    .welcome-section .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: white;
+        opacity: 0.05; /* שקיפות נמוכה */
+        z-index: -1; /* מאחורי התוכן */
+        border-radius: 20px;
+    }
+
 
     .welcome-section h2 {
         color: rgb(100, 0, 100); /* טקסט לבן */

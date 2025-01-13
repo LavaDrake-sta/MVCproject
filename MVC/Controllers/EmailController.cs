@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
-using MVC.Models;
 using MyMvcProject.Data;
 
 namespace MyMvcProject.Controllers
@@ -12,12 +11,12 @@ namespace MyMvcProject.Controllers
     {
         private MvcProjectContext db = new MvcProjectContext();
 
-        // פונקציה לשליחת מייל תודה לאחר רכישה/השכרה
+        // שליחת מייל תודה לאחר רכישה/השכרה
         public void SendThankYouEmail(string email)
         {
             try
             {
-                // שליפה של המשתמש
+                // שליפת המשתמש כולל הזמנות
                 var user = db.users.Include(u => u.orders)
                                    .FirstOrDefault(u => u.email == email);
 
@@ -27,11 +26,10 @@ namespace MyMvcProject.Controllers
                     return;
                 }
 
-                // שליפה של הספרים שנרכשו או נשכרו (למשל מתוך טבלת orders)
-                var books = db.orders
-                              .Where(o => o.email == email)
-                              .Select(o => o.product)
-                              .ToList();
+                // שליפת הספרים שנרכשו או נשכרו
+                var books = user.orders
+                                .Select(o => o.product)
+                                .ToList();
 
                 if (!books.Any())
                 {
@@ -41,12 +39,10 @@ namespace MyMvcProject.Controllers
 
                 // בניית גוף המייל
                 string bookList = string.Join("\n", books);
-                string emailBody = $"Hello {user.name},\n\nThank you for purchasing or renting books from us! The following books have been added to your account:\n\n{bookList}\n\nYou can view your books in your personal area.\n\nBest regards,\nThe Bookstore Team";
+                string emailBody = $"Hello {user.name},\n\nThank you for purchasing or renting books from us! The following books have been added to your account:\n\n{bookList}\n\nBest regards,\nThe Bookstore Team";
 
                 // שליחת המייל
-                bool emailSent = SendEmail(user.email, user.name, "Thank You for Your Purchase!", emailBody);
-
-                if (emailSent)
+                if (SendEmail(user.email, user.name, "Thank You for Your Purchase!", emailBody))
                 {
                     Console.WriteLine($"Thank you email sent to {user.name} ({user.email}).");
                 }
@@ -57,14 +53,14 @@ namespace MyMvcProject.Controllers
             }
         }
 
-        // פונקציה לשליחת מייל תזכורות
+        // שליחת מייל תזכורות
         public void SendReminderEmails()
         {
             try
             {
                 var today = DateTime.Now;
 
-                // מציאת ספרים שצריך להחזיר תוך 5 ימים והמייל קיים ואינו ריק
+                // שליפת ספרים שצריכים לחזור תוך 5 ימים
                 var dueBooks = db.borrowing_Books
                     .Include(b => b.users)
                     .Where(b => DbFunctions.DiffDays(today, b.return_date) == 5 && !string.IsNullOrEmpty(b.email))
@@ -73,14 +69,14 @@ namespace MyMvcProject.Controllers
                 foreach (var book in dueBooks)
                 {
                     var user = book.users;
-                    if (user != null && !string.IsNullOrEmpty(user.email)) // בדיקת קיום מייל של המשתמש
+                    if (user != null && !string.IsNullOrEmpty(user.email))
                     {
-                        // שליחת המייל עם המרת תאריך למחרוזת
-                        bool emailSent = SendEmail(user.email, user.name, book.book_name, book.return_date.ToString("dd/MM/yyyy"));
+                        // בניית גוף המייל
+                        string emailBody = $"Dear {user.name},\n\nThis is a friendly reminder that the book '{book.book_name}' is due for return on {book.return_date:dd/MM/yyyy}.\n\nPlease make sure to return it on time.\n\nBest regards,\nThe Library Team";
 
-                        if (emailSent)
+                        // שליחת המייל ועדכון סטטוס
+                        if (SendEmail(user.email, user.name, "Reminder: Book Return Due", emailBody))
                         {
-                            // עדכון שדה EmailSent ושמירת השינויים
                             book.EmailSent = true;
                             db.SaveChanges();
                             Console.WriteLine($"Reminder sent to {user.name} ({user.email}) for book: {book.book_name}");
@@ -94,18 +90,14 @@ namespace MyMvcProject.Controllers
             }
         }
 
-
-
-
-
-        // פונקציה לשליחת מייל בודד
+        // שליחת מייל בודד
         private bool SendEmail(string userEmail, string userName, string subject, string body)
         {
             try
             {
                 MailMessage mail = new MailMessage
                 {
-                    From = new MailAddress("your_email@example.com"),
+                    From = new MailAddress("adistamker88@gmail.com"),
                     Subject = subject,
                     Body = body,
                     IsBodyHtml = false
@@ -113,9 +105,9 @@ namespace MyMvcProject.Controllers
 
                 mail.To.Add(userEmail);
 
-                SmtpClient client = new SmtpClient("smtp.example.com")
+                SmtpClient client = new SmtpClient("smtp.gmail.com")
                 {
-                    Credentials = new System.Net.NetworkCredential("your_email@example.com", "your_password"),
+                    Credentials = new System.Net.NetworkCredential("adistamker88@gmail.com", "159753"),
                     Port = 587,
                     EnableSsl = true
                 };

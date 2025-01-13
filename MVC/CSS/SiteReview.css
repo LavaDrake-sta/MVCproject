@@ -1,0 +1,124 @@
+﻿body {
+    background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/6216918/extra_large/3bef53ecc169ede75281bab50aef40b9.jpg");
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(61, 0, 61, 0.9); /* צבע כהה עם שקיפות */
+    color: white;
+    text-align: center;
+    padding: 10px; /* הקטנת הפדינג */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 10;
+}
+
+    header h1 {
+        margin: 0;
+        font-size: 1.8em; /* הקטנת גודל הכותרת */
+    }
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 150px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #49124e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: #6d1a74;
+    }
+
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+.home-button {
+    direction: rtl;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px !important;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    background-color: rgba(61, 0, 61, 0.8);
+    color: white;
+    margin-left: 10px;
+    margin: 50px;
+    text-decoration: none; /* מונע קו תחתון של הלינק */
+    transition: all 0.3s ease; /* אנימציה חלקה */
+}
+
+    .home-button:hover {
+        background-color: rgba(100, 0, 100, 0.9);
+        transform: scale(1.05);
+    }
+
+.home-icon {
+    font-style: normal;
+}
+
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}

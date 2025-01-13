@@ -260,6 +260,9 @@ span {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    text-decoration: none; /* מונע קו תחתון של הלינק */
+    transition: all 0.3s ease; /* אנימציה חלקה */
+    margin-top: 50px;
 }
 
 #cartButton {

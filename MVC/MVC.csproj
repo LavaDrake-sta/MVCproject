@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard">
+      <HintPath>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.0\netstandard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -331,6 +335,7 @@
     <Content Include="CSS\Homepage.css" />
     <Content Include="CSS\LoginRegister.css" />
     <Content Include="CSS\PersonalArea.css" />
+    <Content Include="CSS\SiteReview.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

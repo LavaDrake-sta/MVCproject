@@ -9,10 +9,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Leave a Site Review</title>
+    <link rel="stylesheet" href="~/CSS/SiteReview.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
+<a href="~/home" class="home-button">
+    <i class="fas fa-home"></i>
+    HOME
+</a>
+
 <body>
-    <h1>Leave a Site Review</h1>
+    <header><h1>Leave a Site Review</h1></header>
     <form action="@Url.Action("AddReview", "SiteReview")" method="post">
         <input type="hidden" name="email" value="@userEmail" />
         <label for="review">Your Review:</label>

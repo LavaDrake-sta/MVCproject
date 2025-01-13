@@ -661,6 +661,7 @@ C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\Microsoft.Extensi
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\Microsoft.Extensions.Primitives.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\Microsoft.Identity.Client.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\netstandard.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\Newtonsoft.Json.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\System.Buffers.dll
 C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\bin\System.Collections.Immutable.dll
