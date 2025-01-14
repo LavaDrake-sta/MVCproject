@@ -196,7 +196,11 @@ namespace MyMvcProject.Controllers
                     EmailService emailService = new EmailService();
 
                     // שליחת מייל תודה
-                    string emailBody = $"<h1>Thank you for your order, {userName}!</h1><p>Your order has been processed successfully.</p>";
+                    string emailBody = $"<h1>Thank you for your order, {userName}!</h1><p>Your order has been processed successfully.</p>" +
+                        $"<p>You can find and download the book from your personal area.</p>" +
+                        $"<p>We hope you enjoy your purchase!</p>\r\n " +
+                        $"   <p>Best regards,</p>\r\n" +
+                        $"    <p><strong>The Digital Library Team</strong></p>";
                     emailService.SendEmail(user.email, "Thank You for Your Order", emailBody);
 
                     TempData["SuccessMessage"] = "ההזמנה בוצעה בהצלחה! מייל תודה נשלח לכתובת שלך.";
@@ -219,7 +223,5 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Checkout");
             }
         }
-
-
     }
 }

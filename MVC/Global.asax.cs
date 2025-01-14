@@ -24,11 +24,9 @@ namespace MVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMvcProject.Data.MvcProjectContext, MVC.Migrations.Configuration>());
             AutoReturnBooks();
-
-
-
-
+            NotifyUsersWithFiveDaysLeft();
         }
+
         private void AutoReturnBooks()
         {
             using (var db = new MvcProjectContext())
@@ -46,6 +44,47 @@ namespace MVC
                     db.borrowing_Books.Remove(book);
                 }
                 db.SaveChanges();
+            }
+        }
+
+        private void NotifyUsersWithFiveDaysLeft()
+        {
+            using (var db = new MvcProjectContext())
+            {
+                var today = DateTime.Today;
+                var fiveDaysFromNow = today.AddDays(5);
+
+                var booksWithFiveDaysLeft = db.borrowing_Books
+                    .Where(b => DbFunctions.TruncateTime(b.return_date) == fiveDaysFromNow)
+                    .ToList();
+
+                foreach (var book in booksWithFiveDaysLeft)
+                {
+                    var userEmail = book.email;
+                    var bookName = book.book_name;
+
+                    // שליחת מייל למשתמש
+                    try
+                    {
+                        EmailService emailService = new EmailService();
+                        string subject = "Reminder: 5 days left to return your book";
+                        string body = $@"
+                            <h1>Reminder</h1>
+                            <p>Dear User,</p>
+                            <p>This is a friendly reminder that you have 5 days left to return the book:</p>
+                            <p><strong>{bookName}</strong></p>
+                            <p>Please make sure to return it on time to avoid penalties.</p>
+                            <p>Thank you,</p>
+                            <p><strong>Your Digital Library Team</strong></p>";
+
+                        emailService.SendEmail(userEmail, subject, body);
+                        Console.WriteLine($"Reminder email sent to {userEmail} for book '{bookName}'.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to send reminder email to {userEmail}: {ex.Message}");
+                    }
+                }
             }
         }
     }
