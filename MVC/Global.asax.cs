@@ -25,9 +25,6 @@ namespace MVC
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMvcProject.Data.MvcProjectContext, MVC.Migrations.Configuration>());
             AutoReturnBooks();
 
-
-
-
         }
         private void AutoReturnBooks()
         {

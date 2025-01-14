@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using MVC.Models;
 using MyMvcProject.Data;
@@ -24,21 +25,38 @@ namespace MyMvcProject.Controllers
         [HttpPost]
         public ActionResult AddReview(string content)
         {
+            // שליפת המייל מה-Session
+            var userName = Session["UserName"].ToString();
+            var user = db.users.FirstOrDefault(u => u.name == userName);
+
+            // בדיקה אם המייל קיים
+            if (string.IsNullOrEmpty(user.email))
+            {
+                TempData["ErrorMessage"] = "עליך להיות מחובר כדי להוסיף ביקורת.";
+                return RedirectToAction("SiteReview");
+            }
+
+            // בדיקה אם התוכן ריק
             if (string.IsNullOrEmpty(content))
             {
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
                 return RedirectToAction("SiteReview");
             }
+            int nextReviewId = db.reviews.Any() ? db.reviews.Max(r => r.ID_review) + 1 : 1;
 
+            // הוספת הביקורת למסד הנתונים
             db.reviews.Add(new review
             {
-                email = User.Identity.Name,
+                ID_review = nextReviewId,
+                email = user.email,
                 Content = content,
                 type = "Site",
-                book_ID = null
+                book_ID = null,
+                created_at = DateTime.Now
             });
 
             db.SaveChanges();
+
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
             return RedirectToAction("PersonalArea");
         }

@@ -662,6 +662,7 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\Microsoft.Extension
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\Microsoft.Extensions.Primitives.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\Microsoft.Identity.Client.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\netstandard.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\Newtonsoft.Json.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\System.Buffers.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\System.Collections.Immutable.dll
@@ -739,4 +740,3 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Co
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Up2Date
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.pdb
-C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\bin\netstandard.dll
