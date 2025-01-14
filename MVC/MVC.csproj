@@ -222,13 +222,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BookReviewController.cs" />
     <Compile Include="Controllers\booksController.cs" />
     <Compile Include="Controllers\Borrowed_books_listController.cs" />
     <Compile Include="Controllers\Borrowing_booksController.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ordersController.cs" />
     <Compile Include="Controllers\PersonalAreaController.cs" />

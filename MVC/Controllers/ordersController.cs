@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using MVC;
 using MVC.Models;
 using MyMvcProject.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -188,6 +189,23 @@ namespace MyMvcProject.Controllers
 
                 // 9️⃣ ניקוי העגלה לאחר ההזמנה
                 Session["Cart"] = null;
+
+                try
+                {
+                    // יצירת אובייקט EmailService
+                    EmailService emailService = new EmailService();
+
+                    // שליחת מייל תודה
+                    string emailBody = $"<h1>Thank you for your order, {userName}!</h1><p>Your order has been processed successfully.</p>";
+                    emailService.SendEmail(user.email, "Thank You for Your Order", emailBody);
+
+                    TempData["SuccessMessage"] = "ההזמנה בוצעה בהצלחה! מייל תודה נשלח לכתובת שלך.";
+                }
+                catch (Exception emailEx)
+                {
+                    Console.WriteLine($"Error sending thank you email: {emailEx.Message}");
+                    TempData["WarningMessage"] = "ההזמנה בוצעה בהצלחה, אך לא ניתן היה לשלוח מייל תודה.";
+                }
 
                 // 🔔 הצגת הודעת הצלחה
                 TempData["SuccessMessage"] = $"ההזמנה בוצעה בהצלחה! תוכל לראות את הספרים באזור האישי שלך.";
