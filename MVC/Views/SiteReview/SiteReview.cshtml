@@ -1,31 +1,29 @@
 ﻿@{
     Layout = null;
-    var userEmail = Session["UserEmail"]; // יטען את המייל של המשתמש המחובר
+    var userName = Session["UserName"];
+    var userEmail = ViewBag.UserEmail;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Leave a Site Review</title>
-    <link rel="stylesheet" href="~/CSS/SiteReview.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Leave a Site Review</title>
+        <link rel="stylesheet" href="~/CSS/SiteReview.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
 
-<a href="~/home" class="home-button">
-    <i class="fas fa-home"></i>
-    HOME
-</a>
-
-<body>
-    <header><h1>Leave a Site Review</h1></header>
-    <form action="@Url.Action("AddReview", "SiteReview")" method="post">
-        <input type="hidden" name="email" value="@userEmail" />
-        <label for="review">Your Review:</label>
-        <textarea id="review" name="reviewContent" rows="4" required></textarea>
-        <button type="submit" class="btn btn-submit">Submit Review</button>
-    </form>
-</body>
+    <a href="~/home" class="home-button">
+        <i class="fas fa-home"></i>
+        HOME
+    </a>
+    <div class="container">
+        <hader><h1>add review on the site </h1></hader>
+        <form action="@Url.Action("AddReview", "SiteReview")" method="post">
+            <textarea name="content" rows="4" cols="50" placeholder="Write your review here..." required></textarea><br />
+            <button type="submit">submit review</button>
+        </form>
+    </div>
 
 </html>

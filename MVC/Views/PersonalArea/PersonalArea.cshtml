@@ -68,7 +68,7 @@
                                             <td>₪@book.price</td>
                                             <td>@book.date.ToString("dd/MM/yyyy")</td>
                                             <td>
-                                                <a href="@Url.Action("BookReview", "PersonalArea", new { bookName = book.product })" class="personal-nav-button">
+                                                <a href="@Url.Action("BookReview", "BookReview", new { bookName = book.product })" class="personal-nav-button">
                                                     Review
                                                 </a>
                                             </td>
@@ -76,9 +76,6 @@
                                             <!-- הורדה בפורמטים שונים -->
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="personal-nav-button dropdown-toggle" type="button" data-toggle="dropdown">
-                                                        Download
-                                                    </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "pdf" })">PDF</a>
                                                         <a class="dropdown-item" href="@Url.Action("DownloadBook", "PersonalArea", new { bookId = book.id, format = "epub" })">EPUB</a>
