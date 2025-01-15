@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
     var userName = Session["UserName"];
-    var userEmail = Session["UserEmail"]; // יטען את המייל של המשתמש המחובר
-    var bookId = ViewBag.BookId; // מזהה הספר שעבורו מוסיפים ביקורת
+    var userEmail = Session["UserEmail"];
+    var book = ViewBag.Book; 
 }
 
 <!DOCTYPE html>
@@ -21,10 +21,8 @@
 <body>
     <h1>Leave a Book Review</h1>
     <form action="@Url.Action("AddReview", "BookReview")" method="post">
-        <input type="hidden" name="email" value="@userEmail" />
-        <input type="hidden" name="bookId" value="@bookId" />
-        <label for="review">Your Review:</label>
-        <textarea id="review" name="reviewContent" rows="4" required></textarea>
+        <input type="hidden" name="book_name" value="@book.book_name" />
+        <textarea id="review" name="content" rows="4" placeholder="YOUR REVIEW...." required></textarea>
         <button type="submit" class="btn btn-submit">Submit Review</button>
     </form>
 </body>

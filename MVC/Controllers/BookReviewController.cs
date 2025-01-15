@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using MVC.Models;
 using MyMvcProject.Data;
@@ -18,8 +19,25 @@ namespace MyMvcProject.Controllers
         // הצגת ביקורות על ספר מסוים
         public ActionResult BookReview(string book_name)
         {
+            // פענוח שם הספר לתווים תקינים
+            book_name = HttpUtility.UrlDecode(book_name);
 
-            ViewBag.Book = db.books.FirstOrDefault(b => b.book_name == book_name);
+            System.Diagnostics.Debug.WriteLine("Book Name (Decoded): " + book_name);  // בדיקה
+
+            if (string.IsNullOrEmpty(book_name))
+            {
+                TempData["ErrorMessage"] = "ספר לא נבחר.";
+                return RedirectToAction("PersonalArea", "PersonalArea");
+            }
+
+            var book = db.books.FirstOrDefault(b => b.book_name == book_name);
+            if (book == null)
+            {
+                TempData["ErrorMessage"] = "הספר לא נמצא.";
+                return RedirectToAction("PersonalArea", "PersonalArea");
+            }
+
+            ViewBag.Book = book;
             return View();
         }
 
@@ -27,45 +45,57 @@ namespace MyMvcProject.Controllers
 
         // הוספת ביקורת על ספר לפי שם הספר
         [HttpPost]
-        public ActionResult AddReview(int bookid, string content)
+        public ActionResult AddReview(string book_name, string content)
         {
-            var userName = Session["UserName"].ToString();
-            var user = db.users.FirstOrDefault(u => u.name == userName);
-            // בדיקה אם המייל קיים
-            if (string.IsNullOrEmpty(user.email))
+            if (string.IsNullOrEmpty(book_name))
             {
-                TempData["ErrorMessage"] = "עליך להיות מחובר כדי להוסיף ביקורת.";
-                return RedirectToAction("SiteReview");
+                TempData["ErrorMessage"] = "ספר לא נבחר.";
+                return RedirectToAction("PersonalArea", "PersonalArea");
             }
 
             if (string.IsNullOrEmpty(content))
             {
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
-                return RedirectToAction("BookReview", new { bookid });
+                return RedirectToAction("BookReview", new { book_name });
             }
 
-            var book = db.books.FirstOrDefault(b => b.book_id == bookid);
-            if (book == null)
+            var userName = Session["UserName"]?.ToString();
+            if (string.IsNullOrEmpty(userName))
             {
-                TempData["ErrorMessage"] = "הספר לא נמצא.";
-                return RedirectToAction("PersonalArea");
+                TempData["ErrorMessage"] = "עליך להיות מחובר כדי להוסיף ביקורת.";
+                return RedirectToAction("Login", "Account");
             }
 
-            int nextReviewId = db.reviews.Any() ? db.reviews.Max(r => r.ID_review) + 1 : 1;
+            var user = db.users.FirstOrDefault(u => u.name == userName);
+            var book = db.books.FirstOrDefault(b => b.book_name == book_name);
+
+            if (book == null || user == null)
+            {
+                TempData["ErrorMessage"] = "הספר או המשתמש לא נמצא.";
+                return RedirectToAction("PersonalArea", "PersonalArea");
+            }
+
+            // בדיקה אם כבר קיימת ביקורת לאותו ספר
+            var existingReview = db.reviews.FirstOrDefault(r => r.book_ID == book.book_id && r.email == user.email);
+            if (existingReview != null)
+            {
+                TempData["ErrorMessage"] = "כבר השארת ביקורת על הספר הזה.";
+                return RedirectToAction("BookReview", new { book_name });
+            }
 
             db.reviews.Add(new review
             {
-                ID_review = nextReviewId,
                 email = user.email,
                 Content = content,
                 type = "Book",
-                book_ID = bookid,
+                book_ID = book.book_id,
                 created_at = DateTime.Now
             });
 
             db.SaveChanges();
+
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("PersonalArea");
+            return RedirectToAction("PersonalArea", "PersonalArea");
         }
     }
 }

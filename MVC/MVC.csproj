@@ -267,6 +267,22 @@
     <Compile Include="Migrations\202501111801409_AddOrderNumberToOrders.Designer.cs">
       <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501150057299_UpdateReviewTable.cs" />
+    <Compile Include="Migrations\202501150057299_UpdateReviewTable.Designer.cs">
+      <DependentUpon>202501150057299_UpdateReviewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501150102406_UpdateReviewTable1.cs" />
+    <Compile Include="Migrations\202501150102406_UpdateReviewTable1.Designer.cs">
+      <DependentUpon>202501150102406_UpdateReviewTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501150106298_UpdateReviewTable2.cs" />
+    <Compile Include="Migrations\202501150106298_UpdateReviewTable2.Designer.cs">
+      <DependentUpon>202501150106298_UpdateReviewTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501150115525_FixReviewIdentity.cs" />
+    <Compile Include="Migrations\202501150115525_FixReviewIdentity.Designer.cs">
+      <DependentUpon>202501150115525_FixReviewIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\books.cs">
@@ -464,6 +480,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501111801409_AddOrderNumberToOrders.resx">
       <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501150057299_UpdateReviewTable.resx">
+      <DependentUpon>202501150057299_UpdateReviewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501150102406_UpdateReviewTable1.resx">
+      <DependentUpon>202501150102406_UpdateReviewTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501150106298_UpdateReviewTable2.resx">
+      <DependentUpon>202501150106298_UpdateReviewTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501150115525_FixReviewIdentity.resx">
+      <DependentUpon>202501150115525_FixReviewIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

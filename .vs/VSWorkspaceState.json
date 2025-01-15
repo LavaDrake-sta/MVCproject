@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MVC",
+    "\\MVC\\Controllers"
   ],
+  "SelectedNode": "\\MVC\\Controllers\\ordersController.cs",
   "PreviewInSolutionExplorer": false
 }
