@@ -65,10 +65,10 @@
                                     {
                                         <tr>
                                             <td>@book.product</td>
-                                            <td>₪@book.price</td>
+                                            <td>@book.price$</td>
                                             <td>@book.date.ToString("dd/MM/yyyy")</td>
                                             <td>
-                                                <a href="@Url.Action("BookReview", "BookReview", new { bookName = book.product })" class="personal-nav-button">
+                                                <a href="@Url.Action("BookReview", "BookReview", new { bookName =@book.product })" class="personal-nav-button">
                                                     Review
                                                 </a>
                                             </td>

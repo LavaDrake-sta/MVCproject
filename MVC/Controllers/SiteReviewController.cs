@@ -42,12 +42,10 @@ namespace MyMvcProject.Controllers
                 TempData["ErrorMessage"] = "לא ניתן להוסיף ביקורת ריקה.";
                 return RedirectToAction("SiteReview");
             }
-            int nextReviewId = db.reviews.Any() ? db.reviews.Max(r => r.ID_review) + 1 : 1;
 
             // הוספת הביקורת למסד הנתונים
             db.reviews.Add(new review
             {
-                ID_review = nextReviewId,
                 email = user.email,
                 Content = content,
                 type = "Site",
@@ -58,7 +56,7 @@ namespace MyMvcProject.Controllers
             db.SaveChanges();
 
             TempData["SuccessMessage"] = "הביקורת נוספה בהצלחה!";
-            return RedirectToAction("PersonalArea");
+            return RedirectToAction("PersonalArea", "PersonalArea");
         }
     }
 }
