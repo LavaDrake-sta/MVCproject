@@ -103,7 +103,7 @@
                                 </span>
                             }
                             <button onclick="addToCart(@(book.book_id), 'Buy')" class="btn btn-success buy-button">BUY NOW</button>
-                            <button onclick="loadReviews(@book.book_id)" class="btn btn-info review-button">VIEW REVIEW</button>
+                            <button onclick="loadReviews(@book.book_id)" class="btn btn-info review-button">REVIEW</button>
                         </div>
 
                         <!-- רקע כהה לחלונית -->
@@ -166,18 +166,18 @@
                     booksContainer.innerHTML = "";
                     response.books.forEach(book => {
                         booksContainer.innerHTML += `
-                                                                <div class="book-item">
-                                                                    <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
-                                                                    <h2>${book.book_name}</h2>
-                                                                    <p><strong>Author:</strong> ${book.author}</p>
-                                                                    <p><strong>Category:</strong> ${book.category}</p>
-                                                                    <p><strong>Language:</strong> ${book.language}</p>
-                                                                    <p><strong>Price:</strong> $${book.price}</p>
-                                                                    <div class="actions">
-                                                                        ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
-                                                                        <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
-                                                                    </div>
-                                                                </div>`;
+                        <div class="book-item">
+                            <img src="${book.ImageUrl}" alt="${book.book_name}" class="book-image">
+                            <h2>${book.book_name}</h2>
+                            <p><strong>Author:</strong> ${book.author}</p>
+                            <p><strong>Category:</strong> ${book.category}</p>
+                            <p><strong>Language:</strong> ${book.language}</p>
+                            <p><strong>Price:</strong> $${book.price}</p>
+                            <div class="actions">
+                                ${book.IsRent ? `<button class="rent-button" onclick="addToCart(${book.book_id}, 'Rent')">Rent</button>` : ""}
+                                <button class="buy-button" onclick="addToCart(${book.book_id}, 'Buy')">Buy</button>
+                            </div>
+                        </div>`;
                     });
                 });
             }
@@ -194,19 +194,27 @@
 
                 // שליחת בקשת AJAX לשרת
                 fetch(`/books/GetBookReviews?bookId=${bookId}`)
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log("Response status:", response.status); // הדפסת הסטטוס
+                        return response.json();
+                    })
                     .then(data => {
+                        console.log("Server response data:", data); // הדפסת הנתונים מהשרת
+
                         if (data.success) {
-                            reviewContent.innerHTML = data.reviews
-                                .map(review => `
-                                                        <li>
-                                                            <strong>Email:</strong> ${review.email}<br />
-                                                            <strong>Content:</strong> ${review.Content}<br />
-                                                            <strong>Type:</strong> ${review.type}<br />
-                                                            <strong>Date:</strong> ${review.created_at}<br />
-                                                        </li>
-                                                    `)
-                                .join('');
+                            if (data.reviews && data.reviews.length > 0) {
+                                reviewContent.innerHTML = data.reviews
+                                    .map(review => `
+                            <li>
+                                <strong>Email:</strong> ${review.email}<br />
+                                <strong>Content:</strong> ${review.Content}<br />
+                                <strong>Type:</strong> ${review.type}<br />
+                                <strong>Date:</strong> ${review.created_at}<br />
+                            </li>
+                        `).join('');
+                            } else {
+                                reviewContent.innerHTML = "<p>No reviews available for this book.</p>";
+                            }
                         } else {
                             reviewContent.innerHTML = `<p>${data.message}</p>`;
                         }
@@ -216,6 +224,7 @@
                         reviewContent.innerHTML = "<p>Error loading reviews. Please try again later.</p>";
                     });
             }
+
 
             function closeReview(reviewBoxId) {
                 const reviewBox = document.getElementById(reviewBoxId);

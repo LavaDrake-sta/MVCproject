@@ -32,6 +32,60 @@ header {
         margin: 0;
     }
 
+/* כפתורים בצד שמאל */
+.left-nav-container {
+    position: fixed;
+    top: 110px; /* מיקום מתחת לכותרת */
+    left: 10px; /* בצד שמאל */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+    .left-nav-container a {
+        text-decoration: none;
+        color: white;
+        background-color: rgba(61, 0, 61, 0.9);
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+        .left-nav-container a:hover {
+            background-color: #7b1fa2;
+            transform: scale(1.1);
+        }
+
+        .left-nav-container a i {
+            font-size: 1.2em;
+        }
+
+    /* כפתור Logout מיוחד */
+    .left-nav-container .logout-button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        background-color: rgba(230, 57, 53, 0.9);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+    }
+
+        .left-nav-container .logout-button:hover {
+            background-color: rgba(198, 40, 40, 0.9);
+        }
+
 /* תפריט ניווט */
 .nav-container {
     margin-top: 80px;
@@ -166,3 +220,31 @@ footer {
         padding: 8px;
     }
 }
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* רווח בין האייקון לטקסט */
+    padding: 12px 20px;
+    background-color: rgba(230, 57, 53, 0.9);
+    color: white;
+    border-radius: 30px;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-align: left; /* יישור הטקסט והאייקון */
+    justify-content: flex-start; /* מוודא שהאייקון בצד שמאל */
+}
+
+    .btn-logout:hover {
+        background-color: rgba(198, 40, 40, 0.9);
+        transform: scale(1.05); /* אפקט קל על כפתור בהצבעה */
+    }
+
+    .btn-logout i {
+        font-size: 1.2em; /* גודל האייקון */
+    }

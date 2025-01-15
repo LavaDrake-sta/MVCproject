@@ -744,3 +744,7 @@ C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Co
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.csproj.Up2Date
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.dll
 C:\Users\adist\source\repos\LavaDrake-sta\MVCproject\MVC\obj\Debug\MVC.pdb
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateReviewTable.resources
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateReviewTable1.resources
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.UpdateReviewTable2.resources
+C:\Users\sni12\OneDrive\מסמכים\GitHub\MVCproject\MVC\obj\Debug\MVC.Migrations.FixReviewIdentity.resources
