@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using MVC.Models;
 using MyMvcProject.Data;
@@ -18,6 +19,11 @@ namespace MyMvcProject.Controllers
         // הצגת ביקורות על ספר מסוים
         public ActionResult BookReview(string book_name)
         {
+            // פענוח שם הספר לתווים תקינים
+            book_name = HttpUtility.UrlDecode(book_name);
+
+            System.Diagnostics.Debug.WriteLine("Book Name (Decoded): " + book_name);  // בדיקה
+
             if (string.IsNullOrEmpty(book_name))
             {
                 TempData["ErrorMessage"] = "ספר לא נבחר.";

@@ -181,6 +181,7 @@ namespace MyMvcProject.Controllers
                 return System.Convert.ToBase64String(hash);
             }
         }
+
         [HttpPost]
         public ActionResult ReturnBookNow(int bookId)
         {
