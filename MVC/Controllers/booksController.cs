@@ -178,27 +178,30 @@ namespace MVC.Controllers
             try
             {
                 // שליפת הביקורות הקשורות לספר
-                var review = db.review
-                                .Where(r => r.book_ID == bookId) // סינון לפי מזהה הספר
+                var reviews = db.reviews
+                                .Where(r => r.book_ID == bookId)
+                                .OrderByDescending(r => r.created_at) // סידור לפי תאריך יצירה
+                                .ToList() // שליפה מהמסד לפני עיבוד נתונים
                                 .Select(r => new
                                 {
                                     r.ID_review, // מזהה הביקורת
-                                    r.email, // אימייל של הכותב
-                                    r.Content, // תוכן הביקורת
-                                    r.type, // סוג הביקורת
-                                    created_at = r.created_at.HasValue ? r.created_at.Value.ToString("yyyy-MM-dd HH:mm:ss") : "N/A" // תאריך יצירה בפורמט
+                                    r.email,     // אימייל של הכותב
+                                    r.Content,   // תוכן הביקורת
+                                    r.type,      // סוג הביקורת
+                                    created_at = r.created_at.HasValue
+                                        ? r.created_at.Value.ToString("yyyy-MM-dd HH:mm:ss")
+                                        : "N/A" // תאריך יצירה בפורמט לאחר שליפה
                                 })
-                                .OrderByDescending(r => r.created_at) // סידור לפי תאריך יצירה
                                 .ToList();
 
                 // בדיקה אם נמצאו ביקורות
-                if (!review.Any())
+                if (!reviews.Any())
                 {
                     return Json(new { success = false, message = "No reviews found for this book." }, JsonRequestBehavior.AllowGet);
                 }
 
                 // החזרת הביקורות בפורמט JSON
-                return Json(new { success = true, review }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, reviews }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -207,5 +210,6 @@ namespace MVC.Controllers
                 return Json(new { success = false, message = $"An error occurred: {ex.Message}" }, JsonRequestBehavior.AllowGet);
             }
         }
+
     }
 }
