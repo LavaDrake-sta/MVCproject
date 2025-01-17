@@ -18,7 +18,10 @@ namespace MVC.Models
         public string email { get; set; }
         public string Content { get; set; }
         public string type { get; set; }
-        public Nullable<int> book_ID { get; set; }
+        //public Nullable<int> book_ID { get; set; }
+
+        public int? book_ID { get; set; }
+
         public Nullable<System.DateTime> created_at { get; set; }
     
         public virtual books books { get; set; }

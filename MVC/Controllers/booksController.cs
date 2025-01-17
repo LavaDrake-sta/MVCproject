@@ -178,7 +178,7 @@ namespace MVC.Controllers
             try
             {
                 // שליפת הביקורות הקשורות לספר
-                var reviews = db.reviews
+                var review = db.review
                                 .Where(r => r.book_ID == bookId) // סינון לפי מזהה הספר
                                 .Select(r => new
                                 {
@@ -192,22 +192,20 @@ namespace MVC.Controllers
                                 .ToList();
 
                 // בדיקה אם נמצאו ביקורות
-                if (!reviews.Any())
+                if (!review.Any())
                 {
                     return Json(new { success = false, message = "No reviews found for this book." }, JsonRequestBehavior.AllowGet);
                 }
 
                 // החזרת הביקורות בפורמט JSON
-                return Json(new { success = true, reviews }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, review }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 // כתיבה לדיבאג במקרה של שגיאה
                 System.Diagnostics.Debug.WriteLine($"Error in GetBookReviews: {ex.Message}");
-                return Json(new { success = false, message = "An error occurred while retrieving the reviews." }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = $"An error occurred: {ex.Message}" }, JsonRequestBehavior.AllowGet);
             }
         }
-
-
     }
 }
