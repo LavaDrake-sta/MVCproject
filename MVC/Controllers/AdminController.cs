@@ -123,10 +123,14 @@ namespace MyMvcProject.Controllers
             }
             return Json(new { success = false, message = "המשתמש לא נמצא." });
         }
-
         [HttpPost]
         public JsonResult DeleteUser(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                return Json(new { success = false, message = "כתובת האימייל לא התקבלה." });
+            }
+
             var user = db.users.FirstOrDefault(u => u.email == email);
             if (user != null)
             {
