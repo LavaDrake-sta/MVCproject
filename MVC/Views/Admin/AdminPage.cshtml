@@ -225,7 +225,7 @@
                     <td>${entry.date.split('T')[0]}</td>
                     <td>${entry.email}</td>
                     <td>
-                        <button onclick="removeFromWaitingList('${entry.email}')">מחק</button>
+                        <button onclick="deleteUser('${user.email}')">מחק</button>
                     </td>
                 </tr>`;
             });
@@ -347,6 +347,30 @@
 
             if (result.success) {
                 loadBooks(); // רענון רשימת הספרים
+            }
+        }
+        async function deleteUser(email) {
+            if (confirm("האם אתה בטוח שברצונך למחוק את המשתמש?")) {
+                try {
+                    const formData = new FormData();
+                    formData.append("email", email);
+
+                    const response = await fetch('/Admin/DeleteUser', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(result.message);
+                        loadUsers();  // טען מחדש את המשתמשים
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error("שגיאה במחיקת המשתמש:", error);
+                }
             }
         }
 
