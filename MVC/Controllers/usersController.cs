@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Security.Cryptography;
 using System.Text;
-using MyMvcProject.Data; // מרחב השמות של DbContext
+using MyMvcProject.Data; 
 using MVC.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -103,7 +103,6 @@ namespace MyMvcProject.Controllers
                         Session["UserName"] = user.name;
                         Session["UserType"] = user.type; // שמירת סוג המשתמש
 
-                        // דיבוג: הצגת הערכים שנשמרו
                         System.Diagnostics.Debug.WriteLine("UserName: " + Session["UserName"]);
                         System.Diagnostics.Debug.WriteLine("UserType: " + Session["UserType"]);
 

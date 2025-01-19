@@ -91,7 +91,7 @@ namespace MyMvcProject.Controllers
             {
                 u.name,
                 u.email,
-                u.type // ודא ששדה זה קיים בטבלה
+                u.type 
             }).ToList();
 
             return Json(users, JsonRequestBehavior.AllowGet);

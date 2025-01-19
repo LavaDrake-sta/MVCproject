@@ -43,8 +43,6 @@ namespace MVC.Controllers
         }
 
         // POST: waiting_list/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "name,book_name,date,email")] waiting_list waiting_list)
@@ -59,7 +57,7 @@ namespace MVC.Controllers
             return View(waiting_list);
         }
 
-        // GET: waiting_list/Edit/5
+        // GET: waiting_list/Edit
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -74,9 +72,6 @@ namespace MVC.Controllers
             return View(waiting_list);
         }
 
-        // POST: waiting_list/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "name,book_name,date,email")] waiting_list waiting_list)
@@ -90,7 +85,6 @@ namespace MVC.Controllers
             return View(waiting_list);
         }
 
-        // GET: waiting_list/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)

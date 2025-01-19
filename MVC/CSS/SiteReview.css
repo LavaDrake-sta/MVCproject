@@ -13,7 +13,7 @@ header {
     background-color: rgba(61, 0, 61, 0.9); /* צבע כהה עם שקיפות */
     color: white;
     text-align: center;
-    padding: 10px; /* הקטנת הפדינג */
+    padding: 10px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     z-index: 10;
@@ -104,7 +104,7 @@ button {
     margin-left: 10px;
     margin: 50px;
     text-decoration: none; /* מונע קו תחתון של הלינק */
-    transition: all 0.3s ease; /* אנימציה חלקה */
+    transition: all 0.3s ease; 
 }
 
     .home-button:hover {

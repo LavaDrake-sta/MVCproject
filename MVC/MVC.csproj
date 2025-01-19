@@ -400,21 +400,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Borrowed_books_list\Create.cshtml" />
-    <Content Include="Views\Borrowed_books_list\Delete.cshtml" />
-    <Content Include="Views\Borrowed_books_list\Details.cshtml" />
-    <Content Include="Views\Borrowed_books_list\Edit.cshtml" />
-    <Content Include="Views\Borrowed_books_list\Index.cshtml" />
-    <Content Include="Views\Borrowing_books\Create.cshtml" />
-    <Content Include="Views\Borrowing_books\Delete.cshtml" />
-    <Content Include="Views\Borrowing_books\Details.cshtml" />
-    <Content Include="Views\Borrowing_books\Edit.cshtml" />
-    <Content Include="Views\Borrowing_books\Index.cshtml" />
-    <Content Include="Views\waiting_list\Create.cshtml" />
-    <Content Include="Views\waiting_list\Delete.cshtml" />
-    <Content Include="Views\waiting_list\Details.cshtml" />
-    <Content Include="Views\waiting_list\Edit.cshtml" />
-    <Content Include="Views\waiting_list\Index.cshtml" />
     <Content Include="Views\users\LoginRegister.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
@@ -427,7 +412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

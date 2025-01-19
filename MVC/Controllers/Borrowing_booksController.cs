@@ -21,7 +21,6 @@ namespace MVC.Controllers
             return View(db.borrowing_Books.ToList());
         }
 
-        // GET: Borrowing_books/Details/5
         public ActionResult Details(float? id)
         {
             if (id == null)
@@ -42,9 +41,6 @@ namespace MVC.Controllers
             return View();
         }
 
-        // POST: Borrowing_books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "book_id,book_name,category,language,publisher,Publication_date,available,price")] Borrowing_books borrowing_books)
@@ -59,7 +55,6 @@ namespace MVC.Controllers
             return View(borrowing_books);
         }
 
-        // GET: Borrowing_books/Edit/5
         public ActionResult Edit(float? id)
         {
             if (id == null)
@@ -74,9 +69,6 @@ namespace MVC.Controllers
             return View(borrowing_books);
         }
 
-        // POST: Borrowing_books/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "book_id,book_name,category,language,publisher,Publication_date,available,price")] Borrowing_books borrowing_books)
@@ -90,7 +82,6 @@ namespace MVC.Controllers
             return View(borrowing_books);
         }
 
-        // GET: Borrowing_books/Delete/5
         public ActionResult Delete(float? id)
         {
             if (id == null)
@@ -105,7 +96,6 @@ namespace MVC.Controllers
             return View(borrowing_books);
         }
 
-        // POST: Borrowing_books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(float id)

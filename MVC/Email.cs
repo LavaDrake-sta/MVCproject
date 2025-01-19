@@ -37,7 +37,7 @@ namespace MVC
                         From = new MailAddress(_username),
                         Subject = subject,
                         Body = body,
-                        IsBodyHtml = true // במידה ואתה רוצה תוכן HTML
+                        IsBodyHtml = true 
                     };
 
                     mailMessage.To.Add(toEmail);

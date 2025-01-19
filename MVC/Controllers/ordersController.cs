@@ -78,14 +78,14 @@ namespace MyMvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitOrder(string cardOwner, string cardNumber, string expiryDate, string cvc, int numberOfPayments)
         {
-            // 1️⃣ בדיקת התחברות
+            //  בדיקת התחברות
             if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לבצע הזמנה.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // 2️⃣ בדיקת תקינות פרטי האשראי
+            //  בדיקת תקינות פרטי האשראי
             if (string.IsNullOrEmpty(cardOwner) ||
                 !IsValidCardNumber(cardNumber) ||
                 !IsValidExpiryDate(expiryDate) ||
@@ -95,7 +95,7 @@ namespace MyMvcProject.Controllers
                 return RedirectToAction("Checkout");
             }
 
-            // 3️⃣ שליפת העגלה מה-Session
+            //  שליפת העגלה מה-Session
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
 
             if (!cart.Any())
@@ -106,7 +106,7 @@ namespace MyMvcProject.Controllers
 
             try
             {
-                // 4️⃣ שליפת פרטי המשתמש
+                //  שליפת פרטי המשתמש
                 var userName = Session["UserName"].ToString();
                 var user = db.users.FirstOrDefault(u => u.name == userName);
 
@@ -116,7 +116,7 @@ namespace MyMvcProject.Controllers
                     return RedirectToAction("Checkout");
                 }
 
-                // 5️⃣ ביצוע הזמנה לכל פריט בעגלה
+                //  ביצוע הזמנה לכל פריט בעגלה
                 foreach (var item in cart)
                 {
                     var book = db.books.FirstOrDefault(b => b.book_id == item.BookId);
@@ -127,7 +127,7 @@ namespace MyMvcProject.Controllers
                         return RedirectToAction("Checkout");
                     }
 
-                    // 6️⃣ עדכון מלאי והשכרה
+                    //  עדכון מלאי והשכרה
                     if (item.Type == "Rent" && book.IsRent == true)
                     {
                         // בדיקה אם יש מספיק מלאי להשכרה
@@ -139,7 +139,7 @@ namespace MyMvcProject.Controllers
 
                         book.CurrentRentCount += item.Quantity;
 
-                        // ➕ הוספה לרשימת ההשכרות האישית
+                        //  הוספה לרשימת ההשכרות האישית
                         var borrowingBook = new Borrowing_books
                         {
                             book_id = book.book_id,
@@ -152,7 +152,7 @@ namespace MyMvcProject.Controllers
                         };
                         db.borrowing_Books.Add(borrowingBook);
 
-                        // ➕ הוספה לרשימת כל ההשכרות
+                        //  הוספה לרשימת כל ההשכרות
                         var borrowedBook = new Borrowed_books_list
                         {
                             book_id = book.book_id,
@@ -164,7 +164,7 @@ namespace MyMvcProject.Controllers
                         db.borrowed_Books_Lists.Add(borrowedBook);
                     }
 
-                    // 7️⃣ יצירת ההזמנה
+                    //  יצירת ההזמנה
                     var order = new orders
                     {
                         email = user.email,
@@ -184,10 +184,10 @@ namespace MyMvcProject.Controllers
                     db.orders.Add(order);
                 }
 
-                // 8️⃣ שמירת כל השינויים במסד הנתונים
+                //  שמירת כל השינויים במסד הנתונים
                 db.SaveChanges();
 
-                // 9️⃣ ניקוי העגלה לאחר ההזמנה
+                //  ניקוי העגלה לאחר ההזמנה
                 Session["Cart"] = null;
 
                 try
@@ -211,10 +211,10 @@ namespace MyMvcProject.Controllers
                     TempData["WarningMessage"] = "ההזמנה בוצעה בהצלחה, אך לא ניתן היה לשלוח מייל תודה.";
                 }
 
-                // 🔔 הצגת הודעת הצלחה
+                //  הצגת הודעת הצלחה
                 TempData["SuccessMessage"] = $"ההזמנה בוצעה בהצלחה! תוכל לראות את הספרים באזור האישי שלך.";
 
-                // 🔄 הפניה לעמוד הבית
+                //  הפניה לעמוד הבית
                 return RedirectToAction("HomePage", "Home");
             }
             catch (Exception ex)

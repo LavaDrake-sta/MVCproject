@@ -33,7 +33,7 @@ namespace MVC.Controllers
                 return Json(new { success = false, message = "הספר לא נמצא במערכת." });
             }
 
-            // 📦 טיפול בהשכרה (Rent)
+            //  טיפול בהשכרה (Rent)
             if (type == "Rent")
             {
                 if (book.IsRent == true && book.CurrentRentCount >= book.MaxRentCount)
@@ -95,7 +95,7 @@ namespace MVC.Controllers
                 return Json(new { success = true, message = $"הספר \"{book.book_name}\" נוסף לעגלה בהצלחה." });
             }
 
-            // 🛒 טיפול ברכישה רגילה (Buy)
+            //  טיפול ברכישה רגילה (Buy)
             if (type == "Buy")
             {
                 var existingBuyItem = cart.FirstOrDefault(c => c.BookId == bookId && c.Type == "Buy");
@@ -158,14 +158,14 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult AddToWaitingList(int bookId)
         {
-            // 1️⃣ בדיקה אם המשתמש מחובר
+            //  בדיקה אם המשתמש מחובר
             if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי להצטרף לרשימת ההמתנה.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // 2️⃣ שליפת פרטי המשתמש והספר
+            //  שליפת פרטי המשתמש והספר
             var userName = Session["UserName"].ToString();
             var user = db.users.FirstOrDefault(u => u.name == userName);
             var book = db.books.FirstOrDefault(b => b.book_id == bookId);
@@ -176,7 +176,7 @@ namespace MVC.Controllers
                 return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // 3️⃣ בדיקה אם המשתמש כבר ברשימת ההמתנה
+            //  בדיקה אם המשתמש כבר ברשימת ההמתנה
             var alreadyInList = db.waiting_Lists.Any(w => w.email == user.email && w.book_name == book.book_name);
 
             if (alreadyInList)
@@ -185,7 +185,7 @@ namespace MVC.Controllers
                 return RedirectToAction("BuyBorrowBook", "books");
             }
 
-            // 4️⃣ הוספה לרשימת ההמתנה
+            //  הוספה לרשימת ההמתנה
             var waitingEntry = new waiting_list
             {
                 name = user.name,
@@ -197,7 +197,7 @@ namespace MVC.Controllers
             db.waiting_Lists.Add(waitingEntry);
             db.SaveChanges();
 
-            // 5️⃣ הודעת הצלחה
+            //  הודעת הצלחה
             TempData["SuccessMessage"] = $"נוספת לרשימת ההמתנה עבור הספר \"{book.book_name}\".";
             return RedirectToAction("BuyBorrowBook", "books");
         }

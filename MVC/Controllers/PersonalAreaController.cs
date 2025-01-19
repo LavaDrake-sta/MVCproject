@@ -71,21 +71,21 @@ namespace MyMvcProject.Controllers
 
         public ActionResult PersonalArea()
         {
-            // 🔒 בדיקה אם המשתמש מחובר
+            //  בדיקה אם המשתמש מחובר
             if (Session["UserName"] == null)
             {
                 TempData["ErrorMessage"] = "עליך להתחבר כדי לצפות באזור האישי.";
                 return RedirectToAction("Login", "Users");
             }
 
-            // 📧 שליפת שם המשתמש והאימייל שלו
+            //  שליפת שם המשתמש והאימייל שלו
             string userName = Session["UserName"].ToString();
             string userEmail = db.users
                 .Where(u => u.name == userName)
                 .Select(u => u.email)
                 .FirstOrDefault();
 
-            // ❌ בדיקה אם לא נמצא אימייל
+            //  בדיקה אם לא נמצא אימייל
             if (string.IsNullOrEmpty(userEmail))
             {
                 TempData["ErrorMessage"] = "משתמש לא נמצא במערכת.";
@@ -94,35 +94,35 @@ namespace MyMvcProject.Controllers
 
             try
             {
-                // ✅ שליפת כל ההזמנות שבוצעו לפי המייל
+                //  שליפת כל ההזמנות שבוצעו לפי המייל
                 var allOrders = db.orders
                     .Where(o => o.email == userEmail)
                     .OrderByDescending(o => o.date)  // סידור מהחדש לישן
                     .ToList();
 
-                // ✅ שליפת כל הספרים שנרכשו (Buy)
+                //  שליפת כל הספרים שנרכשו (Buy)
                 var purchasedBooks = allOrders
                     .Where(o => o.buy_borrow == "Buy")
                     .ToList();
 
-                // ✅ שליפת כל הספרים שהושכרו (Rent)
+                //  שליפת כל הספרים שהושכרו (Rent)
                 var rentedBooks = allOrders
                     .Where(o => o.buy_borrow == "Rent")
                     .ToList();
 
-                // ✅ שליפת כל הספרים המושכרים לפי המייל
+                //  שליפת כל הספרים המושכרים לפי המייל
                 var borrowedBooks = db.borrowing_Books
                     .Where(b => b.email == userEmail)
                     .OrderBy(b => b.return_date)  // סידור לפי תאריך החזרה
                     .ToList();
 
-                // ✅ שליפת כל הספרים ברשימת המתנה לפי המייל
+                //  שליפת כל הספרים ברשימת המתנה לפי המייל
                 var waitingBooks = db.waiting_Lists
                     .Where(w => w.email == userEmail)
                     .OrderBy(w => w.date)  // סידור לפי תאריך הצטרפות
                     .ToList();
 
-                // 📦 שליחת המידע ל-View
+                //  שליחת המידע ל-View
                 ViewBag.AllOrders = allOrders;
                 ViewBag.PurchasedBooks = purchasedBooks;
                 ViewBag.RentedBooks = rentedBooks;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity; // EF6 Namespace
+using System.Data.Entity; 
 using System.Data.Entity.ModelConfiguration.Conventions;
 using MVC.Models;
 
@@ -8,7 +8,6 @@ namespace MyMvcProject.Data
 {
     public class MvcProjectContext : DbContext
     {
-        // הגדרת הקונסטרוקטור עם שרשרת החיבור
         public MvcProjectContext() : base("name=MvcProjectContext") { }
 
         // טבלאות במסד הנתונים

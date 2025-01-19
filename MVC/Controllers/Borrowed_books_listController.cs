@@ -42,9 +42,6 @@ namespace MVC.Controllers
             return View();
         }
 
-        // POST: Borrowed_books_list/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "book_id,book_name,category,Date_taken,return_date")] Borrowed_books_list borrowed_books_list)
@@ -59,7 +56,6 @@ namespace MVC.Controllers
             return View(borrowed_books_list);
         }
 
-        // GET: Borrowed_books_list/Edit/5
         public ActionResult Edit(float? id)
         {
             if (id == null)
@@ -74,9 +70,6 @@ namespace MVC.Controllers
             return View(borrowed_books_list);
         }
 
-        // POST: Borrowed_books_list/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "book_id,book_name,category,Date_taken,return_date")] Borrowed_books_list borrowed_books_list)
@@ -90,7 +83,6 @@ namespace MVC.Controllers
             return View(borrowed_books_list);
         }
 
-        // GET: Borrowed_books_list/Delete/5
         public ActionResult Delete(float? id)
         {
             if (id == null)
@@ -105,7 +97,6 @@ namespace MVC.Controllers
             return View(borrowed_books_list);
         }
 
-        // POST: Borrowed_books_list/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(float id)

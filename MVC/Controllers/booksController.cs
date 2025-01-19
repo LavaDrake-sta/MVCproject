@@ -36,7 +36,7 @@ namespace MVC.Controllers
                     b.CurrentRentCount,
                     b.MaxRentCount,
                     b.IsRent,
-                    b.author // הוספת השדה author
+                    b.author 
                 }).ToList();
 
                 return Json(books, JsonRequestBehavior.AllowGet);
@@ -67,7 +67,7 @@ namespace MVC.Controllers
                                   b.CurrentRentCount,
                                   b.MaxRentCount,
                                   b.IsRent,
-                                  b.author // הוספת השדה author
+                                  b.author 
                               })
                               .ToList();
 
