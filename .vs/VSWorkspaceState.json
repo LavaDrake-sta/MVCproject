@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MVC",
+    "\\MVC\\Views",
+    "\\MVC\\Views\\books"
   ],
+  "SelectedNode": "\\MVC\\Views\\books\\BuyBorrowBook.cshtml",
   "PreviewInSolutionExplorer": false
 }

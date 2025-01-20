@@ -126,20 +126,22 @@ namespace MyMvcProject.Controllers
         [HttpPost]
         public JsonResult DeleteUser(string email)
         {
-            if (string.IsNullOrEmpty(email))
-            {
-                return Json(new { success = false, message = "כתובת האימייל לא התקבלה." });
-            }
-
             var user = db.users.FirstOrDefault(u => u.email == email);
             if (user != null)
             {
+                // מחיקת כל ההזמנות של המשתמש תחילה
+                var relatedOrders = db.orders.Where(o => o.email == email).ToList();
+                db.orders.RemoveRange(relatedOrders);
+
+                // כעת ניתן למחוק את המשתמש
                 db.users.Remove(user);
                 db.SaveChanges();
-                return Json(new { success = true, message = "המשתמש נמחק בהצלחה." });
+
+                return Json(new { success = true, message = "המשתמש נמחק בהצלחה יחד עם ההזמנות." });
             }
             return Json(new { success = false, message = "המשתמש לא נמצא." });
         }
+
 
         private string HashPassword(string password)
         {
