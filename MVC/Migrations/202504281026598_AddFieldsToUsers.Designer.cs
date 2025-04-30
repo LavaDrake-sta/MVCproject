@@ -7,13 +7,13 @@ namespace MVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class UpdateOrdersTable : IMigrationMetadata
+    public sealed partial class AddFieldsToUsers : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateOrdersTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFieldsToUsers));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501101419320_UpdateOrdersTable"; }
+            get { return "202504281026598_AddFieldsToUsers"; }
         }
         
         string IMigrationMetadata.Source

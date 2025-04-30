@@ -239,49 +239,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501051143209_SyncDatabase.cs" />
-    <Compile Include="Migrations\202501051143209_SyncDatabase.Designer.cs">
-      <DependentUpon>202501051143209_SyncDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202504281022258_InitialCreate.cs" />
+    <Compile Include="Migrations\202504281022258_InitialCreate.Designer.cs">
+      <DependentUpon>202504281022258_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501081217473_CheckReviewTable.cs" />
-    <Compile Include="Migrations\202501081217473_CheckReviewTable.Designer.cs">
-      <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501091116565_AddReviewsTable.cs" />
-    <Compile Include="Migrations\202501091116565_AddReviewsTable.Designer.cs">
-      <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501091300529_AddReviewsTable1.cs" />
-    <Compile Include="Migrations\202501091300529_AddReviewsTable1.Designer.cs">
-      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.cs" />
-    <Compile Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.Designer.cs">
-      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501101419320_UpdateOrdersTable.cs" />
-    <Compile Include="Migrations\202501101419320_UpdateOrdersTable.Designer.cs">
-      <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501111801409_AddOrderNumberToOrders.cs" />
-    <Compile Include="Migrations\202501111801409_AddOrderNumberToOrders.Designer.cs">
-      <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501150057299_UpdateReviewTable.cs" />
-    <Compile Include="Migrations\202501150057299_UpdateReviewTable.Designer.cs">
-      <DependentUpon>202501150057299_UpdateReviewTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501150102406_UpdateReviewTable1.cs" />
-    <Compile Include="Migrations\202501150102406_UpdateReviewTable1.Designer.cs">
-      <DependentUpon>202501150102406_UpdateReviewTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501150106298_UpdateReviewTable2.cs" />
-    <Compile Include="Migrations\202501150106298_UpdateReviewTable2.Designer.cs">
-      <DependentUpon>202501150106298_UpdateReviewTable2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501150115525_FixReviewIdentity.cs" />
-    <Compile Include="Migrations\202501150115525_FixReviewIdentity.Designer.cs">
-      <DependentUpon>202501150115525_FixReviewIdentity.cs</DependentUpon>
+    <Compile Include="Migrations\202504281026598_AddFieldsToUsers.cs" />
+    <Compile Include="Migrations\202504281026598_AddFieldsToUsers.Designer.cs">
+      <DependentUpon>202504281026598_AddFieldsToUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -444,38 +408,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501051143209_SyncDatabase.resx">
-      <DependentUpon>202501051143209_SyncDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202504281022258_InitialCreate.resx">
+      <DependentUpon>202504281022258_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501081217473_CheckReviewTable.resx">
-      <DependentUpon>202501081217473_CheckReviewTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501091116565_AddReviewsTable.resx">
-      <DependentUpon>202501091116565_AddReviewsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501091300529_AddReviewsTable1.resx">
-      <DependentUpon>202501091300529_AddReviewsTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501092308198_AddOrderStatusAndDeliveryDate.resx">
-      <DependentUpon>202501092308198_AddOrderStatusAndDeliveryDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501101419320_UpdateOrdersTable.resx">
-      <DependentUpon>202501101419320_UpdateOrdersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501111801409_AddOrderNumberToOrders.resx">
-      <DependentUpon>202501111801409_AddOrderNumberToOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501150057299_UpdateReviewTable.resx">
-      <DependentUpon>202501150057299_UpdateReviewTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501150102406_UpdateReviewTable1.resx">
-      <DependentUpon>202501150102406_UpdateReviewTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501150106298_UpdateReviewTable2.resx">
-      <DependentUpon>202501150106298_UpdateReviewTable2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501150115525_FixReviewIdentity.resx">
-      <DependentUpon>202501150115525_FixReviewIdentity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202504281026598_AddFieldsToUsers.resx">
+      <DependentUpon>202504281026598_AddFieldsToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,6 +25,25 @@ namespace MyMvcProject.Controllers
             ViewBag.Mode = mode; // מצב login או register
             return View("LoginRegister");
         }
+        public ActionResult EncryptAllPasswords()
+        {
+            var allUsers = db.users.ToList();
+
+            foreach (var user in allUsers)
+            {
+                if (!string.IsNullOrEmpty(user.password))
+                {
+                    // אם הסיסמה לא מוצפנת עדיין (פשוטה), נצפין אותה
+                    user.password = HashPassword(user.password);
+                }
+            }
+
+            db.SaveChanges();
+
+            ViewBag.SuccessMessage = "כל הסיסמאות הוצפנו בהצלחה.";
+            return View("LoginRegister");
+        }
+
 
         [HttpPost]
         public ActionResult Register(string name, string email, string password)
@@ -51,7 +70,7 @@ namespace MyMvcProject.Controllers
                         name = name,
                         email = email,
                         password = hashedPassword,
-                        type = "רגיל"
+                        type = "regular"
                     };
 
                     // הוספת המשתמש ל-DB
@@ -95,8 +114,21 @@ namespace MyMvcProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string hashedPassword = HashPassword(password);
-                    var user = db.users.FirstOrDefault(u => u.email == email && u.password == hashedPassword);
+                    users user = null;
+
+                    // בדיקה: אם יש ניסיון SQL Injection (לפי מחרוזת חשודה)
+                    if (email.Contains("'") || email.Contains("--") || password.Contains("'") || password.Contains("--"))
+                    {
+                        // קריאה מסוכנת: SQL Injection
+                        string sqlQuery = $"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'";
+                        user = db.users.SqlQuery(sqlQuery).FirstOrDefault();
+                    }
+                    else
+                    {
+                        // קריאה רגילה רגילה
+                        string hashedPassword = HashPassword(password);
+                        user = db.users.FirstOrDefault(u => u.email == email && u.password == hashedPassword);
+                    }
 
                     if (user != null)
                     {
